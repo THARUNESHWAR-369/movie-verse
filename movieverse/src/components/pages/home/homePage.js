@@ -1,26 +1,31 @@
-import React, { useEffect, useState} from 'react';
-
+import React, { useEffect, useState } from "react";
 
 export const HomePage = () => {
+  const [appBg, setAppBg] = useState([]);
 
-    const [appBg, setAppBg] = useState([]);
+  useEffect(() => {
+    fetchNowPlayingMovieData();
+  }, []);
 
-    useEffect(()=>{fetchNowPlayingMovieData();},[]);
-
-    const fetchNowPlayingMovieData = async () => {
-        try {
-            const response = await fetch(process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL);
-            const jsonData = await response.json();
-            console.log(jsonData);
+  const fetchNowPlayingMovieData = async () => {
+    fetch(process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL, {
+        headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
         }
-        catch(error) {
-            console.log("error fetching data: ",error);
-        }
-    };
+      })
+      .then((response) => response.json().then((jsonData) => {
+        setAppBg(jsonData);
+      })
+      .catch((error) => {
+        console.log("error fetching data: ", error);
+      }));
+      
+  };
 
-    return (
-        <div className="Home">
-            <div className='bg'></div>
-        </div>
-    );
-}
+  return (
+    <div className="Home">
+      <div className="bg">{appBg}</div>
+    </div>
+  );
+};

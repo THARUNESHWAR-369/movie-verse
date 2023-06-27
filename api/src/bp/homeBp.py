@@ -9,8 +9,10 @@ from src.movieutils.movieUtils import MovieUtils
 print(app_version)
 
 HomeBp = Blueprint('home_bp', __name__, url_prefix=f'/api/{app_version}/home-bp-details')
+cors = CORS(HomeBp)
 
 @HomeBp.route("/getPopularMovies",methods=['POST', "GET"])
+@cross_origin()
 def getPopularMovies():
     print("In Popular movies")
     __popularMovies = MovieUtils().getPopularMovies()
@@ -20,6 +22,7 @@ def getPopularMovies():
         return __popularMovies
 
 @HomeBp.route("/getTopRatedMovies",methods=['POST', "GET"])
+@cross_origin()
 def getTopRatedMovies():
     print("In Top Rated Movies")
     __topRatedMovies = MovieUtils().getTopRatedMovies()
@@ -29,6 +32,7 @@ def getTopRatedMovies():
         return __topRatedMovies
 
 @HomeBp.route("/nowPlaying",methods=['POST', "GET"])
+@cross_origin()
 def getNowPlayingMovies():
     print("Now Playing Movies")
     __nowPlayingMovies = MovieUtils().getNowPlayingMovies()
