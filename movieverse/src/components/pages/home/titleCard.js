@@ -3,7 +3,7 @@ export const TitleCard = ({movieTitle, movieOverview, movieGenres, movieRating})
   return (
     <div className="title-card text-white flex flex-col gap-4 w-[120%]">
       <h1 className="text-6xl tracking-wide font-bold">{movieTitle}</h1>
-      <p className="w-[40%] ">
+      <p className="w-[50%] ">
         {movieOverview}
       </p>
       <div className="title-card-genre flex gap-1">

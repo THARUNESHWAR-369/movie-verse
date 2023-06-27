@@ -22,15 +22,16 @@ export const HomePage = () => {
         process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
       );
       const jsonData = await response.json();
-      console.log(jsonData['data']['results'][0]);
-      fetchBgMovieGenre(jsonData['data']['results'][0]['genre_ids']);
+      console.log(jsonData['data']['results'][0]['genre_ids']);
+      await fetchBgMovieGenre(jsonData['data']['results'][0]['genre_ids']);
       setAppBg(jsonData['data']['results'][0]);
     } catch (error) {
       console.log("error fetching data: ", error);
     }
   };
 
-  const fetchBgMovieGenre = async ({genre_id}) => {
+  const fetchBgMovieGenre = async (genre_id) => {
+    console.log("genre_id: ",genre_id)
     const response = await fetch(
       process.env.REACT_APP_API_SERVICE_GET_MOVIE_GENRE_URL,
       {

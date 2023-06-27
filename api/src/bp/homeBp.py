@@ -71,9 +71,9 @@ def getMovieReview():
 @HomeBp.route("/getMovieGenre",methods=['POST', "GET"])
 @cross_origin()
 def getMovieGenre():
-    movie_genre_list = request.json['movie_genre']
+    movie_genre_list = request.json['movie_genre'] if type(request.json['movie_genre']) == list else [request.json['movie_genre']]
     print("movie_genre_list: ",movie_genre_list)
-    return movieUtils.getMovieGenre(movie_genre_list)
+    return movieUtils._getMovieGenre(movie_genre_list)
 
 
 

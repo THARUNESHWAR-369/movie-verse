@@ -2,13 +2,8 @@ import React, { useEffect, useState } from "react";
 import imdbLogo from "../../../static/images/imdb.png";
 
 export const ReviewCard = ({ movieId }) => {
-  console.log(movieId);
   const [reviewCard, setReviewCard] = useState(null);
 
-  console.log(
-    process.env.REACT_APP_API_SERVICE_GET_MOVIE_REVIEW_URL,
-    process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
-  );
   useEffect(() => {
     fetchMovieReview();
   }, []);
