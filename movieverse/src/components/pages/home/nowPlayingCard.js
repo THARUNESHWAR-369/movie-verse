@@ -40,7 +40,7 @@ export const NowPlayingCard = () => {
   };
 
   return (
-    <div className="popular-card text-white ml-13 mb-9">
+    <div className="popular-card text-white ml-13">
       <h2 className="font-bold text-2xl">Now Playing</h2>
       <div className="popular-card-controller">
         <i

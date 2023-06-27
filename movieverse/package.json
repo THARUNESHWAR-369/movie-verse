@@ -2,7 +2,7 @@
   "name": "movieverse",
   "version": "0.5.0",
   "private": true,
-  "proxy": "http://127.0.0.1:5000",
+  "proxy": "https://movieverse-atj6.onrender.com",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

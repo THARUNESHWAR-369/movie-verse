@@ -5,11 +5,13 @@ import { ReviewCard } from "./reviewCard";
 import { PopularCard } from "./popularCard";
 import { NowPlayingCard } from "./nowPlayingCard";
 import { UpComingMoviesCard } from "./upcomingMoviesCard";
+import { FooterComponent } from "../../footerComponent/footerComponent";
 
 export const HomePage = () => {
   const [appBg, setAppBg] = useState(null);
-
   const [appBgMovieGenre, setAppBgMovieGenre] = useState(null);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     fetchNowPlayingMovieData();
@@ -25,8 +27,10 @@ export const HomePage = () => {
       console.log(jsonData['data']['results'][0]['genre_ids']);
       await fetchBgMovieGenre(jsonData['data']['results'][0]['genre_ids']);
       setAppBg(jsonData['data']['results'][0]);
+      setLoading(false);
     } catch (error) {
       console.log("error fetching data: ", error);
+      setLoading(false);
     }
   };
 
@@ -58,6 +62,10 @@ export const HomePage = () => {
 
   return (
     <div className="Home w-full h-full">
+       {loading && <div className="loader z-[100000000]"><div className="spinner-container">
+      <div className="loading-spinner">
+      </div>
+    </div></div>}
       <div
         className="bg w-full h-screen bg-fixed bg-no-repeat bg-center bg-cover fixed z-[-15]"
         style={imageUrlStyle}
@@ -69,13 +77,14 @@ export const HomePage = () => {
             movieTitle={appBg?.original_title}
             movieOverview={appBg?.overview}
             movieRating={appBg?.vote_average}
-            movieGenres={appBg?.genre_ids}
+            movieGenres={appBgMovieGenre}
           ></TitleCard>
           {appBg && appBg.id && <ReviewCard movieId={appBg.id} />}
         </div>
         <PopularCard></PopularCard>
         <NowPlayingCard></NowPlayingCard>
         <UpComingMoviesCard></UpComingMoviesCard>
+        <FooterComponent></FooterComponent>
       </div>
     </div>
   );
