@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_cors import CORS, cross_origin
 
 import os
@@ -50,8 +50,8 @@ def getNowPlayingMovies():
         movie_genre = []
         for genre_ids in __nowPlayingMovies['data']['results'][0]['genre_ids']:
             movie_genre.append(movieUtils.getMovieGenre(genre_ids))
-            
-        return {
+    
+        return jsonify({
             "movie_title":__nowPlayingMovies['data']['results'][0]['original_title'],
             "movie_overview":__nowPlayingMovies['data']['results'][0]['overview'],
             "movie_release_date":__nowPlayingMovies['data']['results'][0]['release_date'],
@@ -59,6 +59,6 @@ def getNowPlayingMovies():
             "poster_url":os.environ.get('TMDB_POSTER_URL') + __nowPlayingMovies['data']['results'][0]['backdrop_path'],
             "rating" : __nowPlayingMovies['data']['results'][0]['vote_average'],
             "movie_genres" : movie_genre
-        }
+        })
     else:
         return __nowPlayingMovies
