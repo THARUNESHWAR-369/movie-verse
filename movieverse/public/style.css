@@ -603,10 +603,6 @@ video {
   margin: auto;
 }
 
-.mb-9{
-  margin-bottom: 2.25rem;
-}
-
 .mr-\[10px\]{
   margin-right: 10px;
 }
@@ -1223,6 +1219,12 @@ a.myAppName {
 
   .review-card {
     width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .review-card {
+    width: 95%;
   }
 }
 
