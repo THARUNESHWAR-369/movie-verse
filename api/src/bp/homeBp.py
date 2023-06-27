@@ -62,3 +62,10 @@ def getNowPlayingMovies():
         })
     else:
         return __nowPlayingMovies
+
+@HomeBp.route("/getMovieReview",methods=['POST', "GET"])
+@cross_origin()
+def getMovieReview():
+    movie_id = request.json['movie_id']
+    __movieReview = movieUtils.getMovieReviews(movie_id)
+    return jsonify(__movieReview)

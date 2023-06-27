@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavComponent } from "../../navigation/navComponent";
 import { TitleCard } from "./titleCard";
+import { ReviewCard } from "./reviewCard";
 
 export const HomePage = () => {
   console.log(process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL);
@@ -40,10 +41,10 @@ export const HomePage = () => {
             <TitleCard
               movieTitle={appBg?.movie_title}
               movieOverview={appBg?.movie_overview}
+              movieRating={appBg?.rating}
+              movieGenres={appBg?.movie_genres}
             ></TitleCard>
-            <div className="review-card">
-              <p>adf</p>
-            </div>
+            <ReviewCard></ReviewCard>
           </div>
         </div>
       </div>

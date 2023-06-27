@@ -54,3 +54,12 @@ body {
   align-items: center;
   
 }
+
+.review-card-li {
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(2px);
+  padding: 0.4rem;
+  border-radius: 5px;
+  gap: 2rem;
+  margin: 5px;
+}
