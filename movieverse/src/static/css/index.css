@@ -108,12 +108,12 @@ body {
   overflow: auto;
 }
 
-.popular-card {
+.popular-card, .np-card, .up-card {
   margin-left: 3.5rem;
   margin-right: 4.5rem;
 }
 
-.popular-card-cards {
+.popular-card-cards, .np-card-cards,.up-card-cards {
   width: 100%;
   height: 250px;
   /*border: 1px solid #fff;*/
@@ -125,7 +125,7 @@ body {
     scroll-behavior: smooth;
 }
 
-.popular-card-cards::-webkit-scrollbar {
+.popular-card-cards::-webkit-scrollbar, .np-card-cards::-webkit-scrollbar,.up-card-cards::-webkit-scrollbar {
   display: none;
 }
 

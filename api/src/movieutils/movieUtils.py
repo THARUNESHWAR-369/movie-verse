@@ -10,7 +10,7 @@ class MovieUtils:
     __TopRatedUrl = "https://api.themoviedb.org/3/movie/top_rated"
     __NowPlayingMovieUrl = "https://api.themoviedb.org/3/movie/now_playing"
     __MovieReviewUrl = "https://api.themoviedb.org/3/movie/385687/reviews"
-
+    __UpcommingMovieUrl = "https://api.themoviedb.org/3/movie/upcoming"
     
 
     def getPopularMovies(self) -> json:
@@ -37,6 +37,15 @@ class MovieUtils:
             }
         )
         return {"status":False} if response.status_code != 200 else {'status':True, "data": response.json()}
+    
+    def getUpcommingMovies(self) -> json:
+        response = requests.get(self.__UpcommingMovieUrl, headers={
+                "accept": "application/json",
+                "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
+            }
+        )
+        return {"status":False} if response.status_code != 200 else {'status':True, "data": response.json()}
+    
     
     def getMovieGenre(self, genre_id : int) :
         data = {

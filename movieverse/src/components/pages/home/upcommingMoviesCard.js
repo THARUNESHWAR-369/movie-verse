@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 
-export const NowPlayingCard = () => {
-  const [NowPlayingMovieData, setNowPlayingMovieData] = useState(null);
+export const UpCommingMoviesCard = () => {
+  const [UpcommingMovieData, setUpcommingMovieData] = useState(null);
   const leftArrowRef = useRef(null);
   const rightArrowRef = useRef(null);
 
   useEffect(() => {
-    fetchNowPlayingMovieData();
+    fetchUpcommingMovieDataMovieData();
   }, []);
 
-  const fetchNowPlayingMovieData = async () => {
+  const fetchUpcommingMovieDataMovieData = async () => {
     try {
       const response = await fetch(
         process.env.REACT_APP_API_SERVICE_GET_NOWPLAYING_MOVIE_URL
@@ -17,7 +17,7 @@ export const NowPlayingCard = () => {
       const jsonData = await response.json();
       console.log("setNowPlayingMovieData: ", jsonData);
 
-      setNowPlayingMovieData(jsonData['data']["results"]);
+      setUpcommingMovieData(jsonData['data']["results"]);
     } catch (error) {
       console.log("error fetching data: ", error);
     }
@@ -25,7 +25,7 @@ export const NowPlayingCard = () => {
 
   const handleLeftArrowClick = () => {
     if (leftArrowRef.current) {
-      const cards = document.getElementsByClassName("np-card-cards")[0];
+      const cards = document.getElementsByClassName("up-card-cards")[0];
       //console.log(cards.scrollLeft);
       cards.scrollLeft -= 140;
     }
@@ -33,32 +33,32 @@ export const NowPlayingCard = () => {
 
   const handleRightArrowClick = () => {
     if (rightArrowRef.current) {
-      const cards = document.getElementsByClassName("np-card-cards")[0];
+      const cards = document.getElementsByClassName("up-card-cards")[0];
       //console.log(cards.scrollLeft);
       cards.scrollLeft += 140;
     }
   };
 
   return (
-    <div className="np-card text-white ml-13 mb-9">
-      <h2 className="font-bold text-2xl">Now Playing</h2>
+    <div className="up-card text-white ml-13 mb-9">
+      <h2 className="font-bold text-2xl">Upcomming Movies</h2>
       <div className="popular-card-controller">
         <i
           ref={leftArrowRef}
-          id="leftArrowNP"
+          id="leftArrowUP"
           className="leftArrow fa fa-chevron-left"
           onClick={handleLeftArrowClick}
         ></i>
         <i
           ref={rightArrowRef}
-          id="rightArrowNP"
+          id="rightArrowUP"
           className="rightArrow fa fa-chevron-right"
           onClick={handleRightArrowClick}
         ></i>
       </div>
-      <div className="np-card-cards">
-        {NowPlayingMovieData &&
-          NowPlayingMovieData.map((popularMovie, index) => (
+      <div className="up-card-cards">
+        {UpcommingMovieData &&
+          UpcommingMovieData.map((popularMovie, index) => (
             <a href="#" className="popular-card-card">
               <div className="popular-card-content">
                 <img

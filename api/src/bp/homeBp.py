@@ -40,6 +40,16 @@ def getTopRatedMovies():
         return {'status' : __topRatedMovies['status'], "results" : __topRatedMovies['data']['results']}
     else:
         return __topRatedMovies
+    
+@HomeBp.route("/getUpCommingMovies",methods=['POST', "GET"])
+@cross_origin()
+def getUpCommingMovies():
+    print("In Top Rated Movies")
+    __upCommingMovies = movieUtils.getUpcommingMovies()
+    if __upCommingMovies['status']:
+        return {'status' : __upCommingMovies['status'], "results" : __upCommingMovies['data']['results']}
+    else:
+        return __upCommingMovies
 
 @HomeBp.route("/nowPlaying",methods=['POST', "GET"])
 @cross_origin()

@@ -3,6 +3,8 @@ import { NavComponent } from "../../navigation/navComponent";
 import { TitleCard } from "./titleCard";
 import { ReviewCard } from "./reviewCard";
 import { PopularCard } from "./popularCard";
+import { NowPlayingCard } from "./nowPlayingCard";
+import { UpCommingMoviesCard } from "./upcommingMoviesCard";
 
 export const HomePage = () => {
   console.log(process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL);
@@ -18,16 +20,17 @@ export const HomePage = () => {
         process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
       );
       const jsonData = await response.json();
-      console.log(jsonData);
+      console.log(jsonData['data']['results'][0]);
 
-      setAppBg(jsonData);
+      setAppBg(jsonData['data']['results'][0]);
     } catch (error) {
       console.log("error fetching data: ", error);
     }
   };
+ 
 
   const imageUrlStyle = {
-    "--bg-image": appBg && appBg.poster_url ? `url(${appBg.poster_url})` : "",
+    "--bg-image": appBg && appBg.backdrop_path ? `url(https://image.tmdb.org/t/p/original${appBg.backdrop_path})` : "",
   };
 
   return (
@@ -40,14 +43,16 @@ export const HomePage = () => {
         <NavComponent></NavComponent>
         <div className="title-card-reviews flex justify-between p-[3.5rem] pt-[4rem]">
           <TitleCard
-            movieTitle={appBg?.movie_title}
-            movieOverview={appBg?.movie_overview}
-            movieRating={appBg?.rating}
-            movieGenres={appBg?.movie_genres}
+            movieTitle={appBg?.original_title}
+            movieOverview={appBg?.overview}
+            movieRating={appBg?.vote_average}
+            movieGenres={appBg?.genre_ids}
           ></TitleCard>
-          {appBg && appBg.movie_id && <ReviewCard movieId={appBg.movie_id} />}
+          {appBg && appBg.id && <ReviewCard movieId={appBg.id} />}
         </div>
         <PopularCard></PopularCard>
+        <NowPlayingCard></NowPlayingCard>
+        <UpCommingMoviesCard></UpCommingMoviesCard>
       </div>
     </div>
   );
