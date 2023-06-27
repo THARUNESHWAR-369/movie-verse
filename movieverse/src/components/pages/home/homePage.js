@@ -8,11 +8,11 @@ export const HomePage = () => {
   }, []);
 
   const fetchNowPlayingMovieData = async () => {
-    fetch(process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL, {
-        headers : {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-        }
+    fetch(process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL, {    
+        method: 'GET',    
+        withCredentials: true,    
+        crossorigin: true,    
+        mode: 'no-cors',       
       })
       .then((response) => response.json().then((jsonData) => {
         setAppBg(jsonData);

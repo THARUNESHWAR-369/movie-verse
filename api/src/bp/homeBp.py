@@ -11,6 +11,14 @@ print(app_version)
 HomeBp = Blueprint('home_bp', __name__, url_prefix=f'/api/{app_version}/home-bp-details')
 cors = CORS(HomeBp)
 
+@HomeBp.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "*" # <- You can change "*" for a domain for example "http://localhost"
+    response.headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS, PUT, DELETE"
+    response.headers["Access-Control-Allow-Headers"] = "Accept, Content-Type, Origin"
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    return response
+
 @HomeBp.route("/getPopularMovies",methods=['POST', "GET"])
 @cross_origin()
 def getPopularMovies():
