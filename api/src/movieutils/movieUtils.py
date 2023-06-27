@@ -60,5 +60,5 @@ class MovieUtils:
         }
 
         
-        yield data[genre_id]
+        return data[int(genre_id)]
 
