@@ -72,6 +72,7 @@ def getMovieReview():
 @cross_origin()
 def getMovieGenre():
     movie_genre_list = request.json['movie_genre']
+    print("movie_genre_list: ",movie_genre_list)
     return movieUtils.getMovieGenre(movie_genre_list)
 
 
