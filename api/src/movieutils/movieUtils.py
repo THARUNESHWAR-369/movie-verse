@@ -78,5 +78,12 @@ class MovieUtils:
             }
         )
         return {"status":False} if response.status_code != 200 else {'status':True, "data": response.json()}
+    
+    def getMovieGenre(self, lst):
+        movie_genre = []
+        for genre_ids in lst:
+            movie_genre.append(self.getMovieGenre(genre_ids))
+        return movie_genre
+
 
 

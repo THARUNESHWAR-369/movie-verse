@@ -35,10 +35,11 @@ export const ReviewCard = ({ movieId }) => {
 
   return (
     <div className="review-card w-[60%] mr-[10px] p-[10px] h-29rem">
+        <h3 className="text-white font-semibold text-center tracking-wider">Movie Review</h3>
       <ul>
         {reviewCard &&
           reviewCard.slice(0, 7).map((review, index) => (
-            <li
+            <a target="_black" href={review['url']} key={index}><li
               key={index}
               className="review-card-li flex gap-0  align-middle w-full "
             >
@@ -59,7 +60,7 @@ export const ReviewCard = ({ movieId }) => {
                   <p> {review['author_details']['rating'] == null ? 0.0 : review['author_details']['rating']}/10</p>
                 </span>
               </div>
-            </li>
+            </li></a>
           ))}
       </ul>
     </div>

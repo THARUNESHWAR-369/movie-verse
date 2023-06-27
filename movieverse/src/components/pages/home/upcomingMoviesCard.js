@@ -1,43 +1,43 @@
 import React, { useEffect, useState, useRef } from "react";
 
-export const NowPlayingCard = () => {
-  const [NowPlayingMovieData, setNowPlayingMovieData] = useState(null);
-  const leftArrowRef = useRef(null);
-  const rightArrowRef = useRef(null);
-
-  useEffect(() => {
-    fetchNowPlayingMovieData();
-  }, []);
-
-  const fetchNowPlayingMovieData = async () => {
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_NOWPLAYING_MOVIE_URL
-      );
-      const jsonData = await response.json();
-      console.log("setNowPlayingMovieData: ", jsonData['data']["results"]);
-
-      setNowPlayingMovieData(jsonData['data']["results"]);
-    } catch (error) {
-      console.log("error fetching data: ", error);
-    }
-  };
-
-  const handleLeftArrowClick = () => {
-    if (leftArrowRef.current) {
-      const cards = document.getElementsByClassName("np-card-cards")[0];
-      //console.log(cards.scrollLeft);
-      cards.scrollLeft -= 140;
-    }
-  };
-
-  const handleRightArrowClick = () => {
-    if (rightArrowRef.current) {
-      const cards = document.getElementsByClassName("np-card-cards")[0];
-      //console.log(cards.scrollLeft);
-      cards.scrollLeft += 140;
-    }
-  };
+export const UpComingMoviesCard = () => {
+    const [UpcomingMovieData, setUpcomingMovieData] = useState(null);
+    const leftArrowRef = useRef(null);
+    const rightArrowRef = useRef(null);
+  
+    useEffect(() => {
+      fetchUpcomingMovieData();
+    }, []);
+  
+    const fetchUpcomingMovieData = async () => {
+      try {
+        const response = await fetch(
+          process.env.REACT_APP_API_SERVICE_GET_UPCOMING_MOVIE_URL
+        );
+        const jsonData = await response.json();
+        console.log("up coming movies: ", jsonData["results"]);
+  
+        setUpcomingMovieData(jsonData["results"]);
+      } catch (error) {
+        console.log("error fetching data: ", error);
+      }
+    };
+  
+    const handleLeftArrowClick = () => {
+      if (leftArrowRef.current) {
+        const cards = document.getElementsByClassName("up-card-cards")[0];
+        //console.log(cards.scrollLeft);
+        cards.scrollLeft -= 140;
+      }
+    };
+  
+    const handleRightArrowClick = () => {
+      if (rightArrowRef.current) {
+        const cards = document.getElementsByClassName("up-card-cards")[0];
+        //console.log(cards.scrollLeft);
+        cards.scrollLeft += 140;
+      }
+    };
 
   return (
     <div className="popular-card text-white ml-13 mb-9">
@@ -56,9 +56,9 @@ export const NowPlayingCard = () => {
           onClick={handleRightArrowClick}
         ></i>
       </div>
-      <div className="popular-card-cards np-card-cards">
-        {NowPlayingMovieData &&
-          NowPlayingMovieData.map((popularMovie, index) => (
+      <div className="popular-card-cards up-card-cards">
+        {UpcomingMovieData &&
+          UpcomingMovieData.map((popularMovie, index) => (
             <a href="#" className="popular-card-card"  key={index}>
               <div className="popular-card-content">
                 <img
@@ -77,7 +77,8 @@ export const NowPlayingCard = () => {
                 </span>
 
                 <div className="popular-card-date">
-                <p>{popularMovie['release_date']}</p>                </div>
+                    <p>{popularMovie['release_date']}</p>
+                </div>
               </div>
             </a>
           ))}

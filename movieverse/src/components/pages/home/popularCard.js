@@ -57,32 +57,34 @@ export const PopularCard = () => {
         ></i>
       </div>
       <div className="popular-card-cards">
-        {popularMovieData &&
-          popularMovieData.map((popularMovie, index) => (
-            <a href="#" className="popular-card-card">
-              <div className="popular-card-content">
-                <img
-                  className="w-full h-full"
-                  src={
-                    "https://image.tmdb.org/t/p/original" + popularMovie['poster_path']
-                  }
-                ></img>
+  {popularMovieData &&
+    popularMovieData.map((popularMovie, index) => (
+      <a href="#" className="popular-card-card" key={index}>
+        <div className="popular-card-content">
+          <img
+            className="w-full h-full"
+            src={"https://image.tmdb.org/t/p/original" + popularMovie['poster_path']}
+            alt={popularMovie.title}
+          />
 
-                <span className="p-[0.4rem] flex justify-center">
-                  <p className="text-black bg-yellow-400 p-[0.2rem] rounded-sm w-fit">
-                    IMDB
-                  </p>
-                  <p className="text-sm m-[0.1rem]">&#9733;</p>
-                  <p className="text-sm m-[0.1rem] font-bold">{popularMovie['vote_average']}/10</p>
-                </span>
+          <span className="p-[0.4rem] flex justify-center">
+            <p className="text-black bg-yellow-400 p-[0.2rem] rounded-sm w-fit">
+              IMDB
+            </p>
+            <p className="text-sm m-[0.1rem]">&#9733;</p>
+            <p className="text-sm m-[0.1rem] font-bold">
+              {popularMovie['vote_average']}/10
+            </p>
+          </span>
 
-                <div className="popular-card-date">
-                    <p>2000-09-20</p>
-                </div>
-              </div>
-            </a>
-          ))}
-      </div>
+          <div className="popular-card-date">
+            <p>{popularMovie['release_date']}</p>
+          </div>
+        </div>
+      </a>
+    ))}
+</div>
+
     </div>
   );
 };

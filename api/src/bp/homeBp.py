@@ -56,11 +56,7 @@ def getUpComingMovies():
 def getNowPlayingMovies():
     print("Now Playing Movies")
     __nowPlayingMovies = movieUtils.getNowPlayingMovies()
-    if __nowPlayingMovies['status']:
-        movie_genre = []
-        for genre_ids in __nowPlayingMovies['data']['results'][0]['genre_ids']:
-            movie_genre.append(movieUtils.getMovieGenre(genre_ids))
-    
+    if __nowPlayingMovies['status']:    
         return jsonify(__nowPlayingMovies)
     else:
         return __nowPlayingMovies
@@ -71,6 +67,12 @@ def getMovieReview():
     movie_id = request.json['movie_id']
     __movieReview = movieUtils.getMovieReviews(movie_id)
     return jsonify(__movieReview)
+
+@HomeBp.route("/getMovieGenre",methods=['POST', "GET"])
+@cross_origin()
+def getMovieGenre():
+    movie_genre_list = request.json['movie_genre']
+    return movieUtils.getMovieGenre(movie_genre_list)
 
 
 

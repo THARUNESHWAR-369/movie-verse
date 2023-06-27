@@ -4,15 +4,17 @@ import { TitleCard } from "./titleCard";
 import { ReviewCard } from "./reviewCard";
 import { PopularCard } from "./popularCard";
 import { NowPlayingCard } from "./nowPlayingCard";
-import { UpCommingMoviesCard } from "./upcommingMoviesCard";
+import { UpComingMoviesCard } from "./upcomingMoviesCard";
 
 export const HomePage = () => {
-  console.log(process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL);
   const [appBg, setAppBg] = useState(null);
+
+  const [appBgMovieGenre, setAppBgMovieGenre] = useState(null);
 
   useEffect(() => {
     fetchNowPlayingMovieData();
   }, []);
+
 
   const fetchNowPlayingMovieData = async () => {
     try {
@@ -21,12 +23,32 @@ export const HomePage = () => {
       );
       const jsonData = await response.json();
       console.log(jsonData['data']['results'][0]);
-
+      fetchBgMovieGenre(jsonData['data']['results'][0]['genre_ids']);
       setAppBg(jsonData['data']['results'][0]);
     } catch (error) {
       console.log("error fetching data: ", error);
     }
   };
+
+  const fetchBgMovieGenre = async ({genre_id}) => {
+    const response = await fetch(
+      process.env.REACT_APP_API_SERVICE_GET_MOVIE_GENRE_URL,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ movie_genre: genre_id }),
+      }
+    );
+    if (response.ok) {
+      const genreBg = await response.json();
+
+      // Handle the movie reviews data
+      console.log("genreBg: ",genreBg);
+      setAppBgMovieGenre(genreBg);
+    }
+  }
  
 
   const imageUrlStyle = {
@@ -52,7 +74,7 @@ export const HomePage = () => {
         </div>
         <PopularCard></PopularCard>
         <NowPlayingCard></NowPlayingCard>
-        <UpCommingMoviesCard></UpCommingMoviesCard>
+        <UpComingMoviesCard></UpComingMoviesCard>
       </div>
     </div>
   );
