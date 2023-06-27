@@ -17,6 +17,7 @@ class MovieUtils:
                 "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
             }
         )
+        print(response.json())
         return {"status":False} if response.status_code != 200 else {'status':True, "data": response.json()}
 
 
