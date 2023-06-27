@@ -46,12 +46,12 @@ def getNowPlayingMovies():
     __nowPlayingMovies = MovieUtils().getNowPlayingMovies()
     print(__nowPlayingMovies, os.environ.get('TMDB_POSTER_URL') + __nowPlayingMovies['data']['results'][0]['backdrop_path'],)
     if __nowPlayingMovies['status']:
-        return [
-            __nowPlayingMovies['data']['results'][0]['original_title'],
-            __nowPlayingMovies['data']['results'][0]['overview'],
-            __nowPlayingMovies['data']['results'][0]['release_date'],
-            __nowPlayingMovies['data']['results'][0]['id'],
-            os.environ.get('TMDB_POSTER_URL') + __nowPlayingMovies['data']['results'][0]['backdrop_path'],
-        ]
+        return {
+            "movie_title":__nowPlayingMovies['data']['results'][0]['original_title'],
+            "movie_overview":__nowPlayingMovies['data']['results'][0]['overview'],
+            "movie_release_date":__nowPlayingMovies['data']['results'][0]['release_date'],
+            "movie_id":__nowPlayingMovies['data']['results'][0]['id'],
+            "poster_url":os.environ.get('TMDB_POSTER_URL') + __nowPlayingMovies['data']['results'][0]['backdrop_path'],
+        }
     else:
         return __nowPlayingMovies

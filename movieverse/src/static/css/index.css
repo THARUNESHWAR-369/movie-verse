@@ -14,9 +14,23 @@ body {
   margin: 0;
   padding: 0;
   color: #222;
+  font-family: "Segoe UI", sans-serif;
 }
 
 .App {
   height: 100%;
 }
 
+.bg {
+  background-image: linear-gradient(135deg, #0000006b, #000000a1), var(--bg-image);  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.search-bar-input::placeholder {
+  color: white;
+}
+
+.search-bar-input {
+  background: rgba(255, 255, 255, 0.5);
+}
