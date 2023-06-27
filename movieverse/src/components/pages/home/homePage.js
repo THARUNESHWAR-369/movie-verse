@@ -9,7 +9,9 @@ export const HomePage = () => {
 
     const fetchNowPlayingMovieData = async () => {
         try {
-            const response = await fetch('')
+            const response = await fetch(process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL);
+            const jsonData = await response.json();
+            console.log(jsonData);
         }
         catch(error) {
             console.log("error fetching data: ",error);

@@ -32,6 +32,7 @@ def getTopRatedMovies():
 def getNowPlayingMovies():
     print("Now Playing Movies")
     __nowPlayingMovies = MovieUtils().getNowPlayingMovies()
+    print(__nowPlayingMovies)
     if __nowPlayingMovies['status']:
         return {'status' : __nowPlayingMovies['status'], "results" : __nowPlayingMovies['data']['results']}
     else:
