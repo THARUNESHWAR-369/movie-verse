@@ -47,7 +47,7 @@ def getUpComingMovies():
     print("In upcoming Movies")
     __upComingMovies = movieUtils.getUpComingMovies()
     if __upComingMovies['status']:
-        return {'status' : __upComingMovies['status'], "results" : __upCommingMovies['data']['results']}
+        return {'status' : __upComingMovies['status'], "results" : __upComingMovies['data']['results']}
     else:
         return __upComingMovies
 

@@ -1,23 +1,23 @@
 import React, { useEffect, useState, useRef } from "react";
 
 export const UpCommingMoviesCard = () => {
-  const [UpcommingMovieData, setUpcommingMovieData] = useState(null);
+  const [UpcomingMovieData, setUpcomingMovieData] = useState(null);
   const leftArrowRef = useRef(null);
   const rightArrowRef = useRef(null);
 
   useEffect(() => {
-    fetchUpcommingMovieDataMovieData();
+    fetchUpcomingMovieDataMovieData();
   }, []);
 
-  const fetchUpcommingMovieDataMovieData = async () => {
+  const fetchUpcomingMovieDataMovieData = async () => {
     try {
       const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_NOWPLAYING_MOVIE_URL
+        process.env.REACT_APP_API_SERVICE_GET_UPCOMMING_MOVIE_URL
       );
       const jsonData = await response.json();
-      console.log("setNowPlayingMovieData: ", jsonData);
+      console.log("up moives: ", jsonData);
 
-      setUpcommingMovieData(jsonData['data']["results"]);
+      setUpcomingMovieData(jsonData['data']["results"]);
     } catch (error) {
       console.log("error fetching data: ", error);
     }
@@ -41,7 +41,7 @@ export const UpCommingMoviesCard = () => {
 
   return (
     <div className="up-card text-white ml-13 mb-9">
-      <h2 className="font-bold text-2xl">Upcomming Movies</h2>
+      <h2 className="font-bold text-2xl">Upcoming Movies</h2>
       <div className="popular-card-controller">
         <i
           ref={leftArrowRef}
@@ -57,8 +57,8 @@ export const UpCommingMoviesCard = () => {
         ></i>
       </div>
       <div className="up-card-cards">
-        {UpcommingMovieData &&
-          UpcommingMovieData.map((popularMovie, index) => (
+        {UpcomingMovieData &&
+          UpcomingMovieData.map((popularMovie, index) => (
             <a href="#" className="popular-card-card">
               <div className="popular-card-content">
                 <img
