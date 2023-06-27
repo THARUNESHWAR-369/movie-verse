@@ -27,10 +27,30 @@ body {
   background-size: cover;
 }
 
+.nav {
+  padding: 2rem 1rem;
+}
+
 .search-bar-input::placeholder {
   color: white;
 }
 
 .search-bar-input {
   background: rgba(255, 255, 255, 0.5);
+}
+
+.title-card-genre-li {
+  border: 2px solid white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 1.5rem;
+}
+
+.title-card-rating {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+  align-items: center;
+  
 }

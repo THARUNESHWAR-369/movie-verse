@@ -583,8 +583,16 @@ video {
   right: 30px;
 }
 
+.m-auto{
+  margin: auto;
+}
+
 .flex{
   display: flex;
+}
+
+.h-full{
+  height: 100%;
 }
 
 .h-screen{
@@ -595,6 +603,10 @@ video {
   width: 20rem;
 }
 
+.w-\[40\%\]{
+  width: 40%;
+}
+
 .w-full{
   width: 100%;
 }
@@ -603,12 +615,28 @@ video {
   cursor: pointer;
 }
 
+.flex-col{
+  flex-direction: column;
+}
+
 .items-center{
   align-items: center;
 }
 
 .justify-between{
   justify-content: space-between;
+}
+
+.gap-1{
+  gap: 0.25rem;
+}
+
+.gap-3{
+  gap: 0.75rem;
+}
+
+.gap-4{
+  gap: 1rem;
 }
 
 .rounded-\[50px\]{
@@ -635,12 +663,16 @@ video {
   background-repeat: no-repeat;
 }
 
-.p-3{
-  padding: 0.75rem;
+.p-1{
+  padding: 0.25rem;
 }
 
 .p-\[0\.35rem\]{
   padding: 0.35rem;
+}
+
+.p-\[3\.5rem\]{
+  padding: 3.5rem;
 }
 
 .pl-10{
@@ -659,18 +691,22 @@ video {
   padding-top: 2rem;
 }
 
+.pt-\[4rem\]{
+  padding-top: 4rem;
+}
+
 .align-middle{
   vertical-align: middle;
 }
 
-.text-2xl{
-  font-size: 1.5rem;
-  line-height: 2rem;
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
-.text-4xl{
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+.text-6xl{
+  font-size: 3.75rem;
+  line-height: 1;
 }
 
 .font-bold{
@@ -681,18 +717,22 @@ video {
   font-weight: 600;
 }
 
-.tracking-wider{
-  letter-spacing: 0.05em;
+.tracking-wide{
+  letter-spacing: 0.025em;
 }
 
-.text-white{
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+.tracking-wider{
+  letter-spacing: 0.05em;
 }
 
 .text-red-600{
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+
+.text-white{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .outline-none{
@@ -722,6 +762,10 @@ body {
   background-size: cover;
 }
 
+.nav {
+  padding: 2rem 1rem;
+}
+
 .search-bar-input::-webkit-input-placeholder {
   color: white;
 }
@@ -732,6 +776,21 @@ body {
 
 .search-bar-input {
   background: rgba(255, 255, 255, 0.5);
+}
+
+.title-card-genre-li {
+  border: 2px solid white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 1.5rem;
+}
+
+.title-card-rating {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+  align-items: center;
 }
 
 .hover\:text-white:hover{

@@ -19,11 +19,13 @@ def add_cors_headers(response):
     response.headers["Access-Control-Allow-Credentials"] = "true"
     return response
 
+movieUtils = MovieUtils()
+
 @HomeBp.route("/getPopularMovies",methods=['POST', "GET"])
 @cross_origin()
 def getPopularMovies():
     print("In Popular movies")
-    __popularMovies = MovieUtils().getPopularMovies()
+    __popularMovies = movieUtils.getPopularMovies()
     if __popularMovies['status']:
         return {'status' : __popularMovies['status'], "results" : __popularMovies['data']['results']}
     else:
@@ -33,7 +35,7 @@ def getPopularMovies():
 @cross_origin()
 def getTopRatedMovies():
     print("In Top Rated Movies")
-    __topRatedMovies = MovieUtils().getTopRatedMovies()
+    __topRatedMovies = movieUtils.getTopRatedMovies()
     if __topRatedMovies['status']:
         return {'status' : __topRatedMovies['status'], "results" : __topRatedMovies['data']['results']}
     else:
@@ -43,15 +45,20 @@ def getTopRatedMovies():
 @cross_origin()
 def getNowPlayingMovies():
     print("Now Playing Movies")
-    __nowPlayingMovies = MovieUtils().getNowPlayingMovies()
-    print(__nowPlayingMovies, os.environ.get('TMDB_POSTER_URL') + __nowPlayingMovies['data']['results'][0]['backdrop_path'],)
+    __nowPlayingMovies = movieUtils.getNowPlayingMovies()
     if __nowPlayingMovies['status']:
+        movie_genre = []
+        for genre_ids in __nowPlayingMovies['data']['results'][0]['genre_ids']:
+            movie_genre.append(movieUtils.getMovieGenre(genre_ids))
+            
         return {
             "movie_title":__nowPlayingMovies['data']['results'][0]['original_title'],
             "movie_overview":__nowPlayingMovies['data']['results'][0]['overview'],
             "movie_release_date":__nowPlayingMovies['data']['results'][0]['release_date'],
             "movie_id":__nowPlayingMovies['data']['results'][0]['id'],
             "poster_url":os.environ.get('TMDB_POSTER_URL') + __nowPlayingMovies['data']['results'][0]['backdrop_path'],
+            "rating" : __nowPlayingMovies['data']['results'][0]['vote_average'],
+            "movie_genres" : movie_genre
         }
     else:
         return __nowPlayingMovies
