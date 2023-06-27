@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavComponent } from "../../navigation/navComponent";
 import { TitleCard } from "./titleCard";
 import { ReviewCard } from "./reviewCard";
+import { PopularCard } from "./popularCard";
 
 export const HomePage = () => {
   console.log(process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL);
@@ -32,21 +33,21 @@ export const HomePage = () => {
   return (
     <div className="Home w-full h-full">
       <div
-        className="bg w-full h-screen bg-fixed bg-no-repeat bg-center bg-cover relative"
+        className="bg w-full h-screen bg-fixed bg-no-repeat bg-center bg-cover fixed z-[-15]"
         style={imageUrlStyle}
-      >
-        <div className="main-container m-auto">
-          <NavComponent></NavComponent>
-          <div className="title-card-reviews flex justify-between p-[3.5rem] pt-[4rem]">
-            <TitleCard
-              movieTitle={appBg?.movie_title}
-              movieOverview={appBg?.movie_overview}
-              movieRating={appBg?.rating}
-              movieGenres={appBg?.movie_genres}
-            ></TitleCard>
-            <ReviewCard></ReviewCard>
-          </div>
+      ></div>
+      <div className="main-container m-auto">
+        <NavComponent></NavComponent>
+        <div className="title-card-reviews flex justify-between p-[3.5rem] pt-[4rem]">
+          <TitleCard
+            movieTitle={appBg?.movie_title}
+            movieOverview={appBg?.movie_overview}
+            movieRating={appBg?.rating}
+            movieGenres={appBg?.movie_genres}
+          ></TitleCard>
+          {appBg && appBg.movie_id && <ReviewCard movieId={appBg.movie_id} />}
         </div>
+        <PopularCard></PopularCard>
       </div>
     </div>
   );

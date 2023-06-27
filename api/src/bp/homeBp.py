@@ -51,15 +51,7 @@ def getNowPlayingMovies():
         for genre_ids in __nowPlayingMovies['data']['results'][0]['genre_ids']:
             movie_genre.append(movieUtils.getMovieGenre(genre_ids))
     
-        return jsonify({
-            "movie_title":__nowPlayingMovies['data']['results'][0]['original_title'],
-            "movie_overview":__nowPlayingMovies['data']['results'][0]['overview'],
-            "movie_release_date":__nowPlayingMovies['data']['results'][0]['release_date'],
-            "movie_id":__nowPlayingMovies['data']['results'][0]['id'],
-            "poster_url":os.environ.get('TMDB_POSTER_URL') + __nowPlayingMovies['data']['results'][0]['backdrop_path'],
-            "rating" : __nowPlayingMovies['data']['results'][0]['vote_average'],
-            "movie_genres" : movie_genre
-        })
+        return jsonify(__nowPlayingMovies)
     else:
         return __nowPlayingMovies
 
@@ -69,3 +61,15 @@ def getMovieReview():
     movie_id = request.json['movie_id']
     __movieReview = movieUtils.getMovieReviews(movie_id)
     return jsonify(__movieReview)
+
+
+
+"""{
+            "movie_title":__nowPlayingMovies['data']['results'][0]['original_title'],
+            "movie_overview":__nowPlayingMovies['data']['results'][0]['overview'],
+            "movie_release_date":__nowPlayingMovies['data']['results'][0]['release_date'],
+            "movie_id":__nowPlayingMovies['data']['results'][0]['id'],
+            "poster_url":os.environ.get('TMDB_POSTER_URL') + __nowPlayingMovies['data']['results'][0]['backdrop_path'],
+            "rating" : __nowPlayingMovies['data']['results'][0]['vote_average'],
+            "movie_genres" : movie_genre
+        }"""

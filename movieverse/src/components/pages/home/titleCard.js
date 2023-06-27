@@ -1,4 +1,3 @@
-import imdbLogo from "../../../static/images/imdb.png";
 
 export const TitleCard = ({movieTitle, movieOverview, movieGenres, movieRating}) => {
   return (
@@ -14,13 +13,12 @@ export const TitleCard = ({movieTitle, movieOverview, movieGenres, movieRating})
           ))}
         </ul>
       </div>
-      <span className="title-card-rating">
-        <img
-          src={imdbLogo}
-          alt="IMDb"
-        /> <p>&#9733;</p>
+      <span className="title-card-rating flex font-extrabold">
+        <p className="bg-yellow-300 text-black p-[0.3rem] rounded-sm font-medium">IMDB</p>
+        <p>&#9733;</p>
         <p> {movieRating}/10</p>
       </span>
+      <button type="submit" className="title-card-external-link-btn w-fit"><i className="fa fa-external-link"></i></button>
     </div>
   );
 };
