@@ -6,6 +6,8 @@ import os
 from src.config.config import app_version
 from src.movieutils.movieUtils import MovieUtils
 
+import pandas as pd
+
 print(app_version)
 
 HomeBp = Blueprint('home_bp', __name__, url_prefix=f'/api/{app_version}/home-bp-details')
@@ -75,14 +77,8 @@ def getMovieGenre():
     print("movie_genre_list: ",movie_genre_list)
     return movieUtils._getMovieGenre(movie_genre_list)
 
+@HomeBp.route("/getMovieNameList",methods=['POST', "GET"])
+@cross_origin()
+def getMovieNameList():
+    return pd.read_csv("../artifacts/movie_names_preprocessed_en.csv")['Title'].tolist()
 
-
-"""{
-            "movie_title":__nowPlayingMovies['data']['results'][0]['original_title'],
-            "movie_overview":__nowPlayingMovies['data']['results'][0]['overview'],
-            "movie_release_date":__nowPlayingMovies['data']['results'][0]['release_date'],
-            "movie_id":__nowPlayingMovies['data']['results'][0]['id'],
-            "poster_url":os.environ.get('TMDB_POSTER_URL') + __nowPlayingMovies['data']['results'][0]['backdrop_path'],
-            "rating" : __nowPlayingMovies['data']['results'][0]['vote_average'],
-            "movie_genres" : movie_genre
-        }"""

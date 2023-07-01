@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "movieverse-c1dc1"
-  }
+    "default": "movieverse-c1dc1",
+    "dev": "movieverse-c1dc1",
+    "prod": "movieverse-c1dc1"
+  },
+  "targets": {},
+  "etags": {}
 }
