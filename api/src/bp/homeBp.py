@@ -80,5 +80,6 @@ def getMovieGenre():
 @HomeBp.route("/getMovieNameList",methods=['POST', "GET"])
 @cross_origin()
 def getMovieNameList():
-    return pd.read_csv("../artifacts/movie_names_preprocessed_en.csv")['Title'].tolist()
+    df = pd.read_csv("../artifacts/movie_names_preprocessed_en.csv")
+    return df['Title'].tolist()
 
