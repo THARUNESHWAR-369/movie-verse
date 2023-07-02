@@ -25,7 +25,7 @@ export const HomePage = () => {
         process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
       );
       const jsonData = await response.json();
-      console.log(jsonData['data']['results'][0]['genre_ids']);
+      //console.log(jsonData['data']['results'][0]['genre_ids']);
       await fetchBgMovieGenre(jsonData['data']['results'][0]['genre_ids']);
       setAppBg(jsonData['data']['results'][0]);
       setLoading(false);

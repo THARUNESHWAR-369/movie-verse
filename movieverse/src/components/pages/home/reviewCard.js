@@ -8,7 +8,6 @@ export const ReviewCard = ({ movieId }) => {
     fetchMovieReview();
   }, []);
 
-  console.log(movieId);
 
   const fetchMovieReview = async () => {
     try {
