@@ -31,7 +31,7 @@ body {
 }
 
 .bg {
-  background-image: linear-gradient(135deg, #0000006b, #000000a1), var(--bg-image);
+  background-image: linear-gradient(135deg, #00000063, #000000c7), var(--bg-image);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -61,6 +61,12 @@ a.myAppName {
   border: 2px solid white;
   padding: 0.3rem 0.6rem;
   border-radius: 1.5rem;
+  cursor: pointer;
+}
+
+.title-card-genre-li:hover {
+  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .title-card-rating {
@@ -334,10 +340,10 @@ a.myAppName {
 
 .spinner-container {
   align-items: center;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    color:white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  color: white;
 }
 
 

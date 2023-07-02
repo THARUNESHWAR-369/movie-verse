@@ -599,12 +599,12 @@ video {
   margin: 0.1rem;
 }
 
-.m-auto{
-  margin: auto;
-}
-
 .m-\[0\.5rem\]{
   margin: 0.5rem;
+}
+
+.m-auto{
+  margin: auto;
 }
 
 .mr-\[10px\]{
@@ -836,32 +836,16 @@ video {
   font-weight: 600;
 }
 
+.tracking-\[1\.5px\]{
+  letter-spacing: 1.5px;
+}
+
 .tracking-wide{
   letter-spacing: 0.025em;
 }
 
 .tracking-wider{
   letter-spacing: 0.05em;
-}
-
-.tracking-\[\]{
-  letter-spacing: ;
-}
-
-.tracking-\[1\]{
-  letter-spacing: 1;
-}
-
-.tracking-\[1\.\]{
-  letter-spacing: 1.;
-}
-
-.tracking-\[1\.5\]{
-  letter-spacing: 1.5;
-}
-
-.tracking-\[1\.5px\]{
-  letter-spacing: 1.5px;
 }
 
 .text-black{
@@ -910,7 +894,7 @@ body {
 }
 
 .bg {
-  background-image: linear-gradient(135deg, #0000006b, #000000a1), var(--bg-image);
+  background-image: linear-gradient(135deg, #00000063, #000000c7), var(--bg-image);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -944,6 +928,13 @@ a.myAppName {
   border: 2px solid white;
   padding: 0.3rem 0.6rem;
   border-radius: 1.5rem;
+  cursor: pointer;
+}
+
+.title-card-genre-li:hover {
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .title-card-rating {
@@ -1231,7 +1222,7 @@ a.myAppName {
   text-align: center;
   display: flex;
   flex-direction: column;
-  color:white;
+  color: white;
 }
 
 .searchResult {
