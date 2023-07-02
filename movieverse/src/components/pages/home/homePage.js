@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { NavComponent } from "../../navigation/navComponent";
 import { TitleCard } from "./titleCard";
@@ -35,7 +36,7 @@ export const HomePage = () => {
   };
 
   const fetchBgMovieGenre = async (genre_id) => {
-    console.log("genre_id: ",genre_id)
+    //console.log("genre_id: ",genre_id)
     const response = await fetch(
       process.env.REACT_APP_API_SERVICE_GET_MOVIE_GENRE_URL,
       {
@@ -48,9 +49,7 @@ export const HomePage = () => {
     );
     if (response.ok) {
       const genreBg = await response.json();
-
-      // Handle the movie reviews data
-      console.log("genreBg: ",genreBg);
+      //console.log("genreBg: ",genreBg);
       setAppBgMovieGenre(genreBg);
     }
   }
@@ -59,6 +58,8 @@ export const HomePage = () => {
   const imageUrlStyle = {
     "--bg-image": appBg && appBg.backdrop_path ? `url(https://image.tmdb.org/t/p/original${appBg.backdrop_path})` : "",
   };
+
+
 
   return (
     <div className="Home w-full h-full">

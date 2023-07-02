@@ -9,7 +9,7 @@ class MovieUtils:
     __url = "https://api.themoviedb.org/3/movie/popular"
     __TopRatedUrl = "https://api.themoviedb.org/3/movie/top_rated"
     __NowPlayingMovieUrl = "https://api.themoviedb.org/3/movie/now_playing"
-    __MovieReviewUrl = "https://api.themoviedb.org/3/movie/385687/reviews"
+    __MovieReviewUrl = "https://api.themoviedb.org/3/movie/{}/reviews"
     __UpcomingMovieUrl = "https://api.themoviedb.org/3/movie/upcoming"
     
 
@@ -72,7 +72,7 @@ class MovieUtils:
         return data[int(genre_id)]
     
     def getMovieReviews(self, movie_id : int): 
-        response = requests.get(self.__MovieReviewUrl, headers={
+        response = requests.get(self.__MovieReviewUrl.format(movie_id), headers={
                 "accept": "application/json",
                 "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
             }
