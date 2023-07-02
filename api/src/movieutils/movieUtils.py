@@ -57,7 +57,9 @@ class MovieUtils:
         
         if response.status_code == 200:
             resp = response.json()
-            totalPages = resp.total_pages
+            totalPages = resp['total_pages']
+            
+            print(totalPages)
             
             for tp in range(totalPages):
                 response = get(tp)
@@ -66,11 +68,7 @@ class MovieUtils:
                 for result in response['results']:
                     if result['release_date'] > currDate:
                         data['results'].append(result)
-                    
-                
-                
-                
-        
+
         return {"status":False} if response.status_code != 200 else {'status':True, "data":data}
     
     

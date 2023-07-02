@@ -332,6 +332,14 @@ a.myAppName {
   animation: spinner 1.5s linear infinite;
 }
 
+.spinner-container {
+  align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color:white;
+}
+
 
 .searchResult {
   background: rgba(255, 255, 255, 0.4);

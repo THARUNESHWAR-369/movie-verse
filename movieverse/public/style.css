@@ -603,6 +603,10 @@ video {
   margin: auto;
 }
 
+.m-\[0\.5rem\]{
+  margin: 0.5rem;
+}
+
 .mr-\[10px\]{
   margin-right: 10px;
 }
@@ -838,6 +842,26 @@ video {
 
 .tracking-wider{
   letter-spacing: 0.05em;
+}
+
+.tracking-\[\]{
+  letter-spacing: ;
+}
+
+.tracking-\[1\]{
+  letter-spacing: 1;
+}
+
+.tracking-\[1\.\]{
+  letter-spacing: 1.;
+}
+
+.tracking-\[1\.5\]{
+  letter-spacing: 1.5;
+}
+
+.tracking-\[1\.5px\]{
+  letter-spacing: 1.5px;
 }
 
 .text-black{
@@ -1200,6 +1224,14 @@ a.myAppName {
   border-radius: 50%;
   -webkit-animation: spinner 1.5s linear infinite;
           animation: spinner 1.5s linear infinite;
+}
+
+.spinner-container {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  color:white;
 }
 
 .searchResult {

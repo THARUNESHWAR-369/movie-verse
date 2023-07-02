@@ -12,24 +12,27 @@ export const HomePage = () => {
   const [appBg, setAppBg] = useState(null);
   const [appBgMovieGenre, setAppBgMovieGenre] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [loadingText, setLoadingText] = useState("");
 
   useEffect(() => {
     fetchNowPlayingMovieData();
   }, []);
 
-
   const fetchNowPlayingMovieData = async () => {
+    setLoadingText("Loading...");
     try {
+      setLoadingText("Connecting to Server...");
       const response = await fetch(
         process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
       );
       const jsonData = await response.json();
+      setLoadingText("Fetching...");
       //console.log(jsonData['data']['results'][0]['genre_ids']);
-      await fetchBgMovieGenre(jsonData['data']['results'][0]['genre_ids']);
-      setAppBg(jsonData['data']['results'][0]);
+      await fetchBgMovieGenre(jsonData["data"]["results"][0]["genre_ids"]);
+      setAppBg(jsonData["data"]["results"][0]);
       setLoading(false);
     } catch (error) {
+      setLoadingText("Error on connecting to server...");
       console.log("error fetching data: ", error);
       setLoading(false);
     }
@@ -52,21 +55,25 @@ export const HomePage = () => {
       //console.log("genreBg: ",genreBg);
       setAppBgMovieGenre(genreBg);
     }
-  }
- 
-
-  const imageUrlStyle = {
-    "--bg-image": appBg && appBg.backdrop_path ? `url(https://image.tmdb.org/t/p/original${appBg.backdrop_path})` : "",
   };
 
-
+  const imageUrlStyle = {
+    "--bg-image":
+      appBg && appBg.backdrop_path
+        ? `url(https://image.tmdb.org/t/p/original${appBg.backdrop_path})`
+        : "",
+  };
 
   return (
     <div className="Home w-full h-full">
-       {loading && <div className="loader z-[100000000]"><div className="spinner-container">
-      <div className="loading-spinner">
-      </div>
-    </div></div>}
+      {loading && (
+        <div className="loader z-[100000000]">
+          <div className="spinner-container">
+            <div className="loading-spinner"></div>
+            <p className="m-[0.5rem] tracking-[1.5px] font-bold">{loadingText}</p>
+          </div>
+        </div>
+      )}
       <div
         className="bg w-full h-screen bg-fixed bg-no-repeat bg-center bg-cover fixed z-[-15]"
         style={imageUrlStyle}
