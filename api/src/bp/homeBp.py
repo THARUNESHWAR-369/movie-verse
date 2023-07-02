@@ -81,7 +81,9 @@ def getMovieGenre():
 @cross_origin()
 def getMovieNameList():
     print(os.getcwd())
-    print(os.listdir("/opt/render/project/src/api/src"))
+    print(os.listdir("/opt/render/project/src/api/src/artifacts"))
+    print("******")
     df = pd.read_csv("src/artifacts/movie_names_preprocessed_en.csv")
     return df['Title'].tolist()
+
 
