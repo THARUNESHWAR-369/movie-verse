@@ -1,0 +1,12 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "python.formatting.provider": "none",
+    "cSpell.words": [
+        "jsonify",
+        "movieutils",
+        "parse",
+        "TMDB"
+    ]
+}

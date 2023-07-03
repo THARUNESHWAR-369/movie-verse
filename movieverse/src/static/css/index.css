@@ -1,0 +1,472 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*,
+*::after,
+*::before,
+body {
+  box-sizing: border-box;
+}
+
+*,
+body,
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #222;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.App {
+  height: 100%;
+}
+
+.bg {
+  background-image: linear-gradient(135deg, #00000063, #000000c7), var(--bg-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.nav {
+  padding: 2rem 1rem;
+}
+
+a.myAppName {
+  background: linear-gradient(to right, #ed213a, #93291e);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: bolder;
+  letter-spacing: 2px;
+}
+
+.search-bar-input::placeholder {
+  color: white;
+}
+
+.search-bar-input {
+  background: rgba(255, 255, 255, 0.5);
+  padding-right: 2.5rem;
+  text-overflow: ellipsis;
+  height: 3rem;
+}
+
+.title-card-genre-li {
+  border: 2px solid white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+
+.title-card-genre-li:hover {
+  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.title-card-rating {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.title-card-external-link-btn {
+  background: #ed213a;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ed213a, #93291e);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ed213a, #93291e);
+  width: 6rem;
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  font-size: larger;
+  cursor: pointer;
+}
+
+#review-p-start {
+  margin: 0 0.3rem;
+}
+
+.review-card-li {
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  padding: 0.4rem;
+  border-radius: 5px;
+  margin: 5px;
+  width: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.review-card-li:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.review-card-li .review-card-content {
+  text-overflow: ellipsis;
+}
+
+.review-card-username {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-end;
+  justify-content: space-around;
+  padding: 3px;
+}
+
+.main-container {
+  max-width: 90%;
+  width: 90rem;
+}
+
+.review-card {
+  overflow: auto;
+  transition: .3s linear;
+}
+
+.popular-card,
+.np-card,
+.up-card {
+  margin-left: 3.5rem;
+  margin-right: 4.5rem;
+}
+
+.popular-card-cards,
+.np-card-cards,
+.up-card-cards {
+  width: 100%;
+  height: 250px;
+  /* border: 1px solid #fff; */
+  display: flex;
+  overflow: auto;
+  gap: 10px;
+  position: relative;
+  top: -2rem;
+  scroll-behavior: smooth;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: space-between;
+}
+
+.popular-card-cards::-webkit-scrollbar,
+.np-card-cards::-webkit-scrollbar,
+.up-card-cards::-webkit-scrollbar {
+  display: none;
+}
+
+.popular-card-card,
+.np-card-card {
+  min-width: 165px;
+  width: 165px;
+  height: 249px;
+  /*border: 1px solid #fff;*/
+  border-radius: 10px;
+  background: #000;
+  transition: .3s linear;
+  overflow: hidden;
+}
+
+.popular-card img,
+.np-card img,
+.up-card img {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  opacity: 1;
+  aspect-ratio: 10.5/16;
+}
+
+.popular-card-content,
+.np-card-content {
+  background: rgba(27, 27, 27, 0.3);
+  width: 100%;
+  overflow: hidden;
+}
+
+.popular-card-content span,
+.np-card-content span {
+  opacity: 0;
+  background: rgba(27, 27, 27, 0.5);
+  width: 100%;
+  position: relative;
+  bottom: 190px;
+  width: fit-content;
+  overflow: hidden;
+  left: 50%;
+  top: -15rem;
+  transform: translate(-50%, 50%);
+}
+
+.popular-card-card:hover .popular-card-content span,
+.np-card-card:hover .np-card-content span {
+  opacity: 1;
+  transition: 0.3s linear;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  align-items: center;
+}
+
+.popular-card-card:hover .popular-card-date,
+.np-card-card:hover .np-card-date {
+  opacity: 1;
+  transition: 0.3s linear;
+
+}
+
+.popular-card-card:hover .popular-card-content img,
+.np-card-card:hover .np-card-content img {
+  opacity: 0.5;
+}
+
+
+.popular-card img:hover,
+.np-card img:hover {
+  opacity: 0.5;
+}
+
+
+.popular-card-date,
+.np-card-date {
+  opacity: 0;
+  background: rgba(27, 27, 27, 0.5);
+  width: 100%;
+  position: relative;
+  bottom: 78px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.popular-card-controller .fa-chevron-left,
+.np-card-controller .fa-chevron-left {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  position: relative;
+  bottom: -8.5rem;
+  left: -1rem;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s linear;
+  z-index: 999999999;
+  /*opacity: 0;*/
+}
+
+.popular-card-controller .fa-chevron-right,
+.np-card-controller .fa-chevron-right {
+  width: 2rem;
+  height: 2rem;
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  display: flex;
+  position: relative;
+  bottom: -6.5rem;
+  right: -1rem;
+  float: right;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s linear;
+  z-index: 999999999;
+  /*opacity: 0;*/
+}
+
+.footer {
+  color: white;
+  text-align: center;
+  padding: 21px;
+  font-size: large;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+
+.loader {
+  background: #222;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 11111111111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s linear;
+}
+
+.loaderReview {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 10px solid #f3f3f3;
+  /* Light grey */
+  border-top: 10px solid #383636;
+  /* Black */
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+}
+
+.spinner-container {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+
+.searchResult {
+  background: rgba(255, 255, 255, 0.4);
+  width: -webkit-fill-available;
+  position: absolute;
+  width: 19.7rem;
+  max-height: 400px;
+  overflow: auto;
+  margin: 0.5rem;
+  margin-left: 3px;
+  margin-right: 1rem;
+  border-radius: 0.2rem;
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  transition: .3s linear all;
+  opacity: 0;
+  z-index: 11111;
+}
+
+.searchResult.expandSearchResult-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: 0.3s ease;
+}
+
+.searchResult.expandSearchResult-inactive {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: 0.3s ease;
+}
+
+.searchResult-li:hover {
+  background: linear-gradient(to right, #ed213a, #93291e);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 1170px) {
+  .title-card-reviews {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .title-card {
+    width: 100%;
+    align-items: center;
+  }
+
+  .titlecard-overview {
+    width: 80%;
+    text-align: justify;
+  }
+
+  .title-card-rating {
+    justify-content: center;
+  }
+}
+
+
+
+@media only screen and (max-width: 840px) {
+  .nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .appName {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  .search-bar {
+    padding: 0;
+  }
+
+  .title-card-reviews {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 10px;
+  }
+
+  .review-card {
+    width: 80%;
+  }
+
+  .main-container {
+    max-width: 100%;
+    /* width: 90rem; */
+  }
+
+  .titlecard-overview {
+    width: 100%;
+    text-align: justify;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .review-card {
+    width: 95%;
+  }
+}
