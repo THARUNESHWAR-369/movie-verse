@@ -4,6 +4,7 @@
     },
     "python.formatting.provider": "none",
     "cSpell.words": [
+        "Colorchange",
         "jsonify",
         "movieutils",
         "parse",

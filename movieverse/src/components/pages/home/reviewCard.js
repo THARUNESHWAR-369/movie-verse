@@ -35,7 +35,7 @@ export const ReviewCard = ({ movieId }) => {
   };
 
   return (
-    <div className="review-card w-[60%] mr-[10px] p-[10px] h-29rem">
+    <div className="review-card w-[60%] h-29rem max-w-[30rem]">
       <h3 className="text-white font-semibold text-center tracking-wider text-xl">
         Movie Review
       </h3>

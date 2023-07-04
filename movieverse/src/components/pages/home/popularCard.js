@@ -12,7 +12,7 @@ export const PopularCard = () => {
   const fetchPopularMovieData = async () => {
     try {
       const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
+        process.env.REACT_APP_API_SERVICE_GET_TREND_MOVIE_URL
       );
       const jsonData = await response.json();
       console.log("setPopularMovieData: ", jsonData);

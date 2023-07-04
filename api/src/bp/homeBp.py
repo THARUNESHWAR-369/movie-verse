@@ -8,7 +8,6 @@ from src.movieutils.movieUtils import MovieUtils
 
 import pandas as pd
 
-print(app_version)
 
 HomeBp = Blueprint('home_bp', __name__, url_prefix=f'/api/{app_version}/home-bp-details')
 cors = CORS(HomeBp)
@@ -26,7 +25,6 @@ movieUtils = MovieUtils()
 @HomeBp.route("/getPopularMovies",methods=['POST', "GET"])
 @cross_origin()
 def getPopularMovies():
-    print("In Popular movies")
     __popularMovies = movieUtils.getPopularMovies()
     if __popularMovies['status']:
         return {'status' : __popularMovies['status'], "results" : __popularMovies['data']['results']}
@@ -36,7 +34,6 @@ def getPopularMovies():
 @HomeBp.route("/getTopRatedMovies",methods=['POST', "GET"])
 @cross_origin()
 def getTopRatedMovies():
-    print("In Top Rated Movies")
     __topRatedMovies = movieUtils.getTopRatedMovies()
     if __topRatedMovies['status']:
         return {'status' : __topRatedMovies['status'], "results" : __topRatedMovies['data']['results']}
@@ -46,7 +43,6 @@ def getTopRatedMovies():
 @HomeBp.route("/getUpComingMovies",methods=['POST', "GET"])
 @cross_origin()
 def getUpComingMovies():
-    print("In upcoming Movies")
     __upComingMovies = movieUtils.getUpComingMovies()
     if __upComingMovies['status']:
         return {'status' : __upComingMovies['status'], "results" : __upComingMovies['data']['results']}
@@ -56,7 +52,6 @@ def getUpComingMovies():
 @HomeBp.route("/nowPlaying",methods=['POST', "GET"])
 @cross_origin()
 def getNowPlayingMovies():
-    print("Now Playing Movies")
     __nowPlayingMovies = movieUtils.getNowPlayingMovies()
     if __nowPlayingMovies['status']:    
         return jsonify(__nowPlayingMovies)
@@ -74,14 +69,19 @@ def getMovieReview():
 @cross_origin()
 def getMovieGenre():
     movie_genre_list = request.json['movie_genre'] if type(request.json['movie_genre']) == list else [request.json['movie_genre']]
-    print("movie_genre_list: ",movie_genre_list)
     return movieUtils._getMovieGenre(movie_genre_list)
 
 @HomeBp.route("/getMovieNameList",methods=['POST', "GET"])
 @cross_origin()
 def getMovieNameList():
-    print("movie list data")
     df = pd.read_csv("src/artifacts/movie_names_preprocessed_en.csv")
     return df['Title'].tolist()
+
+@HomeBp.route("/getMovieDetails",methods=['POST', "GET"])
+@cross_origin()
+def getMovieDetails():
+    movie_name = request.json['movie_name']
+    __movieDetails = movieUtils.getMovieDetails(movie_name)
+    return jsonify(__movieDetails)
 
 

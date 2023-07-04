@@ -1,18 +1,15 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { NavComponent } from "../../navigation/navComponent";
-import { TitleCard } from "./titleCard";
-import { ReviewCard } from "./reviewCard";
-import { PopularCard } from "./popularCard";
-import { NowPlayingCard } from "./nowPlayingCard";
-import { UpComingMoviesCard } from "./upcomingMoviesCard";
-import { FooterComponent } from "../../footerComponent/footerComponent";
+import { HomePageContent } from "./homePageContent";
+import { MovieSearchPage } from "../movieSearchPage/movieSearchPage";
 
 export const HomePage = () => {
   const [appBg, setAppBg] = useState(null);
   const [appBgMovieGenre, setAppBgMovieGenre] = useState(null);
   const [loading, setLoading] = useState(true);
   const [loadingText, setLoadingText] = useState("");
+  const [selectedSearchMovieName, setSelectedSearchMovieName] = useState("");
+  const [bgImg, setBgImg] = useState("");
 
   useEffect(() => {
     fetchNowPlayingMovieData();
@@ -27,7 +24,6 @@ export const HomePage = () => {
       );
       const jsonData = await response.json();
       setLoadingText("Fetching...");
-      //console.log(jsonData['data']['results'][0]['genre_ids']);
       await fetchBgMovieGenre(jsonData["data"]["results"][0]["genre_ids"]);
       setAppBg(jsonData["data"]["results"][0]);
       setLoading(false);
@@ -39,7 +35,6 @@ export const HomePage = () => {
   };
 
   const fetchBgMovieGenre = async (genre_id) => {
-    //console.log("genre_id: ",genre_id)
     const response = await fetch(
       process.env.REACT_APP_API_SERVICE_GET_MOVIE_GENRE_URL,
       {
@@ -52,17 +47,27 @@ export const HomePage = () => {
     );
     if (response.ok) {
       const genreBg = await response.json();
-      //console.log("genreBg: ",genreBg);
       setAppBgMovieGenre(genreBg);
     }
   };
 
+  const handleMovieSelection = (movie) => {
+    setSelectedSearchMovieName(movie);
+  };
+
+  const handleMovieBg = (moviePoster) => {
+    setBgImg(moviePoster);
+  };
+
   const imageUrlStyle = {
     "--bg-image":
-      appBg && appBg.backdrop_path
-        ? `url(https://image.tmdb.org/t/p/original${appBg.backdrop_path})`
-        : "",
+      bgImg === ""
+        ? (appBg && appBg.backdrop_path
+            ? `url(https://image.tmdb.org/t/p/original${appBg.backdrop_path})`
+            : "")
+        : `url(https://image.tmdb.org/t/p/original${bgImg})`,
   };
+  
 
   return (
     <div className="Home w-full h-full">
@@ -70,7 +75,9 @@ export const HomePage = () => {
         <div className="loader z-[100000000]">
           <div className="spinner-container">
             <div className="loading-spinner"></div>
-            <p className="m-[0.5rem] tracking-[1.5px] font-bold">{loadingText}</p>
+            <p className="m-[0.5rem] tracking-[1.5px] font-bold">
+              {loadingText}
+            </p>
           </div>
         </div>
       )}
@@ -79,20 +86,20 @@ export const HomePage = () => {
         style={imageUrlStyle}
       ></div>
       <div className="main-container m-auto">
-        <NavComponent></NavComponent>
-        <div className="title-card-reviews flex justify-between p-[3.5rem] pt-[4rem]">
-          <TitleCard
-            movieTitle={appBg?.original_title}
-            movieOverview={appBg?.overview}
-            movieRating={appBg?.vote_average}
-            movieGenres={appBgMovieGenre}
-          ></TitleCard>
-          {appBg && appBg.id && <ReviewCard movieId={appBg.id} />}
+        <NavComponent onMovieSelect={handleMovieSelection}></NavComponent>
+        <div className="main-page-content w-[90%] h-[100vh] my-28 mx-auto">
+          {selectedSearchMovieName === "" ? (
+            <HomePageContent
+              appBg={appBg}
+              appBgMovieGenre={appBgMovieGenre}
+            />
+          ) : (
+            <MovieSearchPage
+              onMoviePoster={handleMovieBg}
+              movie_name={selectedSearchMovieName}
+            />
+          )}
         </div>
-        <PopularCard></PopularCard>
-        <NowPlayingCard></NowPlayingCard>
-        <UpComingMoviesCard></UpComingMoviesCard>
-        <FooterComponent></FooterComponent>
       </div>
     </div>
   );

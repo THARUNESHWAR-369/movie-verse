@@ -1,12 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 
-export const NavComponent = () => {
+export const NavComponent = ({ onMovieSelect }) => {
   const [movieNameList, setMovieNameList] = useState([]);
   const [expandSearchResult, setExpandSearchResult] = useState(false);
   const [searchKey, setSearchKey] = useState("");
   const [selectedMovie, setSelectedMovie] = useState("");
 
+  const [colorChange, setColorchange] = useState(false);
+
   let menuRef = useRef();
+
+  const changeNavbarColor = () => {
+
+    if (window.scrollY >= 50) {
+      setColorchange(true);
+    } else {
+      setColorchange(false);
+    }
+  };
+  window.addEventListener("scroll", changeNavbarColor);
 
   useEffect(() => {
     let handler = (e) => {
@@ -57,43 +69,52 @@ export const NavComponent = () => {
   );
 
   return (
-    <div className="nav w-full p-1 flex align-middle justify-between items-center pt-8">
-      <div className="appName pl-10">
-        <a href="/" className="myAppName text-4xl">
-          MOVIE VERSE
-        </a>
-      </div>
-      <div className="search-bar pr-10" ref={menuRef}>
-        <input
-          placeholder="Search"
-          className="search-bar-input border-none outline-none rounded-[50px] pl-[13px] p-[0.35rem] w-[20rem] backdrop-blur-md tracking-wider font-semibold text-white"
-          onClick={() => {
-            setExpandSearchResult(!expandSearchResult);
-          }}
-          onChange={handleSearchInputChange}
-          value={selectedMovie}
-        ></input>
-        <span className="relative right-[30px] cursor-pointer text-white hover:text-red-600">
-          <i className="fa fa-search"></i>
-        </span>
-        <div
-          className={`searchResult ${
-            expandSearchResult
-              ? "expandSearchResult-active"
-              : "expandSearchResult-inactive"
-          }`}
-        >
-          <ul className="divide-y-4 divide-gray-800/25">
-            {filteredMovies.slice(0, 7).map((movie, index) => (
-              <li
-                className="searchResult-li text-white cursor-pointer font-bold text-center tracking-[1px] p-[0.3rem] hover:opacity-75"
-                key={index}
-                onClick={() => handleMovieClick(movie)}
-              >
-                {movie}
-              </li>
-            ))}
-          </ul>
+    <div className={colorChange ? "nav change-color" : "nav no-change-color"}>
+      <div className="nav-container flex align-middle justify-between items-center w-[90%] m-auto py-4 px-0">
+        <div className="appName">
+          <a href="/" className="myAppName text-4xl">
+            MOVIE VERSE
+          </a>
+        </div>
+        <div className="search-bar" ref={menuRef}>
+          <div className="search-bar-search-input p-[0.5rem] rounded-[2rem] flex justify-between  w-[20rem]">
+            <input
+              placeholder="Movie name"
+              className="search-bar-input tracking-wider font-semibold text-white pl-[10px] outline-none border-none  bg-transparent w-[17rem] truncate"
+              onClick={() => {
+                setExpandSearchResult(!expandSearchResult);
+              }}
+              onChange={handleSearchInputChange}
+              value={selectedMovie}
+            ></input>
+            <span
+              className="relative cursor-pointer p-[0.2rem] bg-gradient-to-r from-red-500 to-red-900 w-[30px] h-[30px] rounded-full flex justify-center items-center text-white"
+              onClick={() => {
+                onMovieSelect(selectedMovie);
+              }}
+            >
+              <i className="fa fa-search"></i>
+            </span>
+          </div>
+          <div
+            className={`searchResult ${
+              expandSearchResult
+                ? "expandSearchResult-active"
+                : "expandSearchResult-inactive"
+            }`}
+          >
+            <ul className="divide-y-4 divide-gray-800/25">
+              {filteredMovies.slice(0, 7).map((movie, index) => (
+                <li
+                  className="searchResult-li text-white cursor-pointer font-bold text-center tracking-[1px] p-[0.3rem] hover:opacity-75"
+                  key={index}
+                  onClick={() => handleMovieClick(movie)}
+                >
+                  {movie}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
