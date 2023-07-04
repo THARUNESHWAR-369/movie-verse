@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavComponent } from "../../navigation/navComponent";
 import { HomePageContent } from "./homePageContent";
 import { MovieSearchPage } from "../movieSearchPage/movieSearchPage";
+import { FooterComponent } from "../../footerComponent/footerComponent";
 
 export const HomePage = () => {
   const [appBg, setAppBg] = useState(null);
@@ -94,12 +95,15 @@ export const HomePage = () => {
               appBgMovieGenre={appBgMovieGenre}
             />
           ) : (
-            <MovieSearchPage
+            <><MovieSearchPage
               onMoviePoster={handleMovieBg}
               movie_name={selectedSearchMovieName}
             />
+</>
           )}
+
         </div>
+
       </div>
     </div>
   );

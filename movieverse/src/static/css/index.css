@@ -456,6 +456,21 @@ a.myAppName {
   }
 }
 
+@media only screen and (max-width: 1000px) {
+  .movie-details-section {
+    display: flex;
+    flex-direction: column;
+  }
+  .movie-details-poster {
+    width: fit-content;
+    margin: auto;
+  }
+  .movie-details-container-content h1 {
+    text-align: center;
+    padding-top: 2rem;
+  }
+}
+
 @media only screen and (max-width: 700px) {
   .nav-container {
     display: flex;

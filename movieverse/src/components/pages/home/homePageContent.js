@@ -27,6 +27,7 @@ export const HomePageContent = ({ appBg, appBgMovieGenre }) => {
       <NowPlayingCard />
       <UpComingMoviesCard />
       <FooterComponent />
+
     </>
   );
 };

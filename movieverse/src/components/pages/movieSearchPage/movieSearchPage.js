@@ -90,7 +90,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
   };
 
   return (
-    <div className="MovieSearchContainer text-white w-[100%] h-[100vh] p-[1rem]">
+    <div className="MovieSearchContainer text-white w-[100%] h-[100vh] p-[1rem] ">
       {loading && (
         <div className="loader z-[100000000]">
           <div className="spinner-container">
@@ -188,5 +188,6 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
         </section>
       )}
     </div>
+
   );
 };
