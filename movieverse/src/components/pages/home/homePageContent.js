@@ -35,7 +35,7 @@ export const HomePageContent = ({ appBg, appBgMovieGenre, titleCardMovie }) => {
       <PopularCard />
       <NowPlayingCard />
       <UpComingMoviesCard />
-      <FooterComponent />
+      <FooterComponent></FooterComponent> 
 
     </>
   );

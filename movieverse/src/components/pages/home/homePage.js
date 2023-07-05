@@ -109,8 +109,12 @@ export const HomePage = () => {
           )}
 
         </div>
-
       </div>
+      {selectedSearchMovieName === "" ? (
+            null
+          ) : (
+            <FooterComponent></FooterComponent>
+          )}
     </div>
   );
 };

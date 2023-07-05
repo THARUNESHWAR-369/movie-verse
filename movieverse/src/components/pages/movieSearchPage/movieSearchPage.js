@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { FooterComponent } from "../../footerComponent/footerComponent";
 
 export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
   const [loading, setLoading] = useState(true);
@@ -8,7 +9,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
 
   let menuRef = useRef();
 
-  console.log("movie_name: ",movie_name);
+  console.log("movie_name: ", movie_name);
 
   useEffect(() => {
     fetchMovieDetails();
@@ -28,7 +29,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
   });
 
   const fetchMovieDetails = async () => {
-    console.log("movie_name: ",movie_name);
+    console.log("movie_name: ", movie_name);
     try {
       const response = await fetch(
         process.env.REACT_APP_API_SERVICE_GET_MOVIE_DETAILS_URL,
@@ -180,17 +181,20 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
               </span>
               <span className="flex gap-2 py-[0.2rem]">
                 <b>Runtime: </b>
-                <p className="font-semibold">{formatRuntime()}</p> {/* Display formatted runtime */}
+                <p className="font-semibold">{formatRuntime()}</p>{" "}
+                {/* Display formatted runtime */}
               </span>
               <span className="flex gap-2 py-[0.2rem]">
                 <b>Status: </b>
-                <p className="font-semibold text-green-400">{movieDetails.status}</p> {/* Display formatted runtime */}
+                <p className="font-semibold text-green-400">
+                  {movieDetails.status}
+                </p>{" "}
+                {/* Display formatted runtime */}
               </span>
             </div>
           </div>
         </section>
       )}
     </div>
-
   );
 };
