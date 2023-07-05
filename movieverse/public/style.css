@@ -619,10 +619,6 @@ video {
   margin-bottom: 7rem;
 }
 
-.ml-\[1rem\]{
-  margin-left: 1rem;
-}
-
 .flex{
   display: flex;
 }
@@ -912,6 +908,11 @@ video {
 .py-\[0\.6rem\]{
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
+}
+
+.py-\[0\.8rem\]{
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
 }
 
 .py-\[1\.2rem\]{
@@ -1547,8 +1548,13 @@ a.myAppName {
   }
 
   .movie-details-container-content h1 {
-    text-align: center;
+    text-align: start;
     padding-top: 2rem;
+  }
+
+  .movie-details-genre ul {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 
@@ -1561,6 +1567,20 @@ a.myAppName {
 
   .main-page-content {
     margin-top: 11rem;
+  }
+
+  .title-card h1 {
+    text-align: center;
+    align-items: center;
+  }
+
+  .review-card {
+    width: 100%;
+  }
+
+  .title-card-overview {
+    width: 100%;
+    text-align: justify;
   }
 }
 

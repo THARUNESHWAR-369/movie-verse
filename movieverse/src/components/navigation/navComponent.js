@@ -11,7 +11,6 @@ export const NavComponent = ({ onMovieSelect }) => {
   let menuRef = useRef();
 
   const changeNavbarColor = () => {
-
     if (window.scrollY >= 50) {
       setColorchange(true);
     } else {
@@ -59,9 +58,11 @@ export const NavComponent = ({ onMovieSelect }) => {
   };
 
   const handleMovieClick = (movie) => {
+    setExpandSearchResult(false);
     setSelectedMovie(movie);
     setSearchKey(movie);
-    setExpandSearchResult(false);
+    console.log(movie);
+    onMovieSelect(movie);
   };
 
   const filteredMovies = movieNameList.filter((movie) =>
@@ -80,6 +81,7 @@ export const NavComponent = ({ onMovieSelect }) => {
           <div className="search-bar-search-input p-[0.5rem] rounded-[2rem] flex justify-between  w-[20rem]">
             <input
               placeholder="Movie name"
+              id="search-bar-input"
               className="search-bar-input tracking-wider font-semibold text-white pl-[10px] outline-none border-none  bg-transparent w-[17rem] truncate"
               onClick={() => {
                 setExpandSearchResult(!expandSearchResult);
@@ -89,9 +91,8 @@ export const NavComponent = ({ onMovieSelect }) => {
             ></input>
             <span
               className="relative cursor-pointer p-[0.2rem] bg-gradient-to-r from-red-500 to-red-900 w-[30px] h-[30px] rounded-full flex justify-center items-center text-white"
-              onClick={() => {
-                onMovieSelect(selectedMovie);
-              }}
+              onClick={() => handleMovieClick(selectedMovie)}
+
             >
               <i className="fa fa-search"></i>
             </span>

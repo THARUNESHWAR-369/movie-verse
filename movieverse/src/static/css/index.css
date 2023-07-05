@@ -466,8 +466,12 @@ a.myAppName {
     margin: auto;
   }
   .movie-details-container-content h1 {
-    text-align: center;
+    text-align: start;
     padding-top: 2rem;
+  }
+  .movie-details-genre ul {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 
@@ -480,5 +484,18 @@ a.myAppName {
 
   .main-page-content {
     margin-top: 11rem;
+  }
+
+  .title-card h1 {
+    text-align: center;
+    align-items: center;
+  }
+
+  .review-card {
+    width: 100%;
+  }
+  .title-card-overview {
+    width: 100%;
+    text-align: justify;
   }
 }

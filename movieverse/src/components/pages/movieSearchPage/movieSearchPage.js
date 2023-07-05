@@ -8,6 +8,8 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
 
   let menuRef = useRef();
 
+  console.log("movie_name: ",movie_name);
+
   useEffect(() => {
     fetchMovieDetails();
   }, []);
@@ -26,6 +28,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
   });
 
   const fetchMovieDetails = async () => {
+    console.log("movie_name: ",movie_name);
     try {
       const response = await fetch(
         process.env.REACT_APP_API_SERVICE_GET_MOVIE_DETAILS_URL,
@@ -108,7 +111,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
               alt="Movie Poster"
             />
           </div>
-          <div className="movie-details-container-content ml-[1rem] w-[100%] font-bold">
+          <div className="movie-details-container-content w-[100%] font-bold">
             <h1 className="text-[3rem] font-sans">{movieDetails.title}</h1>
             <div className="movie-details-genre py-[1.2rem]">
               <ul className="font-normal flex flex-row gap-2">
@@ -140,8 +143,8 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
               </span>
               <span className="flex gap-2 tracking-wider align-middle text-center items-center">
                 <b>Revenue: </b>
-                <p className="font-semibold">{formattedRevenue}</p>
-                <div>
+                <p className="font-semibold">{movieDetails.revenue}</p>
+                <div className="flex flex-row gap-1 w-[100%] h-[100%]">
                   <span
                     className="bg-gradient-to-r from-red-500 to-red-900 w-[30px] h-[30px] rounded-full flex justify-center items-center text-white text-lg font-extrabold cursor-pointer"
                     onClick={toggleCurrencyOptions}
@@ -150,8 +153,8 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
                     <i className="fa fa-language" aria-hidden="true"></i>
                   </span>
                   {showCurrencyOptions && (
-                    <div className="bg-white bg-opacity-40 absolute w-[7rem] rounded-sm backdrop-blur-md">
-                      <ul className="divide-y-4 divide-gray-800/25">
+                    <div className="">
+                      <ul className="bg-white bg-opacity-40 absolute w-[7rem] rounded-sm backdrop-blur-md divide-y-4 divide-gray-800/25">
                         <li
                           className="cursor-pointer tracking-wider"
                           onClick={() => handleCurrencyChange("INR")}

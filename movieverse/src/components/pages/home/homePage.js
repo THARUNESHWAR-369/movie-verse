@@ -28,6 +28,7 @@ export const HomePage = () => {
       await fetchBgMovieGenre(jsonData["data"]["results"][0]["genre_ids"]);
       setAppBg(jsonData["data"]["results"][0]);
       setLoading(false);
+      console.log(jsonData["data"]["results"][0]);
     } catch (error) {
       setLoadingText("Error on connecting to server...");
       console.log("error fetching data: ", error);
@@ -53,10 +54,14 @@ export const HomePage = () => {
   };
 
   const handleMovieSelection = (movie) => {
+    console.log(movie);
     setSelectedSearchMovieName(movie);
+    console.log(selectedSearchMovieName);
+
   };
 
   const handleMovieBg = (moviePoster) => {
+    console.log(moviePoster);
     setBgImg(moviePoster);
   };
 
@@ -93,13 +98,14 @@ export const HomePage = () => {
             <HomePageContent
               appBg={appBg}
               appBgMovieGenre={appBgMovieGenre}
+              titleCardMovie={handleMovieSelection}
             />
           ) : (
-            <><MovieSearchPage
+            <MovieSearchPage
+              key={selectedSearchMovieName}
               onMoviePoster={handleMovieBg}
               movie_name={selectedSearchMovieName}
             />
-</>
           )}
 
         </div>
