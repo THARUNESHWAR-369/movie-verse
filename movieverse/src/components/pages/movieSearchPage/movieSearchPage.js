@@ -111,7 +111,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
               alt="Movie Poster"
             />
           </div>
-          <div className="movie-details-container-content w-[100%] font-bold">
+          <div className="movie-details-container-content w-[100%] font-bold ml-[1rem]">
             <h1 className="text-[3rem] font-sans">{movieDetails.title}</h1>
             <div className="movie-details-genre py-[1.2rem]">
               <ul className="font-normal flex flex-row gap-2">

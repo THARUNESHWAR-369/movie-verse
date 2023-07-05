@@ -619,6 +619,10 @@ video {
   margin-bottom: 7rem;
 }
 
+.ml-\[1rem\]{
+  margin-left: 1rem;
+}
+
 .flex{
   display: flex;
 }
@@ -1555,6 +1559,10 @@ a.myAppName {
   .movie-details-genre ul {
     display: flex;
     flex-wrap: wrap;
+  }
+
+  .movie-details-container-content {
+    margin-left: 0;
   }
 }
 
