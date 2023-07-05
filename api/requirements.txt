@@ -16,3 +16,4 @@ requests
 scikit-learn
 scipy
 tmdbv3api
+urllib3==1.26.6 
