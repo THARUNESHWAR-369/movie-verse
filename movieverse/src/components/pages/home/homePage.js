@@ -76,8 +76,7 @@ export const HomePage = () => {
   
 
   return (
-   <div>
-     <div className="Home w-full h-full">
+    <div className="Home w-full h-full">
       {loading && (
         <div className="loader z-[100000000]">
           <div className="spinner-container">
@@ -112,7 +111,6 @@ export const HomePage = () => {
         </div>
       </div>
 
-
-   </div>
+    </div>
   );
 };
