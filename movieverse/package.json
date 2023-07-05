@@ -22,7 +22,7 @@
     "start:prod": "env-cmd -f .env.production react-scripts start",
     "build": "react-scripts build",
     "build:dev": "env-cmd -f .env.development npm run build && firebase deploy -P movieverse-c1dc1",
-    "build:prod": "env-cmd -f .env.production npm run build && firebase deploy -P prod",
+    "build:prod": "env-cmd -f .env.production npm run build && firebase deploy -P movieverse-c1dc1",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
