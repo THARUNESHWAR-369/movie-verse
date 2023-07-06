@@ -51,12 +51,16 @@ export const UpComingMoviesCard = () => {
           id="leftArrow"
           className="leftArrow fa fa-chevron-left"
           onClick={handleLeftArrowClick}
+          style={{left: `-1rem`}}
+
         ></i>
         <i
           ref={rightArrowRef}
           id="rightArrow"
           className="rightArrow fa fa-chevron-right"
           onClick={handleRightArrowClick}
+          style={{right: `-1rem`}}
+
         ></i>
       </div>
       <div className="popular-card-cards up-card-cards">

@@ -597,6 +597,10 @@ video {
   z-index: 100000000;
 }
 
+.float-left{
+  float: left;
+}
+
 .m-\[0\.1rem\]{
   margin: 0.1rem;
 }
@@ -623,6 +627,10 @@ video {
   margin-left: 1rem;
 }
 
+.mt-\[2\.5rem\]{
+  margin-top: 2.5rem;
+}
+
 .flex{
   display: flex;
 }
@@ -637,6 +645,10 @@ video {
 
 .h-\[100vh\]{
   height: 100vh;
+}
+
+.h-\[249px\]{
+  height: 249px;
 }
 
 .h-\[30px\]{
@@ -663,6 +675,10 @@ video {
   width: 100%;
 }
 
+.w-\[165px\]{
+  width: 165px;
+}
+
 .w-\[17rem\]{
   width: 17rem;
 }
@@ -671,12 +687,12 @@ video {
   width: 20rem;
 }
 
-.w-\[30px\]{
-  width: 30px;
+.w-\[25rem\]{
+  width: 25rem;
 }
 
-.w-\[30rem\]{
-  width: 30rem;
+.w-\[30px\]{
+  width: 30px;
 }
 
 .w-\[60\%\]{
@@ -693,6 +709,10 @@ video {
 
 .w-\[90\%\]{
   width: 90%;
+}
+
+.w-auto{
+  width: auto;
 }
 
 .w-fit{
@@ -763,10 +783,18 @@ video {
   border-color: rgb(31 41 55 / 0.25);
 }
 
+.overflow-hidden{
+  overflow: hidden;
+}
+
 .truncate{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.rounded-\[10px\]{
+  border-radius: 10px;
 }
 
 .rounded-\[1rem\]{
@@ -793,6 +821,10 @@ video {
   border-width: 2px;
 }
 
+.border-\[1px\]{
+  border-width: 1px;
+}
+
 .border-none{
   border-style: none;
 }
@@ -805,6 +837,11 @@ video {
 .border-l-indigo-400{
   --tw-border-opacity: 1;
   border-left-color: rgb(129 140 248 / var(--tw-border-opacity));
+}
+
+.bg-black{
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-gray-600{
@@ -885,6 +922,10 @@ video {
   padding: 0.5rem;
 }
 
+.p-\[1\.5rem\]{
+  padding: 1.5rem;
+}
+
 .p-\[1rem\]{
   padding: 1rem;
 }
@@ -942,6 +983,10 @@ video {
 
 .pr-2{
   padding-right: 0.5rem;
+}
+
+.pt-\[0\.1rem\]{
+  padding-top: 0.1rem;
 }
 
 .pt-\[0\.8rem\]{
@@ -1018,6 +1063,10 @@ video {
   font-weight: 600;
 }
 
+.italic{
+  font-style: italic;
+}
+
 .tracking-\[1\.5px\]{
   letter-spacing: 1.5px;
 }
@@ -1067,6 +1116,18 @@ video {
   --tw-backdrop-blur: blur(12px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+.transition{
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, -webkit-transform, -webkit-filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-transform, -webkit-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-300{
+  transition-duration: 300ms;
 }
 
 *,
@@ -1232,6 +1293,7 @@ a.myAppName {
 }
 
 .popular-card,
+.cast-card,
 .np-card,
 .up-card {
   /*margin-left: 3.5rem;
@@ -1239,6 +1301,7 @@ a.myAppName {
 }
 
 .popular-card-cards,
+.cast-card-cards,
 .np-card-cards,
 .up-card-cards {
   width: 100%;
@@ -1252,16 +1315,18 @@ a.myAppName {
   scroll-behavior: smooth;
   flex-wrap: nowrap;
   align-content: stretch;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .popular-card-cards::-webkit-scrollbar,
+.cast-card-cards::-webkit-scrollbar,
 .np-card-cards::-webkit-scrollbar,
 .up-card-cards::-webkit-scrollbar {
   display: none;
 }
 
 .popular-card-card,
+.cast-card-card,
 .np-card-card {
   min-width: 165px;
   width: 165px;
@@ -1274,6 +1339,7 @@ a.myAppName {
 }
 
 .popular-card img,
+.cast-card img,
 .np-card img,
 .up-card img {
   height: 100%;
@@ -1284,6 +1350,7 @@ a.myAppName {
 }
 
 .popular-card-content,
+.cast-card-content,
 .np-card-content {
   background: rgba(27, 27, 27, 0.3);
   width: 100%;
@@ -1291,6 +1358,7 @@ a.myAppName {
 }
 
 .popular-card-content span,
+.cast-card-content span,
 .np-card-content span {
   opacity: 0;
   background: rgba(27, 27, 27, 0.5);
@@ -1308,6 +1376,7 @@ a.myAppName {
 }
 
 .popular-card-card:hover .popular-card-content span,
+.cast-card-card:hover .cast-card-content span,
 .np-card-card:hover .np-card-content span {
   opacity: 1;
   transition: 0.3s linear;
@@ -1318,17 +1387,20 @@ a.myAppName {
 }
 
 .popular-card-card:hover .popular-card-date,
+.cast-card-card:hover .cast-card-date,
 .np-card-card:hover .np-card-date {
   opacity: 1;
   transition: 0.3s linear;
 }
 
 .popular-card-card:hover .popular-card-content img,
+.cast-card-card:hover .cast-card-content img,
 .np-card-card:hover .np-card-content img {
   opacity: 0.5;
 }
 
 .popular-card img:hover,
+.cast-card img:hover,
 .np-card img:hover {
   opacity: 0.5;
 }
@@ -1345,6 +1417,7 @@ a.myAppName {
 }
 
 .popular-card-controller .fa-chevron-left,
+.cast-card-controller .fa-chevron-left,
 .np-card-controller .fa-chevron-left {
   width: 2rem;
   height: 2rem;
@@ -1352,7 +1425,7 @@ a.myAppName {
   color: #fff;
   position: relative;
   bottom: -8.5rem;
-  left: -1rem;
+  left: var(--left);
   align-items: center;
   text-align: center;
   display: flex;
@@ -1365,6 +1438,7 @@ a.myAppName {
 }
 
 .popular-card-controller .fa-chevron-right,
+.cast-card-controller .fa-chevron-right,
 .np-card-controller .fa-chevron-right {
   width: 2rem;
   height: 2rem;
@@ -1372,7 +1446,7 @@ a.myAppName {
   color: #fff;
   position: relative;
   bottom: -6.5rem;
-  right: -1rem;
+  right: var(--right);
   float: right;
   align-items: center;
   text-align: center;

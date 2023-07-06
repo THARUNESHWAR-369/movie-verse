@@ -94,7 +94,7 @@ export const HomePage = () => {
       <div className="main-container m-auto">
         <NavComponent onMovieSelect={handleMovieSelection}></NavComponent>
         <div className="main-page-content w-[90%] h-[100vh] my-28 mx-auto">
-          {selectedSearchMovieName === "" ? (
+        {selectedSearchMovieName === "" ? (
             <HomePageContent
               appBg={appBg}
               appBgMovieGenre={appBgMovieGenre}
@@ -114,3 +114,20 @@ export const HomePage = () => {
     </div>
   );
 };
+
+/*
+{selectedSearchMovieName === "" ? (
+            <HomePageContent
+              appBg={appBg}
+              appBgMovieGenre={appBgMovieGenre}
+              titleCardMovie={handleMovieSelection}
+            />
+          ) : (
+            <MovieSearchPage
+              key={selectedSearchMovieName}
+              onMoviePoster={handleMovieBg}
+              movie_name={selectedSearchMovieName}
+            />
+          )}
+
+*/

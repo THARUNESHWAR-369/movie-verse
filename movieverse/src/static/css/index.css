@@ -162,13 +162,16 @@ a.myAppName {
 }
 
 .popular-card,
+.cast-card,
 .np-card,
 .up-card {
   /*margin-left: 3.5rem;
   margin-right: 4.5rem;*/
 }
 
+
 .popular-card-cards,
+.cast-card-cards,
 .np-card-cards,
 .up-card-cards {
   width: 100%;
@@ -182,16 +185,18 @@ a.myAppName {
   scroll-behavior: smooth;
   flex-wrap: nowrap;
   align-content: stretch;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .popular-card-cards::-webkit-scrollbar,
+.cast-card-cards::-webkit-scrollbar,
 .np-card-cards::-webkit-scrollbar,
 .up-card-cards::-webkit-scrollbar {
   display: none;
 }
 
 .popular-card-card,
+.cast-card-card,
 .np-card-card {
   min-width: 165px;
   width: 165px;
@@ -204,6 +209,7 @@ a.myAppName {
 }
 
 .popular-card img,
+.cast-card img,
 .np-card img,
 .up-card img {
   height: 100%;
@@ -214,6 +220,7 @@ a.myAppName {
 }
 
 .popular-card-content,
+.cast-card-content,
 .np-card-content {
   background: rgba(27, 27, 27, 0.3);
   width: 100%;
@@ -221,6 +228,7 @@ a.myAppName {
 }
 
 .popular-card-content span,
+.cast-card-content span,
 .np-card-content span {
   opacity: 0;
   background: rgba(27, 27, 27, 0.5);
@@ -235,6 +243,7 @@ a.myAppName {
 }
 
 .popular-card-card:hover .popular-card-content span,
+.cast-card-card:hover .cast-card-content span,
 .np-card-card:hover .np-card-content span {
   opacity: 1;
   transition: 0.3s linear;
@@ -244,17 +253,20 @@ a.myAppName {
 }
 
 .popular-card-card:hover .popular-card-date,
+.cast-card-card:hover .cast-card-date,
 .np-card-card:hover .np-card-date {
   opacity: 1;
   transition: 0.3s linear;
 }
 
 .popular-card-card:hover .popular-card-content img,
+.cast-card-card:hover .cast-card-content img,
 .np-card-card:hover .np-card-content img {
   opacity: 0.5;
 }
 
 .popular-card img:hover,
+.cast-card img:hover,
 .np-card img:hover {
   opacity: 0.5;
 }
@@ -271,6 +283,7 @@ a.myAppName {
 }
 
 .popular-card-controller .fa-chevron-left,
+.cast-card-controller .fa-chevron-left,
 .np-card-controller .fa-chevron-left {
   display: flex;
   width: 2rem;
@@ -279,7 +292,7 @@ a.myAppName {
   color: #fff;
   position: relative;
   bottom: -8.5rem;
-  left: -1rem;
+  left: var(--left);
   align-items: center;
   text-align: center;
   display: flex;
@@ -292,6 +305,7 @@ a.myAppName {
 }
 
 .popular-card-controller .fa-chevron-right,
+.cast-card-controller .fa-chevron-right,
 .np-card-controller .fa-chevron-right {
   width: 2rem;
   height: 2rem;
@@ -300,7 +314,7 @@ a.myAppName {
   display: flex;
   position: relative;
   bottom: -6.5rem;
-  right: -1rem;
+  right: var(--right);
   float: right;
   align-items: center;
   text-align: center;

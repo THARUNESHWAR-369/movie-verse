@@ -1,11 +1,13 @@
 
-from flask import Flask, render_template,request, jsonify
+from flask import Flask, jsonify
 from flask_cors import CORS
 
 import sys
 import os
 
 from src.bp.homeBp import HomeBp
+from src.bp.castBp import CastBp
+from src.utils.status_code import *
 
 from dotenv import load_dotenv
 
@@ -30,13 +32,14 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
         
     app.register_blueprint(HomeBp)
+    app.register_blueprint(CastBp)
         
-    @app.errorhandler(404)
+    @app.errorhandler(NOT_FOUND_RESPONSE)
     def handle_404(e):
-        return jsonify({'error': 'Not found'}), 404
+        return jsonify({'error': 'Not found'}), NOT_FOUND_RESPONSE
 
-    @app.errorhandler(505)
+    @app.errorhandler(SERVER_BUSY_RESPONSE)
     def handle_500(e):
-        return jsonify({'error': 'Something went wrong, we are working on it'}), 505
+        return jsonify({'error': 'Something went wrong, we are working on it'}), SERVER_BUSY_RESPONSE
 
     return app
