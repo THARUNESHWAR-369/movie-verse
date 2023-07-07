@@ -7,10 +7,12 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
   const [movieDetails, setMovieDetails] = useState(null);
   const [showCurrencyOptions, setShowCurrencyOptions] = useState(false);
   const [currency, setCurrency] = useState("INR");
+  const [formattedRevenue, setFormattedRevenue] = useState("INR");
+  
 
   let menuRef = useRef();
 
-  console.log("movie_name: ", movie_name);
+  //console.log("movie_name: ", movie_name);
 
   useEffect(() => {
     fetchMovieDetails();
@@ -30,7 +32,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
   });
 
   const fetchMovieDetails = async () => {
-    console.log("movie_name: ", movie_name);
+   // console.log("movie_name: ", movie_name);
     try {
       const response = await fetch(
         process.env.REACT_APP_API_SERVICE_GET_MOVIE_DETAILS_URL,
@@ -45,7 +47,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
       if (response.ok) {
         const movieDetails = await response.json();
 
-        console.log(movieDetails);
+        //console.log(movieDetails);
 
         const backdropPath = movieDetails["data"]["backdrop_path"];
         const posterPath = movieDetails["data"]["poster_path"];
@@ -57,23 +59,10 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
       }
     } catch (error) {
       setLoading(false);
-      console.log("Error fetching movie details:", error);
+      //console.log("Error fetching movie details:", error);
     }
   };
 
-  const formattedRevenue = movieDetails
-    ? new Intl.NumberFormat("en-IN", {
-        style: "currency",
-        currency: currency,
-      })
-        .formatToParts(Math.round(movieDetails.revenue).toFixed(0))
-        .map((part) =>
-          part.type === "currency"
-            ? part.value.replace("INR", currency)
-            : part.value
-        )
-        .join("")
-    : null;
 
   const formatRuntime = () => {
     if (!movieDetails || !movieDetails.runtime) return null;
@@ -89,10 +78,28 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
     setShowCurrencyOptions(!showCurrencyOptions);
   };
 
+
   const handleCurrencyChange = (selectedCurrency) => {
     setCurrency(selectedCurrency);
     setShowCurrencyOptions(false);
+  
+    const updateFormattedRevenue = () => {
+      if (movieDetails) {
+        const formattedRevenue = new Intl.NumberFormat("en-IN", {
+          style: "currency",
+          currency: movieDetails.revenue,
+        })
+          .formatToParts(Math.round(movieDetails.revenue).toFixed(0))
+      
+  
+        setFormattedRevenue(formattedRevenue);
+      }
+    };
+  
+    updateFormattedRevenue();
   };
+  
+
 
   return (
     <div className="MovieSearchContainer text-white w-[100%] h-[100%] p-[1rem]">
@@ -110,12 +117,12 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
             <div className="w-[20rem] h-[30rem]">
               <img
                 className="rounded-[1rem]"
-                src={`https://image.tmdb.org/t/p/original/7gKI9hpEMcZUQpNgKrkDzJpbnNS.jpg`}
+                src={movieDetails.poster_path}
                 alt="Movie Poster"
               />
             </div>
           </div>
-          <div className="w-[100%] mt-[2.5rem] h-[100%] flex text-center ">
+          <div className="w-[100%] mt-[2rem] h-[100%] flex text-center ">
             <div className="movie-details-container-content w-[100%] font-bold ml-[1rem] text-center">
               <div className="w-full text-center items-center flex justify-center">
               <h1 className="text-[3rem] font-sans text-center">{movieDetails.title}</h1>

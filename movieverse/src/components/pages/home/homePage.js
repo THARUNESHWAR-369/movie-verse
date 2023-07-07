@@ -21,17 +21,18 @@ export const HomePage = () => {
     try {
       setLoadingText("Connecting to Server...");
       const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
+        process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
       );
       const jsonData = await response.json();
+      //console.log(jsonData)
       setLoadingText("Fetching...");
-      await fetchBgMovieGenre(jsonData["data"]["results"][0]["genre_ids"]);
-      setAppBg(jsonData["data"]["results"][0]);
+      await fetchBgMovieGenre(jsonData["results"][0]["genre_ids"]);
+      setAppBg(jsonData["results"][0]);
       setLoading(false);
-      console.log(jsonData["data"]["results"][0]);
+      //console.log(jsonData["results"][0]);
     } catch (error) {
       setLoadingText("Error on connecting to server...");
-      console.log("error fetching data: ", error);
+      //console.log("error fetching data: ", error);
       setLoading(false);
     }
   };
@@ -54,9 +55,9 @@ export const HomePage = () => {
   };
 
   const handleMovieSelection = (movie) => {
-    console.log(movie);
+    //console.log(movie);
     setSelectedSearchMovieName(movie);
-    console.log(selectedSearchMovieName);
+    //console.log(selectedSearchMovieName);
 
   };
 

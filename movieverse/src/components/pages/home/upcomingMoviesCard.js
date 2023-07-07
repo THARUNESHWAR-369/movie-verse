@@ -17,11 +17,11 @@ export const UpComingMoviesCard = () => {
           process.env.REACT_APP_API_SERVICE_GET_UPCOMING_MOVIE_URL
         );
         const jsonData = await response.json();
-        console.log("up coming movies: ", jsonData["results"]);
+        //console.log("up coming movies: ", jsonData["results"]);
         setLoading(false);
         setUpcomingMovieData(jsonData["results"]);
       } catch (error) {
-        console.log("error fetching data: ", error);
+        //console.log("error fetching data: ", error);
         setLoading(true);
       }
     };

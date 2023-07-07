@@ -178,6 +178,7 @@ class MovieUtils:
      
         allResponseJson['genres'] = formateGenres(allResponseJson['genres'])
         allResponseJson['vote_average'] = round(allResponseJson['vote_average'], 1)
+        allResponseJson['poster_path'] = os.environ.get("TMDB_POSTER_URL") + allResponseJson['poster_path']
 
                 
         return {"status":False} if response.status_code != 200 else {'status':True, "data": allResponseJson}

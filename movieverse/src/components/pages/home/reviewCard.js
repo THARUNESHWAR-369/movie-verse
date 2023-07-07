@@ -25,7 +25,7 @@ export const ReviewCard = ({ movieId }) => {
         const movieReviews = await response.json();
 
         // Handle the movie reviews data
-        console.log(movieReviews["data"]["results"]);
+        //console.log(movieReviews["data"]["results"]);
         setReviewCard(movieReviews["data"]["results"]);
         setLoading(false); // Set loading to false after fetching the data
       }
@@ -47,6 +47,7 @@ export const ReviewCard = ({ movieId }) => {
         </div>
       )}
       <ul>
+      {reviewCard && reviewCard.length === 0 && <div className="flex justify-center"><p className="text-red-500 font-semibold tracking-wider">No Reviews found</p></div>}
         {reviewCard &&
           reviewCard.slice(0, 7).map((review, index) => (
             <a target="_black" href={review["url"]} key={index}>

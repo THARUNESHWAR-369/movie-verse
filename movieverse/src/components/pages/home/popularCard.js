@@ -40,7 +40,7 @@ export const PopularCard = () => {
   };
 
   return (
-    <div className="popular-card text-white ml-13">
+    <div className="popular-card text-white ml-13 mt-10">
       <h2 className="font-bold text-2xl">Popular Movies</h2>
       <div className="popular-card-controller">
         <i

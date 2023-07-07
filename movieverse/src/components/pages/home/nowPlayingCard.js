@@ -15,11 +15,11 @@ export const NowPlayingCard = () => {
         process.env.REACT_APP_API_SERVICE_GET_NOWPLAYING_MOVIE_URL
       );
       const jsonData = await response.json();
-      console.log("setNowPlayingMovieData: ", jsonData['data']["results"]);
+      //console.log("setNowPlayingMovieData: ", jsonData['data']["results"]);
 
       setNowPlayingMovieData(jsonData['data']["results"]);
     } catch (error) {
-      console.log("error fetching data: ", error);
+      //console.log("error fetching data: ", error);
     }
   };
 

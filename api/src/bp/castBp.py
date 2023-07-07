@@ -5,7 +5,7 @@ from flask_cors import CORS, cross_origin
 import os
 
 from src.config.config import app_version
-from src.movieutils.models.cast_model import CAST_MODEL
+from src.movieutils.models.cast_model import CastModel
 
 import pandas as pd
 
@@ -26,5 +26,5 @@ def add_cors_headers(response):
 @cross_origin()
 def getCastDetails():
     movie_id = request.json['movie_id']
-    return CAST_MODEL(movie_id, 10).toJson()
+    return CastModel(movie_id, 10).toJson()
 
