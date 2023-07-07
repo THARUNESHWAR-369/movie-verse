@@ -14,6 +14,8 @@ class CAST_MODEL:
         self.max_no = max_no
         
     def __response(self) -> json:
+        print("*********\n")
+        print(self.__CAST_DETAILS_URL)
         response = requests.get(self.__CAST_DETAILS_URL.format(self.movie_id), headers={
                     "accept": "application/json",
                     "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
