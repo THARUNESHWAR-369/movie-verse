@@ -52,57 +52,59 @@ export const CastSection = ({ movieId }) => {
 
   return (
     <div className="cast-card text-white ml-13">
-      <h2 className="font-bold text-2xl float-left">Cast </h2>
+      <h2 className="font-bold text-4xl float-left">Cast </h2>
       <div className="cast-card-controller p-[1.5rem]">
         <i
           ref={leftArrowRef}
           id="leftArrow"
           className="leftArrow fa fa-chevron-left"
           onClick={handleLeftArrowClick}
-          style={{left: `-4rem`}}
+          style={{ left: `-5.5rem` }}
         ></i>
         <i
           ref={rightArrowRef}
           id="rightArrow"
           className="rightArrow fa fa-chevron-right"
           onClick={handleRightArrowClick}
-          style={{right: `-2.5rem`}}
+          style={{ right: `-2.5rem` }}
         ></i>
       </div>
-      <div className="cast-card-cards">
-  {castDetails &&
-    castDetails.map((castDetail, index) => (
-      <a href="#" className="cast-card-card" key={index}>
-        <div className="cast-card-content">
-          <img loading="lazy"
-            className="w-full h-full"
-            src={castDetail["profile_path"]}
-            alt={castDetail.title}
-          />
+      <div className="cast-card-cards justify-center">
+        {castDetails &&
+          castDetails.map((castDetail, index) => (
+            <a href="#" className="cast-card-card" key={index}>
+              <div className="cast-card-content bg-black ">
+                <img
+                  loading="lazy"
+                  className="w-full h-full"
+                  src={castDetail["profile_path"]}
+                  alt={castDetail.title}
+                />
 
-
-  
-        </div>
-      </a>
-    ))}
-</div>
-
+                <div className="bg-blue-200">
+                  <span className="p-[0.4rem] flex justify-center w-auto tracking-wider">
+                    <b className="text-1xl align-middle text-center">
+                      Original Name:
+                      <p className="text-sm m-[0.1rem] font-normal">
+                        {castDetail.original_name}
+                      </p>
+                    </b>
+                  </span>
+                  {castDetail.character && castDetail.character !== "" && (
+                    <span className="p-[0.4rem] flex justify-center w-auto tracking-wider">
+                      <b className="text-1xl flex flex-col justify-center align-middle text-center items-center">
+                        Character Name:
+                        <p className="text-sm m-[0.1rem] font-thin">
+                          {castDetail.character}
+                        </p>
+                      </b>
+                    </span>
+                  )}
+                </div>
+              </div>
+            </a>
+          ))}
+      </div>
     </div>
   );
 };
-
-/*
-{castDetails &&
-            castDetails.map((castDetail, index) => (
-              <a href="#" className="w-[165px] h-[249px] border-[1px] border-white rounded-[10px] bg-black transition duration-300 overflow-hidden" key={index}>
-                <div className="cast-card-content">
-                  <img
-                    loading="lazy"
-                    className="w-full h-full"
-                    src={castDetail["profile_path"]}
-                  ></img>
-                </div>
-              </a>
-            ))}
-
-*/

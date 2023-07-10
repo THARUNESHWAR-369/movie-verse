@@ -32,7 +32,8 @@ body {
 }
 
 .bg {
-  background-image: linear-gradient(135deg, #00000082, #000000),
+  background-image: linear-gradient(180deg, #000000b5, #000000),
+  var(--bg-image),
     var(--bg-image);
   background-repeat: no-repeat;
   background-position: center;
@@ -172,6 +173,7 @@ a.myAppName {
 
 .popular-card-cards,
 .cast-card-cards,
+.pc-card-cards,
 .np-card-cards,
 .up-card-cards {
   width: 100%;
@@ -190,13 +192,19 @@ a.myAppName {
 
 .popular-card-cards::-webkit-scrollbar,
 .cast-card-cards::-webkit-scrollbar,
+.pc-card-cards::-webkit-scrollbar,
 .np-card-cards::-webkit-scrollbar,
 .up-card-cards::-webkit-scrollbar {
   display: none;
 }
 
+.pc-card-card {
+  box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.15);
+}
+
 .popular-card-card,
 .cast-card-card,
+.pc-card-card,
 .np-card-card {
   min-width: 165px;
   width: 165px;
@@ -210,6 +218,7 @@ a.myAppName {
 
 .popular-card img,
 .cast-card img,
+.pc-card img,
 .np-card img,
 .up-card img {
   height: 100%;
@@ -221,6 +230,7 @@ a.myAppName {
 
 .popular-card-content,
 .cast-card-content,
+.pc-card-content,
 .np-card-content {
   background: rgba(27, 27, 27, 0.3);
   width: 100%;
@@ -229,6 +239,7 @@ a.myAppName {
 
 .popular-card-content span,
 .cast-card-content span,
+.pc-card-content span,
 .np-card-content span {
   opacity: 0;
   background: rgba(27, 27, 27, 0.5);
@@ -244,16 +255,19 @@ a.myAppName {
 
 .popular-card-card:hover .popular-card-content span,
 .cast-card-card:hover .cast-card-content span,
+.pc-card-card:hover .pc-card-content span,
 .np-card-card:hover .np-card-content span {
   opacity: 1;
   transition: 0.3s linear;
   left: 50%;
   transform: translate(-50%, 50%);
   align-items: center;
+  width: auto;
 }
 
 .popular-card-card:hover .popular-card-date,
 .cast-card-card:hover .cast-card-date,
+.pc-card-card:hover .pc-card-date,
 .np-card-card:hover .np-card-date {
   opacity: 1;
   transition: 0.3s linear;
@@ -261,12 +275,14 @@ a.myAppName {
 
 .popular-card-card:hover .popular-card-content img,
 .cast-card-card:hover .cast-card-content img,
+.pc-card-card:hover .pc-card-content img,
 .np-card-card:hover .np-card-content img {
   opacity: 0.5;
 }
 
 .popular-card img:hover,
 .cast-card img:hover,
+.pc-card img:hover,
 .np-card img:hover {
   opacity: 0.5;
 }
@@ -284,6 +300,7 @@ a.myAppName {
 
 .popular-card-controller .fa-chevron-left,
 .cast-card-controller .fa-chevron-left,
+.pc-card-controller .fa-chevron-left,
 .np-card-controller .fa-chevron-left {
   display: flex;
   width: 2rem;
@@ -306,6 +323,7 @@ a.myAppName {
 
 .popular-card-controller .fa-chevron-right,
 .cast-card-controller .fa-chevron-right,
+.pc-card-controller .fa-chevron-right,
 .np-card-controller .fa-chevron-right {
   width: 2rem;
   height: 2rem;
@@ -443,7 +461,6 @@ a.myAppName {
 
 
 
-
 @media only screen and (max-width: 1170px) {
   .title-card-reviews {
     display: flex;
@@ -484,8 +501,9 @@ a.myAppName {
     margin: auto;
   }
   .movie-details-container-content h1 {
-    text-align: start;
+    text-align: center;
     padding-top: 2rem;
+    
   }
   .movie-details-genre ul {
     display: flex;
@@ -493,6 +511,10 @@ a.myAppName {
   }
   .movie-details-container-content {
     margin-left: 0;
+  }
+  .MovieSearchContainer section {
+    display: flex;
+    flex-direction: column;
   }
 
 }

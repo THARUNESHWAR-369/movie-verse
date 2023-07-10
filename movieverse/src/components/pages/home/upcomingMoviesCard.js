@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-export const UpComingMoviesCard = () => {
+export const UpComingMoviesCard = ({CardMovieClick}) => {
     const [UpcomingMovieData, setUpcomingMovieData] = useState(null);
     const leftArrowRef = useRef(null);
     const rightArrowRef = useRef(null);
@@ -42,6 +42,10 @@ export const UpComingMoviesCard = () => {
       }
     };
 
+    const handleMovieClick = (movie) => {
+      CardMovieClick(movie['title']);
+    };
+
   return (
     <div className="popular-card text-white ml-13">
       <h2 className="font-bold text-2xl">Upcoming Movies</h2>
@@ -73,7 +77,8 @@ export const UpComingMoviesCard = () => {
       )}
         {UpcomingMovieData &&
           UpcomingMovieData.map((popularMovie, index) => (
-            <a href="#" className="popular-card-card"  key={index}>
+            <a               onClick={() => handleMovieClick(popularMovie)}
+ className="popular-card-card"  key={index}>
               <div className="popular-card-content">
                 <img
                   className="w-full h-full"

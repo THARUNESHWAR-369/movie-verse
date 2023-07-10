@@ -11,7 +11,7 @@ class CastModel:
 
     __CAST_DETAILS_URL = os.environ.get('TMDB_CAST_DETAILS_URL')
 
-    def __init__(self, movie_id: int, max_no: int = 5) -> None:
+    def __init__(self, movie_id: int, max_no: int = 10) -> None:
         """
         Initializes an instance of the CAST_MODEL class.
 
@@ -53,6 +53,9 @@ class CastModel:
                         __response['cast'][i]['profile_path'] = os.environ.get('TMDB_POSTER_URL') + __response['cast'][i]['profile_path']
                         data['results'].append(__response['cast'][i])
                 except:pass
+                
+            data['results'] = sorted(data['results'], key=lambda x: x['popularity'], reverse=True)
+
 
             return data
 

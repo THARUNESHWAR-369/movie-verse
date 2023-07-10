@@ -21,7 +21,7 @@ export const HomePage = () => {
     try {
       setLoadingText("Connecting to Server...");
       const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
+        process.env.REACT_APP_API_SERVICE_GET_TREND_MOVIE_URL
       );
       const jsonData = await response.json();
       //console.log(jsonData)
@@ -57,7 +57,7 @@ export const HomePage = () => {
   const handleMovieSelection = (movie) => {
     //console.log(movie);
     setSelectedSearchMovieName(movie);
-    //console.log(selectedSearchMovieName);
+    console.log(selectedSearchMovieName);
 
   };
 
@@ -100,6 +100,7 @@ export const HomePage = () => {
               appBg={appBg}
               appBgMovieGenre={appBgMovieGenre}
               titleCardMovie={handleMovieSelection}
+              cardMovie={handleMovieSelection}
             />
           ) : (
             <MovieSearchPage
@@ -116,19 +117,3 @@ export const HomePage = () => {
   );
 };
 
-/*
-{selectedSearchMovieName === "" ? (
-            <HomePageContent
-              appBg={appBg}
-              appBgMovieGenre={appBgMovieGenre}
-              titleCardMovie={handleMovieSelection}
-            />
-          ) : (
-            <MovieSearchPage
-              key={selectedSearchMovieName}
-              onMoviePoster={handleMovieBg}
-              movie_name={selectedSearchMovieName}
-            />
-          )}
-
-*/

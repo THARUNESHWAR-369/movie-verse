@@ -7,6 +7,8 @@ import os
 
 from src.bp.homeBp import HomeBp
 from src.bp.castBp import CastBp
+from src.bp.productionBp import ProductionBp
+
 from src.utils.status_code import *
 
 from dotenv import load_dotenv
@@ -33,6 +35,7 @@ def create_app(test_config=None):
         
     app.register_blueprint(HomeBp)
     app.register_blueprint(CastBp)
+    app.register_blueprint(ProductionBp)
         
     @app.errorhandler(NOT_FOUND_RESPONSE)
     def handle_404(e):

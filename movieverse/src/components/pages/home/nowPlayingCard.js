@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-export const NowPlayingCard = () => {
+export const NowPlayingCard = ({CardMovieClick}) => {
   const [NowPlayingMovieData, setNowPlayingMovieData] = useState(null);
   const leftArrowRef = useRef(null);
   const rightArrowRef = useRef(null);
@@ -17,7 +17,7 @@ export const NowPlayingCard = () => {
       const jsonData = await response.json();
       //console.log("setNowPlayingMovieData: ", jsonData['data']["results"]);
 
-      setNowPlayingMovieData(jsonData['data']["results"]);
+      setNowPlayingMovieData(jsonData["data"]["results"]);
     } catch (error) {
       //console.log("error fetching data: ", error);
     }
@@ -39,6 +39,11 @@ export const NowPlayingCard = () => {
     }
   };
 
+  
+  const handleMovieClick = (movie) => {
+    CardMovieClick(movie['title']);
+  };
+
   return (
     <div className="popular-card text-white ml-13">
       <h2 className="font-bold text-2xl">Now Playing</h2>
@@ -48,27 +53,31 @@ export const NowPlayingCard = () => {
           id="leftArrow"
           className="leftArrow fa fa-chevron-left"
           onClick={handleLeftArrowClick}
-          style={{left: `-1rem`}}
-
+          style={{ left: `-1rem` }}
         ></i>
         <i
           ref={rightArrowRef}
           id="rightArrow"
           className="rightArrow fa fa-chevron-right"
           onClick={handleRightArrowClick}
-          style={{right: `-1rem`}}
-
+          style={{ right: `-1rem` }}
         ></i>
       </div>
       <div className="popular-card-cards np-card-cards">
         {NowPlayingMovieData &&
           NowPlayingMovieData.map((popularMovie, index) => (
-            <a href="#" className="popular-card-card"  key={index}>
+            <a
+              onClick={() => handleMovieClick(popularMovie)}
+              className="popular-card-card"
+              key={index}
+            >
               <div className="popular-card-content">
-                <img loading="lazy"
+                <img
+                  loading="lazy"
                   className="w-full h-full"
                   src={
-                    "https://image.tmdb.org/t/p/original" + popularMovie['poster_path']
+                    "https://image.tmdb.org/t/p/original" +
+                    popularMovie["poster_path"]
                   }
                 ></img>
 
@@ -77,11 +86,14 @@ export const NowPlayingCard = () => {
                     IMDB
                   </p>
                   <p className="text-sm m-[0.1rem]">&#9733;</p>
-                  <p className="text-sm m-[0.1rem] font-bold">{popularMovie['vote_average']}/10</p>
+                  <p className="text-sm m-[0.1rem] font-bold">
+                    {popularMovie["vote_average"]}/10
+                  </p>
                 </span>
 
                 <div className="popular-card-date">
-                <p>{popularMovie['release_date']}</p>                </div>
+                  <p>{popularMovie["release_date"]}</p>{" "}
+                </div>
               </div>
             </a>
           ))}

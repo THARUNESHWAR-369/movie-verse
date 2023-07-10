@@ -7,9 +7,7 @@ import { ReviewCard } from "./reviewCard";
 import React, { useEffect, useState, useRef } from "react";
 // Assuming ReviewCard component exists
 
-export const HomePageContent = ({ appBg, appBgMovieGenre, titleCardMovie }) => {
-
-
+export const HomePageContent = ({ appBg, appBgMovieGenre, titleCardMovie, cardMovie }) => {
   if (!appBg) {
     return null; // Return null or show a loading state if appBg is null
   }
@@ -18,6 +16,10 @@ export const HomePageContent = ({ appBg, appBgMovieGenre, titleCardMovie }) => {
 
   const handleTitleCardMovie = (movie) => {
     titleCardMovie(movie);
+  };
+
+  const handleCardMovie = (movie) => {
+    cardMovie(movie);
   };
 
   return (
@@ -32,11 +34,10 @@ export const HomePageContent = ({ appBg, appBgMovieGenre, titleCardMovie }) => {
         />
         {appBg.id && <ReviewCard movieId={appBg.id} />}
       </div>
-      <PopularCard />
-      <NowPlayingCard />
-      <UpComingMoviesCard />
+      <PopularCard CardMovieClick={handleCardMovie} />
+      <NowPlayingCard CardMovieClick={handleCardMovie} />
+      <UpComingMoviesCard CardMovieClick={handleCardMovie}/>
       <FooterComponent></FooterComponent> 
-
     </>
   );
 };
