@@ -32,7 +32,6 @@ export const ProductionSection = ({ movieId }) => {
         setProductionCountryDetails(
           productionDetailsJson["results"]["production_countries"]
         );
-        //setLoading(false); // Set loading to false after fetching the data
       }
     } catch (e) {
       // setLoading(false);
