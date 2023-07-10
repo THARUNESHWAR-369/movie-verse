@@ -26,5 +26,6 @@ def add_cors_headers(response):
 @cross_origin()
 def getProductionCompanyDetails():
     movie_id = request.json['movie_id']
+    print(movie_id)
     return ProductionModel(movie_id).toJson()
 
