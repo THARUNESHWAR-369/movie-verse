@@ -27,6 +27,10 @@ class ProductionModel:
         Returns:
             json: The response from the API as JSON.
         """
+        print("********************************************")
+        print(self.__PRODUCTION_DETAILS_URL)
+        print("********************************************")
+        
         response = requests.get(self.__PRODUCTION_DETAILS_URL.format(self.movie_id), headers={
             "accept": "application/json",
             "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
