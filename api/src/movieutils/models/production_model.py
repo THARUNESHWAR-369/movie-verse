@@ -9,7 +9,7 @@ class ProductionModel:
     Class for retrieving cast details for a movie using the TMDB API.
     """
 
-    __PRODUCTION_DETAILS_URL = os.environ.get('TMDB_PRODUCTION_DETAILS_URL')
+    __PRODUCTION_DETAILS_URL = os.environ.get('TMDB_MOVIE_SEARCH_API')
 
     def __init__(self, movie_id: int) -> None:
         """
