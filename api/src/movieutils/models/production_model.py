@@ -9,7 +9,7 @@ class ProductionModel:
     Class for retrieving cast details for a movie using the TMDB API.
     """
 
-    __PRODUCTION_DETAILS_URL = os.environ.get('TMDB_MOVIE_SEARCH_API')
+    __PRODUCTION_DETAILS_URL = os.environ.get('TMDB_PRODUCTION_DETAILS_URL')
 
     def __init__(self, movie_id: int) -> None:
         """
@@ -28,10 +28,10 @@ class ProductionModel:
             json: The response from the API as JSON.
         """
         print("********************************************")
-        print(self.__PRODUCTION_DETAILS_URL)
+        print("url: ",self.__PRODUCTION_DETAILS_URL)
         print("********************************************")
         
-        response = requests.get(self.__PRODUCTION_DETAILS_URL.format(self.movie_id), headers={
+        response = requests.get(self.__PRODUCTION_DETAILS_URL % f"{self.movie_id}", headers={
             "accept": "application/json",
             "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
         })
@@ -46,7 +46,6 @@ class ProductionModel:
         """
         __response = self.__response()
         
-        print(__response)
 
         if 'error' not in __response:
             data = {"results": {"production_companies":[], "production_countries":[]}}
