@@ -63,12 +63,12 @@ export const NowPlayingCard = ({CardMovieClick}) => {
           style={{ right: `-1rem` }}
         ></i>
       </div>
-      <div className="popular-card-cards np-card-cards">
+      <div className="popular-card-cards np-card-cards  snap-mandatory snap-x  scroll-smooth ">
         {NowPlayingMovieData &&
           NowPlayingMovieData.map((popularMovie, index) => (
             <a
               onClick={() => handleMovieClick(popularMovie)}
-              className="popular-card-card cursor-pointer"
+              className="popular-card-card cursor-pointer snap-start scroll-ml-6"
               key={index}
             >
               <div className="popular-card-content">

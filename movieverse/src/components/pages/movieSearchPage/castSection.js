@@ -69,10 +69,10 @@ export const CastSection = ({ movieId }) => {
           style={{ right: `-2.5rem` }}
         ></i>
       </div>
-      <div className="cast-card-cards justify-center">
+      <div className="cast-card-cards justify-center snap-mandatory snap-x  scroll-smooth ">
         {castDetails &&
           castDetails.map((castDetail, index) => (
-            <a className="cast-card-card cursor-pointer" key={index}>
+            <div className="cast-card-card cursor-pointer snap-start scroll-ml-6" key={index}>
               <div className="cast-card-content bg-black ">
                 <img
                   loading="lazy"
@@ -102,7 +102,7 @@ export const CastSection = ({ movieId }) => {
                   )}
                 </div>
               </div>
-            </a>
+            </div>
           ))}
       </div>
     </div>

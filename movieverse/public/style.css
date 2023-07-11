@@ -597,24 +597,16 @@ video {
   top: 0px;
 }
 
-.top-\[-2rem\]{
-  top: -2rem;
-}
-
-.top-\[-rem\]{
-  top: -rem;
-}
-
-.top-\[-1rem\]{
-  top: -1rem;
-}
-
-.top-\[-3rem\]{
-  top: -3rem;
-}
-
 .top-\[-4rem\]{
   top: -4rem;
+}
+
+.top-\[4rem\]{
+  top: 4rem;
+}
+
+.top-\[1rem\]{
+  top: 1rem;
 }
 
 .z-10{
@@ -1135,28 +1127,12 @@ video {
   padding-top: 0.8rem;
 }
 
-.pt-\[3rem\]{
-  padding-top: 3rem;
-}
-
-.pt-\[rem\]{
-  padding-top: rem;
-}
-
 .pt-\[2rem\]{
   padding-top: 2rem;
 }
 
-.pt-\[\]{
-  padding-top: ;
-}
-
-.pt-\[2\]{
-  padding-top: 2;
-}
-
-.pt-\[2re\]{
-  padding-top: 2re;
+.pt-\[3rem\]{
+  padding-top: 3rem;
 }
 
 .text-center{
@@ -1676,7 +1652,7 @@ a.myAppName {
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 11111111111;
+  z-index: 11111111111111;
   display: flex;
   justify-content: center;
   align-items: center;

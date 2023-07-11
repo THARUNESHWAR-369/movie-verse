@@ -70,26 +70,11 @@ export const MovieReviewSection = ({ movieId }) => {
 
       {movieReviewCard && movieReviewCard.length > 0 && (
         <div className="text-white ml-13">
-          <div className="review-card-controller p-[1.5rem]">
-            <i
-              ref={leftArrowRef}
-              id="leftArrow"
-              className="leftArrow fa fa-chevron-left"
-              onClick={handleLeftArrowClick}
-              style={{ left: `-2.5rem` }}
-            ></i>
-            <i
-              ref={rightArrowRef}
-              id="rightArrow"
-              className="rightArrow fa fa-chevron-right"
-              onClick={handleRightArrowClick}
-              style={{ right: `-2.5rem` }}
-            ></i>
-          </div>
-          <div className="review-card-cards w-[100%] snap-mandatory snap-x h-[300px] flex justify-start gap-2 overflow-auto scroll-smooth relative top-[-4rem] ">
+        
+          <div className="review-card-cards w-[100%] snap-mandatory snap-x  scroll-smooth  h-[300px] flex justify-start gap-2 overflow-auto relative top-[1rem] ">
             {movieReviewCard &&
               movieReviewCard.map((movieReviewCards, index) => (
-                <div className="review-card bg-gradient-to-b from-[#ed213a] to-[#93291e] rounded-md snap-start scroll-ml-6 w-[500px] min-w-[20em] p-[0.6em] text-center sm:min-w-[16em] lg:min-w-[22em]">
+                <div className="snap-start scroll-ml-6 review-card bg-gradient-to-b from-[#ed213a] to-[#93291e] rounded-md w-[500px] min-w-[20em] p-[0.6em] text-center sm:min-w-[16em] lg:min-w-[22em]">
                   <div className="border-b-2 relative border-white border-opacity-25 pb-[0.6em]">
                     <img
                       className="rounded-full m-auto w-[6em] h-[6em]"

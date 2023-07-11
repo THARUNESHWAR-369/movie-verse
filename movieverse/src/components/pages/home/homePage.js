@@ -79,7 +79,7 @@ export const HomePage = () => {
   return (
     <div className="Home w-full h-full">
       {loading && (
-        <div className="loader z-[100000000]">
+        <div className="loader">
           <div className="spinner-container">
             <div className="loading-spinner"></div>
             <p className="m-[0.5rem] tracking-[1.5px] font-bold">
