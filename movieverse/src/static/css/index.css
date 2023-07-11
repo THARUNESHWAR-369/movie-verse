@@ -7,6 +7,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .review-card-cards::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .review-card-cards {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+  }
+}
+
 *,
 *::after,
 *::before,
@@ -45,7 +60,7 @@ body {
   width: -webkit-fill-available;
   position: fixed;
   top: 0;
-  z-index: 1111;
+  z-index: 11111111111111;
   transition: 0.3s linear;
 }
 
@@ -301,6 +316,7 @@ a.myAppName {
 .popular-card-controller .fa-chevron-left,
 .cast-card-controller .fa-chevron-left,
 .pc-card-controller .fa-chevron-left,
+.review-card-controller .fa-chevron-left,
 .np-card-controller .fa-chevron-left {
   display: flex;
   width: 2rem;
@@ -324,6 +340,7 @@ a.myAppName {
 .popular-card-controller .fa-chevron-right,
 .cast-card-controller .fa-chevron-right,
 .pc-card-controller .fa-chevron-right,
+.review-card-controller .fa-chevron-right,
 .np-card-controller .fa-chevron-right {
   width: 2rem;
   height: 2rem;
@@ -459,6 +476,48 @@ a.myAppName {
   line-height: 1.1;
 }
 
+.movie-not-found {
+  background: linear-gradient(to right, #ed213a, #93291e);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background: linear-gradient(170deg, #ed213a, #93291e);
+  border: 1px solid #ddd;
+  padding: .35em;
+  border-radius: .4em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border: 1px solid #ddd;
+}
+
+
+
 
 
 @media only screen and (max-width: 1170px) {
@@ -541,5 +600,73 @@ a.myAppName {
   .title-card-overview {
     width: 100%;
     text-align: justify;
+  }
+
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border: 1px solid #ddd;
+    border-radius: .4em;
+    display: block;
+    height: 18rem;
+    margin-bottom: .625em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  table th {
+    border: none;
+  }
+  
+  table td {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 639px) {
+  .review-card-controller{
+    display: none;
+  }
+  .review-card-cards {
+    top: 0.5rem;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .review-card {
+    min-width: 16em;
   }
 }

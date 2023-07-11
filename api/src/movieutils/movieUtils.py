@@ -77,6 +77,9 @@ class MovieUtils:
                 if (result['release_date'] > minimum_date and result['release_date'] < currDate) and result['poster_path'] != None:
                     result['vote_average'] = round(result['vote_average'], 1)
                     data['results'].append(result)
+
+            data['results'] = sorted(data['results'], key=lambda x: x['vote_average'], reverse=False)
+
         return {"status":False} if response.status_code != 200 else {'status':True, "data": data}
     
     def getUpComingMovies(self) -> json:
@@ -106,12 +109,12 @@ class MovieUtils:
                 if _response.status_code == 200:
         
                     for result in __response['results']:
-                        if result['release_date'] > currDate and result['poster_path'] != None:
-                            result['vote_average'] = round(result['vote_average'], 1)
-                            data['results'].append(result)
+                        if 'release_date' in result:
+                            if result['release_date'] > currDate and result['poster_path'] != None:
+                                result['vote_average'] = round(result['vote_average'], 1)
+                                data['results'].append(result)
 
         return {"status":False} if response.status_code != 200 else {'status':True, "data":data}
-    
     
     def getMovieGenre(self, genre_id : int) :
         data = {
@@ -143,11 +146,35 @@ class MovieUtils:
                 "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
             }
         )
-        return {"status":False} if response.status_code != 200 else {'status':True, "data": response.json()}
+        
+        data = {"results" : []}
+        
+        if response.status_code == 200:
+            resp = response.json()
+        
+            for res in resp['results']:
+                
+                if res['author_details']['avatar_path'] != None and len(res['author_details']['avatar_path'].split("/")) == 2:
+                    res['author_details']['avatar_path'] = os.environ.get("TMDB_POSTER_URL") + res['author_details']['avatar_path'] 
+                
+                if  res['author_details']['avatar_path'] != None and res['author_details']['avatar_path'][0] == '/':
+                    res['author_details']['avatar_path'] =  res['author_details']['avatar_path'][1:]
+            
+                if res['author'] == None or res['author'] == "":
+                    res['name'] = res['author_details']['name']
+                    
+                elif res['author_details']['name'] == None or res['author_details']['name'] == "":
+                    res['name'] = res['author']
+                else:
+                    res['name'] = res['author']
+
+                    
+                if res['author_details']['avatar_path'] != None: data['results'].append(res)       
+         
+        return {"status":False} if response.status_code != 200 else {'status':True, "data":data}
     
     def _getMovieGenre(self, lst):
         movie_genre = []
-        print(lst, type(lst))
         if type(lst) == int:
             movie_genre.append(self.getMovieGenre(lst))
         else:

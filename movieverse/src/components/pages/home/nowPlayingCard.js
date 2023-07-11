@@ -68,7 +68,7 @@ export const NowPlayingCard = ({CardMovieClick}) => {
           NowPlayingMovieData.map((popularMovie, index) => (
             <a
               onClick={() => handleMovieClick(popularMovie)}
-              className="popular-card-card"
+              className="popular-card-card cursor-pointer"
               key={index}
             >
               <div className="popular-card-content">

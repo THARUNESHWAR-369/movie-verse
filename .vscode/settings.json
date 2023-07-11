@@ -7,6 +7,8 @@
         "Colorchange",
         "jsonify",
         "movieutils",
+        "noopener",
+        "noreferrer",
         "parse",
         "TMDB"
     ]

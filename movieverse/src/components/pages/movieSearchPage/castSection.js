@@ -72,7 +72,7 @@ export const CastSection = ({ movieId }) => {
       <div className="cast-card-cards justify-center">
         {castDetails &&
           castDetails.map((castDetail, index) => (
-            <a href="#" className="cast-card-card" key={index}>
+            <a className="cast-card-card cursor-pointer" key={index}>
               <div className="cast-card-content bg-black ">
                 <img
                   loading="lazy"

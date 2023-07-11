@@ -78,7 +78,7 @@ export const UpComingMoviesCard = ({CardMovieClick}) => {
         {UpcomingMovieData &&
           UpcomingMovieData.map((popularMovie, index) => (
             <a               onClick={() => handleMovieClick(popularMovie)}
- className="popular-card-card"  key={index}>
+ className="popular-card-card cursor-pointer"  key={index}>
               <div className="popular-card-content">
                 <img
                   className="w-full h-full"

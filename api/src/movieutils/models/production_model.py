@@ -27,9 +27,6 @@ class ProductionModel:
         Returns:
             json: The response from the API as JSON.
         """
-        print("********************************************")
-        print("url: ",self.__PRODUCTION_DETAILS_URL)
-        print("********************************************")
         
         response = requests.get(self.__PRODUCTION_DETAILS_URL % f"{self.movie_id}", headers={
             "accept": "application/json",

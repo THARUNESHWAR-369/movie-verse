@@ -2,10 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import { FooterComponent } from "../../footerComponent/footerComponent";
 import { CastSection } from "./castSection";
 import { ProductionSection } from "./productionCardSection";
+import {MovieReviewSection} from "./movieReviewCard";
 
 export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
   const [loading, setLoading] = useState(true);
   const [movieDetails, setMovieDetails] = useState(null);
+  const [errorTxt, setErrorTxt] = useState(false);
   const [showCurrencyOptions, setShowCurrencyOptions] = useState(false);
   const [currency, setCurrency] = useState("INR");
   const [formattedRevenue, setFormattedRevenue] = useState("INR");
@@ -56,9 +58,14 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
 
         setMovieDetails(movieDetails["data"]);
         setLoading(false);
+        setErrorTxt(false);
       }
     } catch (error) {
       setLoading(false);
+      const backdropPath =
+        "https://img.freepik.com/free-vector/white-abstract-background_23-2148817571.jpg";
+      onMoviePoster(backdropPath);
+      setErrorTxt(true);
       //console.log("Error fetching movie details:", error);
     }
   };
@@ -103,6 +110,12 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
             <div className="loading-spinner"></div>
             <p className="m-[0.5rem] tracking-[1.5px] font-bold"></p>
           </div>
+        </div>
+      )}
+      {errorTxt && (
+        <div className="text-center movie-not-found font-bold">
+          <p className="tracking-wider text-5xl">Movie not found Search</p>
+          <p className="tracking-widest p-2">(Search again or check the spelling)</p>
         </div>
       )}
       {movieDetails && (
@@ -161,13 +174,54 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
                   </span>
                   <span className="flex  gap-2 tracking-wider align-middle text-center items-center">
                     <b>Budget: </b>
-                    <p className="font-semibold">{movieDetails.budget}</p>
+                    <p className="font-semibold">${movieDetails.budget}</p>
                   </span>
                   <span className="flex gap-2 tracking-wider align-middle text-center items-center">
                     <span className="flex gap-2">
                       <b>Revenue: </b>
-                      <p className="font-semibold">{movieDetails.revenue}</p>
-                      <div className="flex flex-row gap-1 w-[100%] h-[100%]">
+                      <p className="font-semibold">${movieDetails.revenue}</p>
+                    </span>
+                  </span>
+                  <span className="flex flex-row  gap-2 py-[0.2rem]">
+                    <b>Runtime: </b>
+                    <p className="font-semibold">{formatRuntime()}</p>{" "}
+                  </span>
+                  <span className="flex gap-2 py-[0.2rem]">
+                    <b>Status: </b>
+                    <p className="font-semibold text-green-400">
+                      {movieDetails.status}
+                    </p>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div className="w-[100%] max-w-[90rem] m-auto h-[100%] pt-[2rem]">
+            <ProductionSection movieId={movieDetails.id}></ProductionSection>
+          </div>
+
+          <div className="w-[100%] max-w-[90rem] m-auto h-[100%] pt-[3rem]">
+            <CastSection movieId={movieDetails.id}></CastSection>
+          </div>
+
+          <div className="w-[100%] max-w-[90rem] m-auto h-[100%] pt-[2rem]">
+            <MovieReviewSection movieId={movieDetails.id}></MovieReviewSection>
+          </div>
+
+          
+        </div>
+      )}
+      <div className="pt-[2rem]">
+      <FooterComponent></FooterComponent>
+      </div>
+    </div>
+  );
+};
+
+/* 
+
+   <div className="flex flex-row gap-1 w-[100%] h-[100%]">
                         <span
                           className="bg-gradient-to-r from-red-500 to-red-900 w-[30px] h-[30px] rounded-full flex justify-center items-center text-white text-lg font-extrabold cursor-pointer"
                           onClick={toggleCurrencyOptions}
@@ -200,51 +254,6 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
                           </div>
                         )}
                       </div>
-                    </span>
-                  </span>
-                  <span className="flex flex-row  gap-2 py-[0.2rem]">
-                    <b>Runtime: </b>
-                    <p className="font-semibold">{formatRuntime()}</p>{" "}
-                  </span>
-                  <span className="flex gap-2 py-[0.2rem]">
-                    <b>Status: </b>
-                    <p className="font-semibold text-green-400">
-                      {movieDetails.status}
-                    </p>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </section>
 
-          <div className="w-[100%] max-w-[90rem] m-auto h-[100%] pt-[3rem]">
-            <ProductionSection movieId={movieDetails.id}></ProductionSection>
-          </div>
-          
-          <div className="w-[100%] max-w-[90rem] m-auto h-[100%] pt-[3rem]">
-            <CastSection movieId={movieDetails.id}></CastSection>
-          </div>
-         
 
-          <FooterComponent></FooterComponent>
-        </div>
-      )}
-    </div>
-  );
-};
-
-/* 
-section
-
-flex-direction: revert;
-    background: red;
-    max-width: 95%;
-    margin: auto;
-    width: 100%;
-
-w-auto
-
-width: 100%;
-    max-width: 95%;
-    margin-top: 0;
 */

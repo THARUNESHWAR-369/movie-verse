@@ -70,8 +70,8 @@ export const NavComponent = ({ onMovieSelect }) => {
   );
 
   return (
-    <div className={colorChange ? "nav change-color" : "nav no-change-color"}>
-      <div className="nav-container flex align-middle justify-between items-center w-[90%] m-auto py-4 px-0">
+    <div className={colorChange ? "nav change-color " : "nav no-change-color"}>
+      <div className="nav-container flex align-middle justify-between items-center w-[90%] m-auto py-4 px-0 z-10">
         <div className="appName">
           <a href="/" className="myAppName text-4xl">
             MOVIE VERSE
