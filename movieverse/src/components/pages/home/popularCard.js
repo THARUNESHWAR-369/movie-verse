@@ -4,6 +4,7 @@ export const PopularCard = ({ CardMovieClick }) => {
   const [popularMovieData, setPopularMovieData] = useState(null);
   const leftArrowRef = useRef(null);
   const rightArrowRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchPopularMovieData();
@@ -18,8 +19,10 @@ export const PopularCard = ({ CardMovieClick }) => {
       console.log("setPopularMovieData: ", jsonData);
 
       setPopularMovieData(jsonData["results"]);
+      setLoading(false);
     } catch (error) {
       console.log("error fetching data: ", error);
+      setLoading(false);
     }
   };
 
@@ -44,6 +47,7 @@ export const PopularCard = ({ CardMovieClick }) => {
   };
 
   return (
+   
     <div className="popular-card text-white ml-13 mt-10">
       <h2 className="font-bold text-2xl">Popular Movies</h2>
       <div className="popular-card-controller">
@@ -63,6 +67,13 @@ export const PopularCard = ({ CardMovieClick }) => {
         ></i>
       </div>
       <div className="popular-card-cards  snap-mandatory snap-x  scroll-smooth ">
+      {loading && (
+      <div className="loaderReview z-[100000000]">
+        <div className="spinner-container">
+          <div className="loading-spinner"></div>
+        </div>
+      </div>
+    )}
         {popularMovieData &&
           popularMovieData.map((popularMovie, index) => (
             <a
