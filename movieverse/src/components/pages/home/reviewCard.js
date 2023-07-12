@@ -26,7 +26,7 @@ export const ReviewCard = ({ movieId }) => {
 
         // Handle the movie reviews data
         //console.log(movieReviews["data"]["results"]);
-        setReviewCard(movieReviews["data"]["results"]);
+        setReviewCard(movieReviews["results"]);
         setLoading(false); // Set loading to false after fetching the data
       }
     } catch (e) {

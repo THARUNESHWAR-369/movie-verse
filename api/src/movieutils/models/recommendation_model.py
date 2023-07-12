@@ -3,7 +3,7 @@ import requests
 import json
 
 from src.utils.status_code import *
-from src.movieutils.movieUtils import MovieUtils
+from src.movieutils.models.movieDetails_model import MovieDetailModel
 
 class RecommendationModel:
     """
@@ -57,7 +57,7 @@ class RecommendationModel:
                     for res in _response['results']:
                         if res['poster_path'] != None:    
                             res['poster_path'] = os.environ.get("TMDB_POSTER_URL") + res['poster_path']
-                            res['genres'] = MovieUtils()._getMovieGenre(res['genre_ids'])
+                            res['genres'] = MovieDetailModel("")._getMovieGenre(res['genre_ids'])
                             del res['genre_ids']
                             data['results'].append(res)
                 

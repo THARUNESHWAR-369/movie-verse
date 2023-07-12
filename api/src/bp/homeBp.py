@@ -58,30 +58,10 @@ def getNowPlayingMovies():
     else:
         return __nowPlayingMovies
 
-@HomeBp.route("/getMovieReview",methods=['POST', "GET"])
-@cross_origin()
-def getMovieReview():
-    movie_id = request.json['movie_id']
-    __movieReview = movieUtils.getMovieReviews(movie_id)
-    return jsonify(__movieReview)
-
-@HomeBp.route("/getMovieGenre",methods=['POST', "GET"])
-@cross_origin()
-def getMovieGenre():
-    movie_genre_list = request.json['movie_genre'] if type(request.json['movie_genre']) == list else [request.json['movie_genre']]
-    return movieUtils._getMovieGenre(movie_genre_list)
-
 @HomeBp.route("/getMovieNameList",methods=['POST', "GET"])
 @cross_origin()
 def getMovieNameList():
-    df = pd.read_csv("src/artifacts/movie_names_preprocessed_en.csv")
+    df = pd.read_csv("src/artifacts/dataset/movie_names_preprocessed_en.csv")
     return df['Title'].tolist()
-
-@HomeBp.route("/getMovieDetails",methods=['POST', "GET"])
-@cross_origin()
-def getMovieDetails():
-    movie_name = request.json['movie_name']
-    __movieDetails = movieUtils.getMovieDetails(movie_name)
-    return jsonify(__movieDetails)
 
 

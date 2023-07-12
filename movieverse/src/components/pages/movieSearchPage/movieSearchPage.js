@@ -51,14 +51,14 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
       if (response.ok) {
         const movieDetails = await response.json();
 
-        //console.log(movieDetails);
+        console.log(movieDetails['results'][0]);
 
-        const backdropPath = movieDetails["data"]["backdrop_path"];
-        const posterPath = movieDetails["data"]["poster_path"];
+        const backdropPath = movieDetails['results'][0]["backdrop_path"];
+        const posterPath = movieDetails['results'][0]["poster_path"];
 
         onMoviePoster(backdropPath ? backdropPath : posterPath);
 
-        setMovieDetails(movieDetails["data"]);
+        setMovieDetails(movieDetails['results'][0]);
         setLoading(false);
         setErrorTxt(false);
       }
@@ -163,11 +163,20 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
                   <p>{movieDetails.overview}</p>
                 </div>
                 <div className="tracking-wider text-center py-[0.6rem]">
-                  <span className="text-center flex">
+                <span className="text-center flex">
                     <b className="flex gap-3">
                       Release Date:
                       <p className="font-semibold">
                         {movieDetails.release_date}
+                      </p>
+                    </b>
+                  </span>
+
+                  <span className="text-center flex">
+                    <b className="flex gap-3">
+                      Original language:
+                      <p className="font-semibold">
+                        {movieDetails.original_language}
                       </p>
                     </b>
                   </span>

@@ -16,12 +16,12 @@ export const PopularCard = ({ CardMovieClick }) => {
         process.env.REACT_APP_API_SERVICE_GET_TREND_MOVIE_URL
       );
       const jsonData = await response.json();
-      console.log("setPopularMovieData: ", jsonData);
+      //console.log("setPopularMovieData: ", jsonData);
 
       setPopularMovieData(jsonData["results"]);
       setLoading(false);
     } catch (error) {
-      console.log("error fetching data: ", error);
+      //console.log("error fetching data: ", error);
       setLoading(false);
     }
   };
@@ -77,7 +77,7 @@ export const PopularCard = ({ CardMovieClick }) => {
     )}
         {popularMovieData &&
           popularMovieData.map((popularMovie, index) => (
-            <a
+            <div
               onClick={() => handleMovieClick(popularMovie)}
               className="popular-card-card cursor-pointer snap-start scroll-ml-6"
               key={index}
@@ -107,7 +107,7 @@ export const PopularCard = ({ CardMovieClick }) => {
                   <p>{popularMovie["release_date"]}</p>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
       </div>
     </div>

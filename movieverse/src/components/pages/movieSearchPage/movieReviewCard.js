@@ -25,8 +25,8 @@ export const MovieReviewSection = ({ movieId }) => {
       );
       if (response.ok) {
         const movieReviews = await response.json();
-        console.log(movieReviews["data"]["results"]);
-        setMovieReviewCard(movieReviews["data"]["results"]);
+       // console.log(movieReviews["data"]["results"]);
+        setMovieReviewCard(movieReviews["results"]);
         setLoading(false);
       }
     } catch (e) {
@@ -34,21 +34,6 @@ export const MovieReviewSection = ({ movieId }) => {
     }
   };
 
-  const handleLeftArrowClick = () => {
-    if (leftArrowRef.current) {
-      const cards = document.getElementsByClassName("review-card-cards")[0];
-      console.log(cards.scrollLeft);
-      cards.scrollLeft -= 140;
-    }
-  };
-
-  const handleRightArrowClick = () => {
-    if (rightArrowRef.current) {
-      const cards = document.getElementsByClassName("review-card-cards")[0];
-      //console.log(cards.scrollLeft);
-      cards.scrollLeft += 140;
-    }
-  };
 
   return (
     <div className="text-white ml-13 flex flex-col">

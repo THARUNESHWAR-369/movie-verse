@@ -25,7 +25,7 @@ class MovieNameSpider(scrapy.Spider):
         
         tables = response.xpath('//table[contains(@class, "wikitable")]')
 
-        with open("src/artifacts/movie_names_en.csv", 'a', newline='', encoding='utf-8') as file:
+        with open("src/artifacts/dataset/movie_names_en.csv", 'a', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             
             if not self.isRowWrite:

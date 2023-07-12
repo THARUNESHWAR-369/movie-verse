@@ -6,6 +6,9 @@ from src.bp.homeBp import HomeBp
 from src.bp.castBp import CastBp
 from src.bp.productionBp import ProductionBp
 from src.bp.recommendationBp import RecommendationBp
+from src.bp.reviewBp import ReviewBp
+from src.bp.movie_detailsBp import MovieDetailsBp
+
 from src.utils.status_code import *
 
 import os
@@ -29,6 +32,8 @@ def create_app(test_config=None):
     app.register_blueprint(CastBp)
     app.register_blueprint(ProductionBp)
     app.register_blueprint(RecommendationBp)
+    app.register_blueprint(ReviewBp)
+    app.register_blueprint(MovieDetailsBp)
 
     @app.errorhandler(NOT_FOUND_RESPONSE)
     def handle_404(e):

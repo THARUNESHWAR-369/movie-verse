@@ -12,7 +12,7 @@ export const NowPlayingCard = ({CardMovieClick}) => {
   const fetchNowPlayingMovieData = async () => {
     try {
       const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_NOWPLAYING_MOVIE_URL
+        process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
       );
       const jsonData = await response.json();
       //console.log("setNowPlayingMovieData: ", jsonData['data']["results"]);

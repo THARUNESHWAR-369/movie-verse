@@ -12,12 +12,10 @@ class MovieUtils:
     __url = "https://api.themoviedb.org/3/movie/popular"
     __TopRatedUrl = "https://api.themoviedb.org/3/trending/movie/day"
     __NowPlayingMovieUrl = "https://api.themoviedb.org/3/movie/now_playing"
-    __MovieReviewUrl = "https://api.themoviedb.org/3/movie/{}/reviews"
     __UpcomingMovieUrl = "https://api.themoviedb.org/3/movie/upcoming?page={}"
     __GetMovieDetailsUrl = "https://api.themoviedb.org/3/search/movie?query={}"
     __GetMovieDetailsAllUrl = "https://api.themoviedb.org/3/movie/{}"
     
-
     def getPopularMovies(self) -> json:
         response = requests.get(self.__url, headers={
                 "accept": "application/json",
@@ -25,7 +23,6 @@ class MovieUtils:
             }
         )
         return {"status":False} if response.status_code != 200 else {'status':True, "data": response.json()}
-
 
     def getTopRatedMovies(self) -> json:
         date = datetime.now()
@@ -53,7 +50,6 @@ class MovieUtils:
         data['results'] = sorted(data['results'], key=lambda x: x['vote_average'], reverse=True)
         
         return {"status":False} if response.status_code != 200 else {'status':True, "data": data}
-    
     
     def getNowPlayingMovies(self) -> json:
         date = datetime.now()
@@ -116,99 +112,7 @@ class MovieUtils:
 
         return {"status":False} if response.status_code != 200 else {'status':True, "data":data}
     
-    def getMovieGenre(self, genre_id : int) :
-        data = {
-            28: 'Action',
-            12: 'Adventure',
-            16: 'Animation',
-            35: 'Comedy',
-            80: 'Crime',
-            99: 'Documentary',
-            18: 'Drama',
-            10751: 'Family',
-            14: 'Fantasy',
-            36: 'History',
-            27: 'Horror',
-            10402: 'Music',
-            9648: 'Mystery',
-            10749: 'Romance',
-            878: 'Science Fiction',
-            10770: 'TV Movie',
-            53: 'Thriller',
-            10752: 'War',
-            37: 'Western'
-        }
-        return data[int(genre_id)]
-    
-    def getMovieReviews(self, movie_id : int): 
-        response = requests.get(self.__MovieReviewUrl.format(movie_id), headers={
-                "accept": "application/json",
-                "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
-            }
-        )
-        
-        data = {"results" : []}
-        
-        if response.status_code == 200:
-            resp = response.json()
-        
-            for res in resp['results']:
-                
-                if res['author_details']['avatar_path'] != None and len(res['author_details']['avatar_path'].split("/")) == 2:
-                    res['author_details']['avatar_path'] = os.environ.get("TMDB_POSTER_URL") + res['author_details']['avatar_path'] 
-                
-                if  res['author_details']['avatar_path'] != None and res['author_details']['avatar_path'][0] == '/':
-                    res['author_details']['avatar_path'] =  res['author_details']['avatar_path'][1:]
-            
-                if res['author'] == None or res['author'] == "":
-                    res['name'] = res['author_details']['name']
-                    
-                elif res['author_details']['name'] == None or res['author_details']['name'] == "":
-                    res['name'] = res['author']
-                else:
-                    res['name'] = res['author']
-
-                    
-                if res['author_details']['avatar_path'] != None: data['results'].append(res)       
-         
-        return {"status":False} if response.status_code != 200 else {'status':True, "data":data}
-    
-    def _getMovieGenre(self, lst):
-        movie_genre = []
-        if type(lst) == int:
-            movie_genre.append(self.getMovieGenre(lst))
-        else:
-            for genre_ids in lst:
-                movie_genre.append(self.getMovieGenre(genre_ids))
-        return movie_genre
-    
-    def getMovieDetails(self, movie_name):
-        
-        def formateGenres(genreDict):
-            genres = []
-            for genre in genreDict:
-                genres.append(genre['name'])
-            return genres
-        
-        response = requests.get(self.__GetMovieDetailsUrl.format(movie_name), headers={
-                "accept": "application/json",
-                "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
-            }
-        )    
-        
-        allResponse = requests.get(self.__GetMovieDetailsAllUrl.format(response.json()['results'][0]['id']), headers={
-                "accept": "application/json",
-                "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
-            }
-        )
-        allResponseJson = allResponse.json()
-     
-        allResponseJson['genres'] = formateGenres(allResponseJson['genres'])
-        allResponseJson['vote_average'] = round(allResponseJson['vote_average'], 1)
-        allResponseJson['poster_path'] = os.environ.get("TMDB_POSTER_URL") + allResponseJson['poster_path']
-
-                
-        return {"status":False} if response.status_code != 200 else {'status':True, "data": allResponseJson}
 
 
-
+   
+      

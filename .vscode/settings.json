@@ -5,11 +5,13 @@
     "python.formatting.provider": "none",
     "cSpell.words": [
         "Colorchange",
+        "denoise",
         "jsonify",
         "movieutils",
         "noopener",
         "noreferrer",
         "parse",
-        "TMDB"
+        "TMDB",
+        "vectorizer"
     ]
 }
