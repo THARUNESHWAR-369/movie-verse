@@ -100,13 +100,13 @@ export const RecommendationSection = ({ movieId, CardMovieClick }) => {
                   </div>
                   <div className="w-[14em] max-w-[14em] pt-[3.75rem] px-[0.3em] h-[100%] relative">
                     <ul className="m-[1px] px-[0.2em] overflow-hidden line-clamp-5 text-ellipsis w-[100%]">
-                      <li className=" text-lg py-[0.4em] overflow-hidden line-clamp-2 text-ellipsis text-center">
+                      <li className=" text-lg py-[0.4em] h-[3.4em] overflow-hidden line-clamp-2 text-ellipsis text-center">
                         <b>{recommendationDetail["original_title"]}</b>
                       </li>
-                      <li className="text-sm py-[0.4em]">
-                        <ul className="font-normal flex flex-row gap-2 text-sm flex-wrap">
+                      <li className="text-sm py-[0.4em] h-[4.4em]">
+                        <ul className="font-normal flex flex-row gap-2 text-sm flex-wrap overflow-hidden line-clamp-2 text-ellipsis">
                           {recommendationDetail.genres &&
-                            recommendationDetail.genres.map((genre, index) => (
+                            recommendationDetail.genres.slice(0, 4).map((genre, index) => (
                               <li
                                 key={index}
                                 className="text-white flex text-center items-center align-middle cursor-pointer border-2 w-fit px-[0.6em] rounded-[1rem] border-white hover:backdrop-blur-lg hover:bg-white hover:bg-opacity-40"
@@ -135,7 +135,7 @@ export const RecommendationSection = ({ movieId, CardMovieClick }) => {
                     <div className="w-[13.4em] px-[3px] absolute bottom-[0.7em]">
                       <button
                         onClick={() => handleMovieClick(recommendationDetail)}
-                        className="w-[100%] border-2 border-white rounded-md text-base cursor-pointer tracking-wider"
+                        className="w-[100%] border-2 text-white border-white rounded-md text-base cursor-pointer tracking-wider"
                       >
                         Go
                       </button>

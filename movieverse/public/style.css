@@ -659,11 +659,11 @@ video {
   margin-top: 2.5rem;
 }
 
-.line-clamp-3{
+.line-clamp-2{
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
 }
 
 .line-clamp-5{
@@ -671,27 +671,6 @@ video {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
-}
-
-.line-clamp-6{
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
-}
-
-.line-clamp-4{
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-}
-
-.line-clamp-2{
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
 }
 
 .flex{
@@ -722,6 +701,10 @@ video {
   height: 25px;
 }
 
+.h-\[3\.4em\]{
+  height: 3.4em;
+}
+
 .h-\[300px\]{
   height: 300px;
 }
@@ -732,6 +715,10 @@ video {
 
 .h-\[30rem\]{
   height: 30rem;
+}
+
+.h-\[4\.4em\]{
+  height: 4.4em;
 }
 
 .h-\[6em\]{
@@ -1163,11 +1150,6 @@ video {
   padding-bottom: 1.2rem;
 }
 
-.py-\[0\.em\]{
-  padding-top: 0.em;
-  padding-bottom: 0.em;
-}
-
 .pb-\[0\.5rem\]{
   padding-bottom: 0.5rem;
 }
@@ -1226,10 +1208,6 @@ video {
 
 .pt-\[3rem\]{
   padding-top: 3rem;
-}
-
-.pt-\[rem\]{
-  padding-top: rem;
 }
 
 .pt-\[4rem\]{
@@ -1429,6 +1407,18 @@ body {
 
 .App {
   height: 100%;
+}
+
+#light {
+  background-color: #f3ebf6;
+}
+
+#dark {
+  background-color: #46045e;
+}
+
+#dark .search-bar-search-input {
+  background-color: red;
 }
 
 .bg {
