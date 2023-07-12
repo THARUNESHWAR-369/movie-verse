@@ -59,14 +59,14 @@ export const CastSection = ({ movieId }) => {
           id="leftArrow"
           className="leftArrow fa fa-chevron-left"
           onClick={handleLeftArrowClick}
-          style={{ left: `-5.5rem` }}
+          style={{ left: `-5.5rem`, bottom: `-8.5rem` }}
         ></i>
         <i
           ref={rightArrowRef}
           id="rightArrow"
           className="rightArrow fa fa-chevron-right"
           onClick={handleRightArrowClick}
-          style={{ right: `-2.5rem` }}
+          style={{ right: `-2.5rem`, bottom: `-6.5rem` }}
         ></i>
       </div>
       <div className="cast-card-cards justify-center snap-mandatory snap-x  scroll-smooth ">

@@ -74,7 +74,7 @@ export const MovieReviewSection = ({ movieId }) => {
           <div className="review-card-cards w-[100%] snap-mandatory snap-x  scroll-smooth  h-[300px] flex justify-start gap-2 overflow-auto relative top-[1rem] ">
             {movieReviewCard &&
               movieReviewCard.map((movieReviewCards, index) => (
-                <div className="snap-start scroll-ml-6 review-card bg-gradient-to-b from-[#ed213a] to-[#93291e] rounded-md w-[500px] min-w-[20em] p-[0.6em] text-center sm:min-w-[16em] lg:min-w-[22em]">
+                <div className="snap-start scroll-ml-6 review-card bg-gradient-to-b from-[#ed213a] to-[#93291e] rounded-md w-[500px] min-w-[20em] p-[0.6em] text-center sm:min-w-[16em] lg:min-w-[22em]" key={index}>
                   <div className="border-b-2 relative border-white border-opacity-25 pb-[0.6em]">
                     <img
                       className="rounded-full m-auto w-[6em] h-[6em]"

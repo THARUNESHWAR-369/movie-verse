@@ -3,8 +3,9 @@ import { FooterComponent } from "../../footerComponent/footerComponent";
 import { CastSection } from "./castSection";
 import { ProductionSection } from "./productionCardSection";
 import {MovieReviewSection} from "./movieReviewCard";
+import { RecommendationSection } from "./recommendationSection";
 
-export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
+export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
   const [loading, setLoading] = useState(true);
   const [movieDetails, setMovieDetails] = useState(null);
   const [errorTxt, setErrorTxt] = useState(false);
@@ -17,6 +18,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
   //console.log("movie_name: ", movie_name);
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     fetchMovieDetails();
   }, []);
 
@@ -100,6 +102,10 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
     };
 
     updateFormattedRevenue();
+  };
+
+  const handleCardMovie = (movie) => {
+    cardMovie(movie);
   };
 
   return (
@@ -205,8 +211,12 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
             <CastSection movieId={movieDetails.id}></CastSection>
           </div>
 
-          <div className="w-[100%] max-w-[90rem] m-auto h-[100%] pt-[2rem]">
+          <div className="w-[100%] max-w-[90rem] m-auto h-[100%] pt-[1.5rem]">
             <MovieReviewSection movieId={movieDetails.id}></MovieReviewSection>
+          </div>
+
+          <div className="w-[100%] max-w-[90rem] m-auto h-[100%] pt-[4rem]">
+            <RecommendationSection movieId={movieDetails.id} CardMovieClick={handleCardMovie}></RecommendationSection>
           </div>
 
           
@@ -218,42 +228,3 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name }) => {
     </div>
   );
 };
-
-/* 
-
-   <div className="flex flex-row gap-1 w-[100%] h-[100%]">
-                        <span
-                          className="bg-gradient-to-r from-red-500 to-red-900 w-[30px] h-[30px] rounded-full flex justify-center items-center text-white text-lg font-extrabold cursor-pointer"
-                          onClick={toggleCurrencyOptions}
-                          ref={menuRef}
-                        >
-                          <i className="fa fa-language" aria-hidden="true"></i>
-                        </span>
-                        {showCurrencyOptions && (
-                          <div className="">
-                            <ul className="bg-white bg-opacity-40 absolute w-[7rem] rounded-sm backdrop-blur-md divide-y-4 divide-gray-800/25">
-                              <li
-                                className="cursor-pointer tracking-wider"
-                                onClick={() => handleCurrencyChange("INR")}
-                              >
-                                INR ₹
-                              </li>
-                              <li
-                                className="cursor-pointer tracking-wider"
-                                onClick={() => handleCurrencyChange("USD")}
-                              >
-                                USD $
-                              </li>
-                              <li
-                                className="cursor-pointer tracking-wider"
-                                onClick={() => handleCurrencyChange("EUR")}
-                              >
-                                EUR €
-                              </li>
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-
-
-*/

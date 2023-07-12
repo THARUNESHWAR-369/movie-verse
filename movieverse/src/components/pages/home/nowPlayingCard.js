@@ -53,14 +53,14 @@ export const NowPlayingCard = ({CardMovieClick}) => {
           id="leftArrow"
           className="leftArrow fa fa-chevron-left"
           onClick={handleLeftArrowClick}
-          style={{ left: `-1rem` }}
+          style={{ left: `-1rem`, bottom:`-8.5rem` }}
         ></i>
         <i
           ref={rightArrowRef}
           id="rightArrow"
           className="rightArrow fa fa-chevron-right"
           onClick={handleRightArrowClick}
-          style={{ right: `-1rem` }}
+          style={{ right: `-1rem`, bottom:`-6rem` }}
         ></i>
       </div>
       <div className="popular-card-cards np-card-cards  snap-mandatory snap-x  scroll-smooth ">

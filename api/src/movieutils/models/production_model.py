@@ -13,7 +13,7 @@ class ProductionModel:
 
     def __init__(self, movie_id: int) -> None:
         """
-        Initializes an instance of the CAST_MODEL class.
+        Initializes an instance of the ProductionModel class.
 
         Args:
             movie_id (int): The ID of the movie.

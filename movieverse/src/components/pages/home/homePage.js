@@ -13,6 +13,7 @@ export const HomePage = () => {
   const [bgImg, setBgImg] = useState("");
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     fetchNowPlayingMovieData();
   }, []);
 
@@ -107,6 +108,7 @@ export const HomePage = () => {
               key={selectedSearchMovieName}
               onMoviePoster={handleMovieBg}
               movie_name={selectedSearchMovieName}
+              cardMovie={handleMovieSelection}
             />
           )}
 
