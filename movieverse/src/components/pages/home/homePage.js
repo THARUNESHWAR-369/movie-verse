@@ -11,6 +11,8 @@ export const HomePage = () => {
   const [loadingText, setLoadingText] = useState("");
   const [selectedSearchMovieName, setSelectedSearchMovieName] = useState("");
   const [bgImg, setBgImg] = useState("");
+  const [theme, setTheme] = useState("");
+
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -77,8 +79,17 @@ export const HomePage = () => {
   };
   
 
+  useEffect(() => {
+    window.matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', event => {
+        const colorScheme = event.matches ? "dark" : "light";
+        console.log(colorScheme); // "dark" or "light"
+        setTheme(colorScheme);
+      });
+  }, []);
+
   return (
-    <div className="Home w-full h-full">
+    <div className="Home w-full h-full" style={{ background: theme === 'dark' ? '#dark' : '#light' }}>
       {loading && (
         <div className="loader">
           <div className="spinner-container">

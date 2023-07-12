@@ -47,6 +47,20 @@ body {
   height: 100%;
 }
 
+#light {
+  background-color: #f3ebf6;
+}
+
+#dark {
+  background-color: #46045e;
+}
+
+
+#dark .search-bar-search-input {
+  background-color: red;
+}
+
+
 .bg {
   background-image: linear-gradient(180deg, #000000b5, #000000), var(--bg-image),
     var(--bg-image);

@@ -30,7 +30,7 @@ class RecommendationModel:
         Returns:
             json: The response from the API as JSON.
         """
-        response = requests.get(self.__RECOMMENDATION_URL % (self.movie_id, self.page_no), headers={
+        response = requests.get(self.__RECOMMENDATION_URL.format(self.movie_id, self.page_no), headers={
             "accept": "application/json",
             "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
         })

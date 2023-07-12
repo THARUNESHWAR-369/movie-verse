@@ -80,8 +80,9 @@ export const NavComponent = ({ onMovieSelect }) => {
         <div className="search-bar" ref={menuRef}>
           <div className="search-bar-search-input p-[0.5rem] rounded-[2rem] flex justify-between  w-[20rem]">
             <input
-              placeholder="Movie name"
+              placeholder="Search movie"
               id="search-bar-input"
+              autoComplete="off"
               className="search-bar-input tracking-wider font-semibold text-white pl-[10px] outline-none border-none  bg-transparent w-[17rem] truncate"
               onClick={() => {
                 setExpandSearchResult(!expandSearchResult);
