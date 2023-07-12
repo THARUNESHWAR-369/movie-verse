@@ -37,7 +37,7 @@ class MovieDetailModel:
         })
         return response.json() if response.status_code == SUCCESSFUL_RESPONSE else {"error": True}
 
-    def _getMovieGenre(self, lst : list) -> lis:
+    def _getMovieGenre(self, lst : list) -> list:
         
         def getMovieGenre(genre_id : int) -> str:
             data = {
