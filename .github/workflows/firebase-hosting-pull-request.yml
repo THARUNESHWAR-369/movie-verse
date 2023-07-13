@@ -15,4 +15,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MOVIEVERSE_C1DC1 }}'
           projectId: movieverse-c1dc1
-          entryPoint: "movieverse/firebase.json" 
+          entryPoint: "./firebase.json" 
