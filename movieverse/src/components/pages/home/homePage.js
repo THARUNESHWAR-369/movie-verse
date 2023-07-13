@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NavComponent } from "../../navigation/navComponent";
 import { HomePageContent } from "./homePageContent";
 import { MovieSearchPage } from "../movieSearchPage/movieSearchPage";
-import { FooterComponent } from "../../footerComponent/footerComponent";
 
 export const HomePage = () => {
   const [appBg, setAppBg] = useState(null);
@@ -13,32 +12,30 @@ export const HomePage = () => {
   const [bgImg, setBgImg] = useState("");
   const [theme, setTheme] = useState("");
 
-
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    const fetchNowPlayingMovieData = async () => {
+      setLoadingText("Loading...");
+      try {
+        setLoadingText("Connecting to Server...");
+        const response = await fetch(
+          process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
+        );
+        const jsonData = await response.json();
+        //console.log(jsonData)
+        setLoadingText("Fetching...");
+        await fetchBgMovieGenre(jsonData["results"][0]["genre_ids"]);
+        setAppBg(jsonData["results"][0]);
+        setLoading(false);
+        //console.log(jsonData["results"][0]);
+      } catch (error) {
+        setLoadingText("Error on connecting to server...");
+        //console.log("error fetching data: ", error);
+        setLoading(false);
+      }
+    };
     fetchNowPlayingMovieData();
   }, []);
-
-  const fetchNowPlayingMovieData = async () => {
-    setLoadingText("Loading...");
-    try {
-      setLoadingText("Connecting to Server...");
-      const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
-      );
-      const jsonData = await response.json();
-      //console.log(jsonData)
-      setLoadingText("Fetching...");
-      await fetchBgMovieGenre(jsonData["results"][0]["genre_ids"]);
-      setAppBg(jsonData["results"][0]);
-      setLoading(false);
-      //console.log(jsonData["results"][0]);
-    } catch (error) {
-      setLoadingText("Error on connecting to server...");
-      //console.log("error fetching data: ", error);
-      setLoading(false);
-    }
-  };
 
   const fetchBgMovieGenre = async (genre_id) => {
     const response = await fetch(
@@ -53,6 +50,7 @@ export const HomePage = () => {
     );
     if (response.ok) {
       const genreBg = await response.json();
+      //console.log(genreBg)
       setAppBgMovieGenre(genreBg);
     }
   };
@@ -60,36 +58,38 @@ export const HomePage = () => {
   const handleMovieSelection = (movie) => {
     //console.log(movie);
     setSelectedSearchMovieName(movie);
-    console.log(selectedSearchMovieName);
-
+    //console.log(selectedSearchMovieName);
   };
 
   const handleMovieBg = (moviePoster) => {
-    console.log(moviePoster);
+   // console.log(moviePoster);
     setBgImg(moviePoster);
   };
 
   const imageUrlStyle = {
     "--bg-image":
       bgImg === ""
-        ? (appBg && appBg.backdrop_path
-            ? `url(https://image.tmdb.org/t/p/original${appBg.backdrop_path})`
-            : "")
-        : `url(https://image.tmdb.org/t/p/original${bgImg})`,
+        ? appBg && appBg.backdrop_path
+          ? `url(${appBg.backdrop_path})`
+          : ""
+        : `url(${bgImg})`,
   };
-  
 
   useEffect(() => {
-    window.matchMedia('(prefers-color-scheme: dark)')
-      .addEventListener('change', event => {
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (event) => {
         const colorScheme = event.matches ? "dark" : "light";
-        console.log(colorScheme); // "dark" or "light"
+        //console.log(colorScheme); // "dark" or "light"
         setTheme(colorScheme);
       });
   }, []);
 
   return (
-    <div className="Home w-full h-full" style={{ background: theme === 'dark' ? '#dark' : '#light' }}>
+    <div
+      className="Home w-full h-full"
+      style={{ background: theme === "dark" ? "#dark" : "#light" }}
+    >
       {loading && (
         <div className="loader">
           <div className="spinner-container">
@@ -107,7 +107,7 @@ export const HomePage = () => {
       <div className="main-container m-auto">
         <NavComponent onMovieSelect={handleMovieSelection}></NavComponent>
         <div className="main-page-content w-[90%] h-[100vh] my-28 mx-auto">
-        {selectedSearchMovieName === "" ? (
+          {selectedSearchMovieName === "" ? (
             <HomePageContent
               appBg={appBg}
               appBgMovieGenre={appBgMovieGenre}
@@ -122,11 +122,8 @@ export const HomePage = () => {
               cardMovie={handleMovieSelection}
             />
           )}
-
         </div>
       </div>
-
     </div>
   );
 };
-

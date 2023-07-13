@@ -32,4 +32,5 @@ def getMovieDetails():
 @cross_origin()
 def getMovieGenre():
     movie_genre_list = request.json['movie_genre'] if type(request.json['movie_genre']) == list else [request.json['movie_genre']]
+    print(movie_genre_list)
     return MovieDetailModel(movie_name="")._getMovieGenre(movie_genre_list)

@@ -24,7 +24,7 @@ export const RecommendationSection = ({ movieId, CardMovieClick }) => {
       if (response.ok) {
         const recommendationDetailJson = await response.json();
 
-        console.log(recommendationDetailJson);
+        // console.log(recommendationDetailJson);
         setRecommendationDetails(recommendationDetailJson["results"]);
       }
     } catch (e) {
@@ -106,14 +106,16 @@ export const RecommendationSection = ({ movieId, CardMovieClick }) => {
                       <li className="text-sm py-[0.4em] h-[4.4em]">
                         <ul className="font-normal flex flex-row gap-2 text-sm flex-wrap overflow-hidden line-clamp-2 text-ellipsis">
                           {recommendationDetail.genres &&
-                            recommendationDetail.genres.slice(0, 4).map((genre, index) => (
-                              <li
-                                key={index}
-                                className="text-white flex text-center items-center align-middle cursor-pointer border-2 w-fit px-[0.6em] rounded-[1rem] border-white hover:backdrop-blur-lg hover:bg-white hover:bg-opacity-40"
-                              >
-                                {genre}
-                              </li>
-                            ))}
+                            recommendationDetail.genres
+                              .slice(0, 4)
+                              .map((genre, index) => (
+                                <li
+                                  key={index}
+                                  className="text-white flex text-center items-center align-middle cursor-pointer border-2 w-fit px-[0.6em] rounded-[1rem] border-white hover:backdrop-blur-lg hover:bg-white hover:bg-opacity-40"
+                                >
+                                  {genre}
+                                </li>
+                              ))}
                         </ul>
                       </li>
                       <li className="text-sm py-[0.4em]">

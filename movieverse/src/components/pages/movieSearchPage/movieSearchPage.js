@@ -9,9 +9,6 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
   const [loading, setLoading] = useState(true);
   const [movieDetails, setMovieDetails] = useState(null);
   const [errorTxt, setErrorTxt] = useState(false);
-  const [showCurrencyOptions, setShowCurrencyOptions] = useState(false);
-  const [currency, setCurrency] = useState("INR");
-  const [formattedRevenue, setFormattedRevenue] = useState("INR");
 
   let menuRef = useRef();
 
@@ -22,18 +19,6 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
     fetchMovieDetails();
   }, []);
 
-  useEffect(() => {
-    let handler = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setShowCurrencyOptions(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  });
 
   const fetchMovieDetails = async () => {
     // console.log("movie_name: ", movie_name);
@@ -57,7 +42,6 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
         const posterPath = movieDetails['results'][0]["poster_path"];
 
         onMoviePoster(backdropPath ? backdropPath : posterPath);
-
         setMovieDetails(movieDetails['results'][0]);
         setLoading(false);
         setErrorTxt(false);
@@ -82,27 +66,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
     return formattedRuntime;
   };
 
-  const toggleCurrencyOptions = () => {
-    setShowCurrencyOptions(!showCurrencyOptions);
-  };
 
-  const handleCurrencyChange = (selectedCurrency) => {
-    setCurrency(selectedCurrency);
-    setShowCurrencyOptions(false);
-
-    const updateFormattedRevenue = () => {
-      if (movieDetails) {
-        const formattedRevenue = new Intl.NumberFormat("en-IN", {
-          style: "currency",
-          currency: movieDetails.revenue,
-        }).formatToParts(Math.round(movieDetails.revenue).toFixed(0));
-
-        setFormattedRevenue(formattedRevenue);
-      }
-    };
-
-    updateFormattedRevenue();
-  };
 
   const handleCardMovie = (movie) => {
     cardMovie(movie);
@@ -175,7 +139,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
                   <span className="text-center flex">
                     <b className="flex gap-3">
                       Original language:
-                      <p className="font-semibold">
+                      <p className="font-semibold text-blue-500">
                         {movieDetails.original_language}
                       </p>
                     </b>
@@ -185,7 +149,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
                       IMDB
                     </p>
                     <p>&#9733;</p>
-                    <p className="text-sm">{movieDetails.vote_average}/10</p>
+                    <p className="text-sm text-yellow-300">{movieDetails.vote_average}/10</p>
                   </span>
                   <span className="flex  gap-2 tracking-wider align-middle text-center items-center">
                     <b>Budget: </b>

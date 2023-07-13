@@ -8,10 +8,19 @@
         "denoise",
         "jsonify",
         "movieutils",
+        "MultinomialNB",
         "noopener",
         "noreferrer",
         "parse",
+        "seaborn",
+        "sklearn",
+        "stopwords",
         "TMDB",
+        "toktok",
         "vectorizer"
+    ],
+    "cSpell.ignoreWords": [
+        "husl",
+        "nltk"
     ]
 }

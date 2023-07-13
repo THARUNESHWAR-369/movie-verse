@@ -1,27 +1,28 @@
 import React, { useEffect, useState, useRef } from "react";
 
-export const NowPlayingCard = ({CardMovieClick}) => {
+export const NowPlayingCard = ({ CardMovieClick }) => {
   const [NowPlayingMovieData, setNowPlayingMovieData] = useState(null);
   const leftArrowRef = useRef(null);
   const rightArrowRef = useRef(null);
 
   useEffect(() => {
+    const fetchNowPlayingMovieData = async () => {
+      try {
+        const response = await fetch(
+          process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
+        );
+        const jsonData = await response.json();
+       // console.log("setNowPlayingMovieData: ", jsonData["results"]);
+  
+        setNowPlayingMovieData(jsonData["results"]);
+      } catch (error) {
+        //console.log("error fetching data: ", error);
+      }
+    };
     fetchNowPlayingMovieData();
   }, []);
 
-  const fetchNowPlayingMovieData = async () => {
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
-      );
-      const jsonData = await response.json();
-      //console.log("setNowPlayingMovieData: ", jsonData['data']["results"]);
 
-      setNowPlayingMovieData(jsonData["data"]["results"]);
-    } catch (error) {
-      //console.log("error fetching data: ", error);
-    }
-  };
 
   const handleLeftArrowClick = () => {
     if (leftArrowRef.current) {
@@ -39,9 +40,8 @@ export const NowPlayingCard = ({CardMovieClick}) => {
     }
   };
 
-  
   const handleMovieClick = (movie) => {
-    CardMovieClick(movie['title']);
+    CardMovieClick(movie["title"]);
   };
 
   return (
@@ -53,20 +53,20 @@ export const NowPlayingCard = ({CardMovieClick}) => {
           id="leftArrow"
           className="leftArrow fa fa-chevron-left"
           onClick={handleLeftArrowClick}
-          style={{ left: `-1rem`, bottom:`-8.5rem` }}
+          style={{ left: `-1rem`, bottom: `-8.5rem` }}
         ></i>
         <i
           ref={rightArrowRef}
           id="rightArrow"
           className="rightArrow fa fa-chevron-right"
           onClick={handleRightArrowClick}
-          style={{ right: `-1rem`, bottom:`-6rem` }}
+          style={{ right: `-1rem`, bottom: `-6rem` }}
         ></i>
       </div>
       <div className="popular-card-cards np-card-cards  snap-mandatory snap-x  scroll-smooth ">
         {NowPlayingMovieData &&
           NowPlayingMovieData.map((popularMovie, index) => (
-            <a
+            <div
               onClick={() => handleMovieClick(popularMovie)}
               className="popular-card-card cursor-pointer snap-start scroll-ml-6"
               key={index}
@@ -95,7 +95,7 @@ export const NowPlayingCard = ({CardMovieClick}) => {
                   <p>{popularMovie["release_date"]}</p>{" "}
                 </div>
               </div>
-            </a>
+            </div>
           ))}
       </div>
     </div>

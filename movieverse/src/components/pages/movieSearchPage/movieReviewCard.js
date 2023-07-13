@@ -1,39 +1,36 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
+import angry from '../../../static/sentiment_emoji/angry.png'
+import happy from '../../../static/sentiment_emoji/happy.png'
 
 export const MovieReviewSection = ({ movieId }) => {
   const [movieReviewCard, setMovieReviewCard] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const leftArrowRef = useRef(null);
-  const rightArrowRef = useRef(null);
-
   useEffect(() => {
-    fetchMovieReview();
-  }, []);
-
-  const fetchMovieReview = async () => {
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_MOVIE_REVIEW_URL,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ movie_id: movieId }),
+    const fetchMovieReview = async () => {
+      try {
+        const response = await fetch(
+          process.env.REACT_APP_API_SERVICE_GET_MOVIE_REVIEW_URL,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ movie_id: movieId }),
+          }
+        );
+        if (response.ok) {
+          const movieReviews = await response.json();
+         // console.log(movieReviews["results"]);
+          setMovieReviewCard(movieReviews["results"]);
+          setLoading(false);
         }
-      );
-      if (response.ok) {
-        const movieReviews = await response.json();
-       // console.log(movieReviews["data"]["results"]);
-        setMovieReviewCard(movieReviews["results"]);
+      } catch (e) {
         setLoading(false);
       }
-    } catch (e) {
-      setLoading(false);
-    }
-  };
-
+    };
+    fetchMovieReview();
+  }, []);
 
   return (
     <div className="text-white ml-13 flex flex-col">
@@ -55,11 +52,13 @@ export const MovieReviewSection = ({ movieId }) => {
 
       {movieReviewCard && movieReviewCard.length > 0 && (
         <div className="text-white ml-13">
-        
           <div className="review-card-cards w-[100%] snap-mandatory snap-x  scroll-smooth  h-[300px] flex justify-start gap-2 overflow-auto relative top-[1rem] ">
             {movieReviewCard &&
               movieReviewCard.map((movieReviewCards, index) => (
-                <div className="snap-start scroll-ml-6 review-card bg-gradient-to-b from-[#ed213a] to-[#93291e] rounded-md w-[500px] min-w-[20em] p-[0.6em] text-center sm:min-w-[16em] lg:min-w-[22em]" key={index}>
+                <div
+                  className="snap-start scroll-ml-6 review-card bg-gradient-to-b from-[#ed213a] to-[#93291e] rounded-md w-[500px] min-w-[20em] p-[0.6em] text-center sm:min-w-[16em] lg:min-w-[22em]"
+                  key={index}
+                >
                   <div className="border-b-2 relative border-white border-opacity-25 pb-[0.6em]">
                     <img
                       className="rounded-full m-auto w-[6em] h-[6em]"
@@ -77,6 +76,12 @@ export const MovieReviewSection = ({ movieId }) => {
                           aria-hidden="true"
                         ></i>
                       </a>
+                    </span>
+                    <span className="w-[35px] h-[35px] absolute rounded-full left-0 top-0">
+                      <img
+                        src={movieReviewCards.sentiment === 0 ? angry : happy}
+                        alt={movieReviewCards.name}
+                      ></img>
                     </span>
                   </div>
                   <div className="border-b-2 border-white border-opacity-25 p-[0.3em]">

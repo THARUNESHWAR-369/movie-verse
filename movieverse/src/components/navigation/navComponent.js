@@ -93,7 +93,6 @@ export const NavComponent = ({ onMovieSelect }) => {
             <span
               className="relative cursor-pointer p-[0.2rem] bg-gradient-to-r from-red-500 to-red-900 w-[30px] h-[30px] rounded-full flex justify-center items-center text-white"
               onClick={() => handleMovieClick(selectedMovie)}
-
             >
               <i className="fa fa-search"></i>
             </span>

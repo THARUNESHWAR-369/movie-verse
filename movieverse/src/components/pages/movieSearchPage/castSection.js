@@ -25,7 +25,7 @@ export const CastSection = ({ movieId }) => {
         const castDetailsJson = await response.json();
 
         // Handle the movie reviews data
-        console.log(castDetailsJson);
+        //console.log(castDetailsJson);
         setCastDetails(castDetailsJson["results"]);
         //setLoading(false); // Set loading to false after fetching the data
       }
@@ -72,7 +72,10 @@ export const CastSection = ({ movieId }) => {
       <div className="cast-card-cards justify-center snap-mandatory snap-x  scroll-smooth ">
         {castDetails &&
           castDetails.map((castDetail, index) => (
-            <div className="cast-card-card cursor-pointer snap-start scroll-ml-6" key={index}>
+            <div
+              className="cast-card-card cursor-pointer snap-start scroll-ml-6"
+              key={index}
+            >
               <div className="cast-card-content bg-black ">
                 <img
                   loading="lazy"

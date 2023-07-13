@@ -25,7 +25,7 @@ export const ProductionSection = ({ movieId }) => {
         const productionDetailsJson = await response.json();
 
         // Handle the movie reviews data
-        console.log(productionDetailsJson);
+        //console.log(productionDetailsJson);
         setProductionDetails(
           productionDetailsJson["results"]["production_companies"]
         );

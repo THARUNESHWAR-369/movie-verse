@@ -6,25 +6,26 @@ export const PopularCard = ({ CardMovieClick }) => {
   const rightArrowRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
+    window.scrollTo(0, 0);
+    const fetchPopularMovieData = async () => {
+      try {
+        const response = await fetch(
+          process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
+        );
+        const jsonData = await response.json();
+       // console.log("setPopularMovieData: ", jsonData);
+  
+        setPopularMovieData(jsonData["results"].slice(2));
+        setLoading(false);
+      } catch (error) {
+        //console.log("error fetching data: ", error);
+        setLoading(false);
+      }
+    };
     fetchPopularMovieData();
   }, []);
-
-  const fetchPopularMovieData = async () => {
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_TREND_MOVIE_URL
-      );
-      const jsonData = await response.json();
-      //console.log("setPopularMovieData: ", jsonData);
-
-      setPopularMovieData(jsonData["results"]);
-      setLoading(false);
-    } catch (error) {
-      //console.log("error fetching data: ", error);
-      setLoading(false);
-    }
-  };
 
   const handleLeftArrowClick = () => {
     if (leftArrowRef.current) {

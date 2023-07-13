@@ -26,5 +26,5 @@ def add_cors_headers(response):
 @cross_origin()
 def getReviewDetails():
     movie_id = request.json['movie_id']
-    return ReviewModel(movie_id).toJson()
+    return ReviewModel(movie_id).to_json()
 

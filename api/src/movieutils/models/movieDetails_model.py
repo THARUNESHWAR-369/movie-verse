@@ -71,7 +71,6 @@ class MovieDetailModel:
                 movie_genre.append(getMovieGenre(genre_ids))
         return movie_genre
     
-    
     def get_movie_language(self, code : str) -> str:      
         __language_response = requests.get(self.__MOVIE_LANGUAGE_URL, headers={
                  "accept": "application/json",
@@ -112,13 +111,16 @@ class MovieDetailModel:
                 }
             )
             allResponseJson = allResponse.json()
-            allResponseJson['genres'] = formateGenres(allResponseJson['genres'])
-            allResponseJson['vote_average'] = round(allResponseJson['vote_average'], 1)
-            allResponseJson['original_language'] = self.get_movie_language(allResponseJson['original_language'])
-            allResponseJson['poster_path'] = os.environ.get("TMDB_POSTER_URL") + allResponseJson['poster_path']
             
-            data['results'].append(allResponseJson)  
-            
+            try:
+                allResponseJson['genres'] = formateGenres(allResponseJson['genres'])
+                allResponseJson['vote_average'] = round(allResponseJson['vote_average'], 1)
+                allResponseJson['original_language'] = self.get_movie_language(allResponseJson['original_language'])
+                allResponseJson['poster_path'] = os.environ.get("TMDB_POSTER_URL") + allResponseJson['poster_path']
+                allResponseJson['backdrop_path'] = os.environ.get("TMDB_POSTER_URL") + allResponseJson['backdrop_path']
+                data['results'].append(allResponseJson)  
+            except TypeError:pass
+                
             return data
         
         return {"status": False}
