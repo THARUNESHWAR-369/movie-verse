@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { NavComponent } from "../../navigation/navComponent";
 import { HomePageContent } from "./homePageContent";
@@ -14,28 +15,30 @@ export const HomePage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const fetchNowPlayingMovieData = async () => {
-      setLoadingText("Loading...");
-      try {
-        setLoadingText("Connecting to Server...");
-        const response = await fetch(
-          process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
-        );
-        const jsonData = await response.json();
-        console.log(jsonData)
-        setLoadingText("Fetching...");
-        await fetchBgMovieGenre(jsonData["results"][0]["genre_ids"]);
-        setAppBg(jsonData["results"][0]);
-        setLoading(false);
-        //console.log(jsonData["results"][0]);
-      } catch (error) {
-        setLoadingText("Error on connecting to server...");
-        //console.log("error fetching data: ", error);
-        setLoading(false);
-      }
-    };
     fetchNowPlayingMovieData();
   }, []);
+
+  const fetchNowPlayingMovieData = async () => {
+    setLoadingText("Loading...");
+    try {
+      setLoadingText("Connecting to Server...");
+      const response = await fetch(
+        process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
+      );
+      setLoadingText("Initializing...");
+      const jsonData = await response.json();
+      console.log(jsonData)
+      setLoadingText("Fetching...");
+      await fetchBgMovieGenre(jsonData["results"][0]["genre_ids"]);
+      setAppBg(jsonData["results"][0]);
+      setLoading(false);
+      //console.log(jsonData["results"][0]);
+    } catch (error) {
+      setLoadingText("Error on connecting to server...");
+      //console.log("error fetching data: ", error);
+      setLoading(false);
+    }
+  };
 
   const fetchBgMovieGenre = async (genre_id) => {
     const response = await fetch(
