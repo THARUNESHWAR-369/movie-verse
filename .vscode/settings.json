@@ -22,5 +22,8 @@
     "cSpell.ignoreWords": [
         "husl",
         "nltk"
+    ],
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
     ]
 }
