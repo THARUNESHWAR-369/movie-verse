@@ -13,7 +13,6 @@ export const HomePage = () => {
   const [theme, setTheme] = useState("");
 
   useEffect(() => {
-    console.log("process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL: ", process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL)
     window.scrollTo(0, 0);
     const fetchNowPlayingMovieData = async () => {
       setLoadingText("Loading...");
@@ -23,7 +22,7 @@ export const HomePage = () => {
           process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
         );
         const jsonData = await response.json();
-        //console.log(jsonData)
+        console.log(jsonData)
         setLoadingText("Fetching...");
         await fetchBgMovieGenre(jsonData["results"][0]["genre_ids"]);
         setAppBg(jsonData["results"][0]);
@@ -51,7 +50,7 @@ export const HomePage = () => {
     );
     if (response.ok) {
       const genreBg = await response.json();
-      //console.log(genreBg)
+      console.log(genreBg)
       setAppBgMovieGenre(genreBg);
     }
   };
