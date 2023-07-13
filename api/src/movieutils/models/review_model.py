@@ -157,3 +157,4 @@ class ReviewModel(DataCleaning):
 if __name__ == "__main__":
     review_model = ReviewModel(movie_id=19995)
     review_model.to_json()
+    
