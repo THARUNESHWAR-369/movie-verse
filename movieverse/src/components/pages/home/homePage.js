@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavComponent } from "../../navigation/navComponent";
 import { HomePageContent } from "./homePageContent";
 import { MovieSearchPage } from "../movieSearchPage/movieSearchPage";
+import config from '../../../config/config'
 
 export const HomePage = () => {
   const [appBg, setAppBg] = useState(null);
@@ -14,7 +15,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log("process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL: ",process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL);
+    console.log("process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL: ",config.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL);
     fetchNowPlayingMovieData();
   });
 
@@ -23,7 +24,7 @@ export const HomePage = () => {
     try {
       setLoadingText("Connecting to Server...");
       const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
+        config.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
       );
       setLoadingText("Initializing...");
       const jsonData = await response.json();

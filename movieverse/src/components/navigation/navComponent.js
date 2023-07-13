@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import config from '../../config/config'
 
 export const NavComponent = ({ onMovieSelect }) => {
   const [movieNameList, setMovieNameList] = useState([]);
@@ -10,7 +11,7 @@ export const NavComponent = ({ onMovieSelect }) => {
 
   let menuRef = useRef();
 
-  console.log("process.env.REACT_APP_API_SERVICE_GET_MOVIE_NAME_LIST_URL: ",process.env.REACT_APP_API_SERVICE_GET_MOVIE_NAME_LIST_URL, process.env.REACT_APP_API_SERVICE_GET_MOVIE_DETAILS_URL);
+  console.log("process.env.REACT_APP_API_SERVICE_GET_MOVIE_NAME_LIST_URL: ",config.REACT_APP_API_SERVICE_GET_MOVIE_NAME_LIST_URL, config.REACT_APP_API_SERVICE_GET_MOVIE_DETAILS_URL);
 
   const changeNavbarColor = () => {
     if (window.scrollY >= 50) {
@@ -42,7 +43,7 @@ export const NavComponent = ({ onMovieSelect }) => {
   const fetchMovieListData = async () => {
     try {
       const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_MOVIE_NAME_LIST_URL
+        config.REACT_APP_API_SERVICE_GET_MOVIE_NAME_LIST_URL
       );
       const jsonData = await response.json();
       //setLoading(false);
