@@ -17,7 +17,7 @@ export const HomePage = () => {
     window.scrollTo(0, 0);
     console.log("process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL: ",config.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL);
     fetchNowPlayingMovieData();
-  });
+  },[]);
 
   const fetchNowPlayingMovieData = async () => {
     setLoadingText("Loading...");
