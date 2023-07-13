@@ -10,6 +10,8 @@ export const NavComponent = ({ onMovieSelect }) => {
 
   let menuRef = useRef();
 
+  console.log("process.env.REACT_APP_API_SERVICE_GET_MOVIE_NAME_LIST_URL: ",process.env.REACT_APP_API_SERVICE_GET_MOVIE_NAME_LIST_URL);
+
   const changeNavbarColor = () => {
     if (window.scrollY >= 50) {
       setColorchange(true);
@@ -31,6 +33,7 @@ export const NavComponent = ({ onMovieSelect }) => {
       document.removeEventListener("mousedown", handler);
     };
   });
+  
 
   useEffect(() => {
     fetchMovieListData();
