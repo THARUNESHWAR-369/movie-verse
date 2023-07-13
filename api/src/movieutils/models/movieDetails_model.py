@@ -83,7 +83,6 @@ class MovieDetailModel:
             
             for codes in __language_response:
                 if codes['iso_639_1'] == code:
-                    print(codes)
                     return codes['english_name']
        
     def toJson(self) -> json:

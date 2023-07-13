@@ -51,7 +51,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
       if (response.ok) {
         const movieDetails = await response.json();
 
-        console.log(movieDetails['results'][0]);
+       // console.log(movieDetails['results'][0]);
 
         const backdropPath = movieDetails['results'][0]["backdrop_path"];
         const posterPath = movieDetails['results'][0]["poster_path"];
