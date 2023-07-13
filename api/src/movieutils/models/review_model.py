@@ -10,6 +10,7 @@ import pickle
 from nltk.tokenize.toktok import ToktokTokenizer
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
+nltk.download('stopwords')
 
 import numpy as np
 

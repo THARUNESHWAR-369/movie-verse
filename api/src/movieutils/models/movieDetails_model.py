@@ -9,9 +9,11 @@ class MovieDetailModel:
     Class for retrieving cast details for a movie using the TMDB API.
     """
 
-    __MOVIE_DETAILS_URL = os.environ.get('TMDB_MOVIE_DETAIL_URL')
-    __MOVIE_DETAILS_ALL_URL = os.environ.get('TMDB_MOVIE_DETAIL_ALL_URL')
-    __MOVIE_LANGUAGE_URL = os.environ.get('TMDB_MOVIE_LANGUAGE_URL')
+    __MOVIE_DETAILS_URL : str = os.environ.get('TMDB_MOVIE_DETAIL_URL')
+    __MOVIE_DETAILS_ALL_URL : str = os.environ.get('TMDB_MOVIE_DETAIL_ALL_URL')
+    __MOVIE_LANGUAGE_URL : str = os.environ.get('TMDB_MOVIE_LANGUAGE_URL')
+    
+    __REQUEST_TIMEOUT : int = 10
     
 
     def __init__(self, movie_name: id) -> None:
@@ -71,11 +73,12 @@ class MovieDetailModel:
                 movie_genre.append(getMovieGenre(genre_ids))
         return movie_genre
     
-    def get_movie_language(self, code : str) -> str:      
+    def get_movie_language(self, code : str) -> str: 
+             
         __language_response = requests.get(self.__MOVIE_LANGUAGE_URL, headers={
                  "accept": "application/json",
             "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
-        })
+        },timeout=self.__REQUEST_TIMEOUT)
         
         if __language_response.status_code == SUCCESSFUL_RESPONSE:
             __language_response = __language_response.json()
@@ -108,7 +111,7 @@ class MovieDetailModel:
             allResponse = requests.get(self.__MOVIE_DETAILS_ALL_URL.format(__response['results'][0]['id']), headers={
                 "accept": "application/json",
                 "Authorization": "Bearer " + os.environ.get('TMDB_HEADER')
-                }
+                },timeout=self.__REQUEST_TIMEOUT
             )
             allResponseJson = allResponse.json()
             
@@ -124,8 +127,3 @@ class MovieDetailModel:
             return data
         
         return {"status": False}
-    
-
-        
-     
-        
