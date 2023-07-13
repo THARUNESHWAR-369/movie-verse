@@ -15,6 +15,7 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: 'movieverse/${{ secrets.FIREBASE_SERVICE_ACCOUNT_MOVIEVERSE_C1DC1 }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MOVIEVERSE_C1DC1 }}'
           channelId: live
           projectId: movieverse-c1dc1
+          path: "./movieverse"
