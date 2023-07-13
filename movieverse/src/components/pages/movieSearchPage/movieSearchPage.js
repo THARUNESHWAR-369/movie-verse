@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import { FooterComponent } from "../../footerComponent/footerComponent";
 import { CastSection } from "./castSection";
 import { ProductionSection } from "./productionCardSection";
@@ -10,51 +11,50 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
   const [movieDetails, setMovieDetails] = useState(null);
   const [errorTxt, setErrorTxt] = useState(false);
 
-  let menuRef = useRef();
-
   //console.log("movie_name: ", movie_name);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    const fetchMovieDetails = async () => {
+      // console.log("movie_name: ", movie_name);
+      try {
+        const response = await fetch(
+          process.env.REACT_APP_API_SERVICE_GET_MOVIE_DETAILS_URL,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ movie_name: movie_name }),
+          }
+        );
+        if (response.ok) {
+          const movieDetails = await response.json();
+  
+         // console.log(movieDetails['results'][0]);
+  
+          const backdropPath = movieDetails['results'][0]["backdrop_path"];
+          const posterPath = movieDetails['results'][0]["poster_path"];
+  
+          onMoviePoster(backdropPath ? backdropPath : posterPath);
+          setMovieDetails(movieDetails['results'][0]);
+          setLoading(false);
+          setErrorTxt(false);
+        }
+      } catch (error) {
+        setLoading(false);
+        const backdropPath =
+          "https://img.freepik.com/free-vector/white-abstract-background_23-2148817571.jpg";
+        onMoviePoster(backdropPath);
+        setErrorTxt(true);
+        //console.log("Error fetching movie details:", error);
+      }
+    };
     fetchMovieDetails();
   }, []);
 
 
-  const fetchMovieDetails = async () => {
-    // console.log("movie_name: ", movie_name);
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_MOVIE_DETAILS_URL,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ movie_name: movie_name }),
-        }
-      );
-      if (response.ok) {
-        const movieDetails = await response.json();
-
-       // console.log(movieDetails['results'][0]);
-
-        const backdropPath = movieDetails['results'][0]["backdrop_path"];
-        const posterPath = movieDetails['results'][0]["poster_path"];
-
-        onMoviePoster(backdropPath ? backdropPath : posterPath);
-        setMovieDetails(movieDetails['results'][0]);
-        setLoading(false);
-        setErrorTxt(false);
-      }
-    } catch (error) {
-      setLoading(false);
-      const backdropPath =
-        "https://img.freepik.com/free-vector/white-abstract-background_23-2148817571.jpg";
-      onMoviePoster(backdropPath);
-      setErrorTxt(true);
-      //console.log("Error fetching movie details:", error);
-    }
-  };
+  
 
   const formatRuntime = () => {
     if (!movieDetails || !movieDetails.runtime) return null;

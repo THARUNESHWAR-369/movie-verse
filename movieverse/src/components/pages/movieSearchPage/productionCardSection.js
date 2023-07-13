@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 
 export const ProductionSection = ({ movieId }) => {
@@ -6,37 +7,38 @@ export const ProductionSection = ({ movieId }) => {
     useState(null);
 
   useEffect(() => {
+    const fetchProductionCompanyDetails = async () => {
+      try {
+        const response = await fetch(
+          process.env.REACT_APP_API_SERVICE_GET_PRODUCTION_DETAILS_URL,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ movie_id: movieId }),
+          }
+        );
+        if (response.ok) {
+          const productionDetailsJson = await response.json();
+  
+          // Handle the movie reviews data
+          //console.log(productionDetailsJson);
+          setProductionDetails(
+            productionDetailsJson["results"]["production_companies"]
+          );
+          setProductionCountryDetails(
+            productionDetailsJson["results"]["production_countries"]
+          );
+        }
+      } catch (e) {
+        // setLoading(false);
+      }
+    };
     fetchProductionCompanyDetails();
   }, []);
 
-  const fetchProductionCompanyDetails = async () => {
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_PRODUCTION_DETAILS_URL,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ movie_id: movieId }),
-        }
-      );
-      if (response.ok) {
-        const productionDetailsJson = await response.json();
-
-        // Handle the movie reviews data
-        //console.log(productionDetailsJson);
-        setProductionDetails(
-          productionDetailsJson["results"]["production_companies"]
-        );
-        setProductionCountryDetails(
-          productionDetailsJson["results"]["production_countries"]
-        );
-      }
-    } catch (e) {
-      // setLoading(false);
-    }
-  };
+  
 
   return (
     <div className="flex flex-col gap-3">

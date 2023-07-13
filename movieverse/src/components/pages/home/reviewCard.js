@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 
 export const ReviewCard = ({ movieId }) => {
@@ -5,34 +6,35 @@ export const ReviewCard = ({ movieId }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchMovieReview = async () => {
+      try {
+        const response = await fetch(
+          process.env.REACT_APP_API_SERVICE_GET_MOVIE_REVIEW_URL,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ movie_id: movieId }),
+          }
+        );
+        if (response.ok) {
+          const movieReviews = await response.json();
+  
+          // Handle the movie reviews data
+          //console.log(movieReviews["data"]["results"]);
+          setReviewCard(movieReviews["results"]);
+          setLoading(false); // Set loading to false after fetching the data
+        }
+      } catch (e) {
+        setLoading(false);
+      }
+    };
     fetchMovieReview();
   }, []);
 
 
-  const fetchMovieReview = async () => {
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_MOVIE_REVIEW_URL,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ movie_id: movieId }),
-        }
-      );
-      if (response.ok) {
-        const movieReviews = await response.json();
 
-        // Handle the movie reviews data
-        //console.log(movieReviews["data"]["results"]);
-        setReviewCard(movieReviews["results"]);
-        setLoading(false); // Set loading to false after fetching the data
-      }
-    } catch (e) {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="review-card w-[60%] h-29rem max-w-[30rem]">

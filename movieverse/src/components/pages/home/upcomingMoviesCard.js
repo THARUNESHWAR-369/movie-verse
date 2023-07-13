@@ -86,7 +86,7 @@ export const UpComingMoviesCard = ({ CardMovieClick }) => {
                     "https://image.tmdb.org/t/p/original" +
                     popularMovie["poster_path"]
                   }
-                  loading="lazy"
+                  alt=""
                 ></img>
 
                 <span className="p-[0.4rem] flex justify-center">

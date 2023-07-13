@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from "react";
 
 export const RecommendationSection = ({ movieId, CardMovieClick }) => {
@@ -6,31 +7,32 @@ export const RecommendationSection = ({ movieId, CardMovieClick }) => {
   const rightArrowRef = useRef(null);
 
   useEffect(() => {
+    const fetchRecommendationDetails = async () => {
+      try {
+        const response = await fetch(
+          process.env.REACT_APP_API_SERVICE_GET_RECOMMENDATION_DETAILS_URL,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ movie_id: movieId }),
+          }
+        );
+        if (response.ok) {
+          const recommendationDetailJson = await response.json();
+  
+          // console.log(recommendationDetailJson);
+          setRecommendationDetails(recommendationDetailJson["results"]);
+        }
+      } catch (e) {
+        // setLoading(false);
+      }
+    };
     fetchRecommendationDetails();
   }, []);
 
-  const fetchRecommendationDetails = async () => {
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_RECOMMENDATION_DETAILS_URL,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ movie_id: movieId }),
-        }
-      );
-      if (response.ok) {
-        const recommendationDetailJson = await response.json();
 
-        // console.log(recommendationDetailJson);
-        setRecommendationDetails(recommendationDetailJson["results"]);
-      }
-    } catch (e) {
-      // setLoading(false);
-    }
-  };
 
   const handleLeftArrowClick = () => {
     if (leftArrowRef.current) {

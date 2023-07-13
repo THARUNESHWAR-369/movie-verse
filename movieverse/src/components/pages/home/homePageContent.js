@@ -4,7 +4,6 @@ import { PopularCard } from "./popularCard";
 import { TitleCard } from "./titleCard";
 import { UpComingMoviesCard } from "./upcomingMoviesCard";
 import { ReviewCard } from "./reviewCard";
-import REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL from "react";
 // Assuming ReviewCard component exists
 
 export const HomePageContent = ({

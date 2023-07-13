@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import angry from '../../../static/sentiment_emoji/angry.png'
 import happy from '../../../static/sentiment_emoji/happy.png'

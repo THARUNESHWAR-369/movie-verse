@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from "react";
 
 export const CastSection = ({ movieId }) => {
@@ -6,33 +7,34 @@ export const CastSection = ({ movieId }) => {
   const rightArrowRef = useRef(null);
 
   useEffect(() => {
+    const fetchCastDetails = async () => {
+      try {
+        const response = await fetch(
+          process.env.REACT_APP_API_SERVICE_GET_CAST_DETAILS_URL,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ movie_id: movieId }),
+          }
+        );
+        if (response.ok) {
+          const castDetailsJson = await response.json();
+  
+          // Handle the movie reviews data
+          //console.log(castDetailsJson);
+          setCastDetails(castDetailsJson["results"]);
+          //setLoading(false); // Set loading to false after fetching the data
+        }
+      } catch (e) {
+        // setLoading(false);
+      }
+    };
     fetchCastDetails();
   }, []);
 
-  const fetchCastDetails = async () => {
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_CAST_DETAILS_URL,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ movie_id: movieId }),
-        }
-      );
-      if (response.ok) {
-        const castDetailsJson = await response.json();
 
-        // Handle the movie reviews data
-        //console.log(castDetailsJson);
-        setCastDetails(castDetailsJson["results"]);
-        //setLoading(false); // Set loading to false after fetching the data
-      }
-    } catch (e) {
-      // setLoading(false);
-    }
-  };
 
   const handleLeftArrowClick = () => {
     if (leftArrowRef.current) {
