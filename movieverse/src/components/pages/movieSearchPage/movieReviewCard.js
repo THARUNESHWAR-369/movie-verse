@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import angry from '../../../static/sentiment_emoji/angry.png'
-import happy from '../../../static/sentiment_emoji/happy.png'
+import angry from "../../../static/sentiment_emoji/angry.png";
+import happy from "../../../static/sentiment_emoji/happy.png";
+import config from "../../../config/config";
 
 export const MovieReviewSection = ({ movieId }) => {
   const [movieReviewCard, setMovieReviewCard] = useState(null);
@@ -11,7 +12,7 @@ export const MovieReviewSection = ({ movieId }) => {
     const fetchMovieReview = async () => {
       try {
         const response = await fetch(
-          process.env.REACT_APP_API_SERVICE_GET_MOVIE_REVIEW_URL,
+          config.REACT_APP_API_SERVICE_GET_MOVIE_REVIEW_URL,
           {
             method: "POST",
             headers: {
@@ -22,7 +23,7 @@ export const MovieReviewSection = ({ movieId }) => {
         );
         if (response.ok) {
           const movieReviews = await response.json();
-         // console.log(movieReviews["results"]);
+          // console.log(movieReviews["results"]);
           setMovieReviewCard(movieReviews["results"]);
           setLoading(false);
         }
@@ -79,10 +80,12 @@ export const MovieReviewSection = ({ movieId }) => {
                       </a>
                     </span>
                     <span className="w-[35px] h-[35px] absolute rounded-full left-0 top-0">
-                      <img
-                        src={movieReviewCards.sentiment === 0 ? angry : happy}
-                        alt={movieReviewCards.name}
-                      ></img>
+                      {movieReviewCards.sentiment === 0 && (
+                        <img src={angry} alt={movieReviewCards.name}></img>
+                      )}
+                      {movieReviewCards.sentiment === 1 && (
+                        <img src={happy} alt={movieReviewCards.name}></img>
+                      )}
                     </span>
                   </div>
                   <div className="border-b-2 border-white border-opacity-25 p-[0.3em]">

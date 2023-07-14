@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import config from "../../../config/config";
 
 export const PopularCard = ({ CardMovieClick }) => {
   const [popularMovieData, setPopularMovieData] = useState(null);
@@ -6,17 +7,16 @@ export const PopularCard = ({ CardMovieClick }) => {
   const rightArrowRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
     window.scrollTo(0, 0);
     const fetchPopularMovieData = async () => {
       try {
         const response = await fetch(
-          process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
+          config.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
         );
         const jsonData = await response.json();
-       // console.log("setPopularMovieData: ", jsonData);
-  
+        // console.log("setPopularMovieData: ", jsonData);
+
         setPopularMovieData(jsonData["results"].slice(2));
         setLoading(false);
       } catch (error) {
@@ -44,15 +44,13 @@ export const PopularCard = ({ CardMovieClick }) => {
   };
 
   const handleMovieClick = (movie) => {
-    CardMovieClick(movie['title']);
+    CardMovieClick(movie["title"]);
   };
 
   return (
-   
     <div className="popular-card text-white ml-13 mt-10">
       <h2 className="font-bold text-2xl">Popular Movies</h2>
       <div className="popular-card-controller">
-    
         <i
           ref={leftArrowRef}
           id="leftArrow"
@@ -69,13 +67,13 @@ export const PopularCard = ({ CardMovieClick }) => {
         ></i>
       </div>
       <div className="popular-card-cards  snap-mandatory snap-x  scroll-smooth ">
-      {loading && (
-      <div className="loaderReview z-[100000000]">
-        <div className="spinner-container">
-          <div className="loading-spinner"></div>
-        </div>
-      </div>
-    )}
+        {loading && (
+          <div className="loaderReview z-[100000000]">
+            <div className="spinner-container">
+              <div className="loading-spinner"></div>
+            </div>
+          </div>
+        )}
         {popularMovieData &&
           popularMovieData.map((popularMovie, index) => (
             <div

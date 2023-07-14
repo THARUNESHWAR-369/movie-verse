@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import config from "../../../config/config";
 
 export const UpComingMoviesCard = ({ CardMovieClick }) => {
   const [UpcomingMovieData, setUpcomingMovieData] = useState(null);
@@ -13,7 +14,7 @@ export const UpComingMoviesCard = ({ CardMovieClick }) => {
   const fetchUpcomingMovieData = async () => {
     try {
       const response = await fetch(
-        process.env.REACT_APP_API_SERVICE_GET_UPCOMING_MOVIE_URL
+        config.REACT_APP_API_SERVICE_GET_UPCOMING_MOVIE_URL
       );
       const jsonData = await response.json();
       //console.log("up coming movies: ", jsonData["results"]);

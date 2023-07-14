@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { NavComponent } from "../../navigation/navComponent";
 import { HomePageContent } from "./homePageContent";
 import { MovieSearchPage } from "../movieSearchPage/movieSearchPage";
-import config from '../../../config/config'
+import config from "../../../config/config";
 
 export const HomePage = () => {
   const [appBg, setAppBg] = useState(null);
@@ -14,12 +14,6 @@ export const HomePage = () => {
   const [bgImg, setBgImg] = useState("");
   const [theme, setTheme] = useState("");
 
-  console.log("process.env.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL: ",config.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL);
-  console.log("process.env.REACT_APP_API_SERVICE_GET_MOVIE_GENRE_URL: ",config.REACT_APP_API_SERVICE_GET_MOVIE_GENRE_URL);
-  console.log("process.env.REACT_APP_API_SERVICE_GET_MOVIE_NAME_LIST_URL: ", config.REACT_APP_API_SERVICE_GET_MOVIE_NAME_LIST_URL);
-  console.log("process.env.REACT_APP_API_SERVICE_GET_MOVIE_DETAILS_URL: ", config.REACT_APP_API_SERVICE_GET_MOVIE_DETAILS_URL);
-
-
   const fetchNowPlayingMovieData = async () => {
     setLoadingText("Loading...");
     try {
@@ -29,7 +23,7 @@ export const HomePage = () => {
       );
       setLoadingText("Initializing...");
       const jsonData = await response.json();
-      console.log(jsonData)
+      console.log(jsonData);
       setLoadingText("Fetching...");
       await fetchBgMovieGenre(jsonData["results"][0]["genre_ids"]);
       setAppBg(jsonData["results"][0]);
@@ -55,7 +49,7 @@ export const HomePage = () => {
     );
     if (response.ok) {
       const genreBg = await response.json();
-      console.log(genreBg)
+      console.log(genreBg);
       setAppBgMovieGenre(genreBg);
     }
   };
@@ -77,11 +71,10 @@ export const HomePage = () => {
         : `url(${bgImg})`,
   };
 
-  
   useEffect(() => {
     window.scrollTo(0, 0);
     fetchNowPlayingMovieData();
-  },[]);
+  }, []);
 
   useEffect(() => {
     window

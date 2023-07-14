@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from "react";
+import config from "../../../config/config";
 
 export const RecommendationSection = ({ movieId, CardMovieClick }) => {
   const [recommendationDetails, setRecommendationDetails] = useState(null);
@@ -10,7 +11,7 @@ export const RecommendationSection = ({ movieId, CardMovieClick }) => {
     const fetchRecommendationDetails = async () => {
       try {
         const response = await fetch(
-          process.env.REACT_APP_API_SERVICE_GET_RECOMMENDATION_DETAILS_URL,
+          config.REACT_APP_API_SERVICE_GET_RECOMMENDATION_DETAILS_URL,
           {
             method: "POST",
             headers: {
@@ -21,7 +22,7 @@ export const RecommendationSection = ({ movieId, CardMovieClick }) => {
         );
         if (response.ok) {
           const recommendationDetailJson = await response.json();
-  
+
           // console.log(recommendationDetailJson);
           setRecommendationDetails(recommendationDetailJson["results"]);
         }
@@ -31,8 +32,6 @@ export const RecommendationSection = ({ movieId, CardMovieClick }) => {
     };
     fetchRecommendationDetails();
   }, []);
-
-
 
   const handleLeftArrowClick = () => {
     if (leftArrowRef.current) {

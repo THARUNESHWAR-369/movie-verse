@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
+import config from "../../../config/config";
 
 export const ReviewCard = ({ movieId }) => {
   const [reviewCard, setReviewCard] = useState(null);
@@ -9,7 +10,7 @@ export const ReviewCard = ({ movieId }) => {
     const fetchMovieReview = async () => {
       try {
         const response = await fetch(
-          process.env.REACT_APP_API_SERVICE_GET_MOVIE_REVIEW_URL,
+          config.REACT_APP_API_SERVICE_GET_MOVIE_REVIEW_URL,
           {
             method: "POST",
             headers: {

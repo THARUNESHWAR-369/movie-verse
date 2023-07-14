@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import { FooterComponent } from "../../footerComponent/footerComponent";
 import { CastSection } from "./castSection";
 import { ProductionSection } from "./productionCardSection";
-import {MovieReviewSection} from "./movieReviewCard";
+import { MovieReviewSection } from "./movieReviewCard";
 import { RecommendationSection } from "./recommendationSection";
+import config from "../../../config/config";
 
 export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
       // console.log("movie_name: ", movie_name);
       try {
         const response = await fetch(
-          process.env.REACT_APP_API_SERVICE_GET_MOVIE_DETAILS_URL,
+          config.REACT_APP_API_SERVICE_GET_MOVIE_DETAILS_URL,
           {
             method: "POST",
             headers: {
@@ -30,14 +31,14 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
         );
         if (response.ok) {
           const movieDetails = await response.json();
-  
-         // console.log(movieDetails['results'][0]);
-  
-          const backdropPath = movieDetails['results'][0]["backdrop_path"];
-          const posterPath = movieDetails['results'][0]["poster_path"];
-  
+
+          // console.log(movieDetails['results'][0]);
+
+          const backdropPath = movieDetails["results"][0]["backdrop_path"];
+          const posterPath = movieDetails["results"][0]["poster_path"];
+
           onMoviePoster(backdropPath ? backdropPath : posterPath);
-          setMovieDetails(movieDetails['results'][0]);
+          setMovieDetails(movieDetails["results"][0]);
           setLoading(false);
           setErrorTxt(false);
         }
@@ -53,9 +54,6 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
     fetchMovieDetails();
   }, []);
 
-
-  
-
   const formatRuntime = () => {
     if (!movieDetails || !movieDetails.runtime) return null;
 
@@ -65,8 +63,6 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
 
     return formattedRuntime;
   };
-
-
 
   const handleCardMovie = (movie) => {
     cardMovie(movie);
@@ -85,7 +81,9 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
       {errorTxt && (
         <div className="text-center movie-not-found font-bold">
           <p className="tracking-wider text-5xl">Movie not found Search</p>
-          <p className="tracking-widest p-2">(Search again or check the spelling)</p>
+          <p className="tracking-widest p-2">
+            (Search again or check the spelling)
+          </p>
         </div>
       )}
       {movieDetails && (
@@ -127,7 +125,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
                   <p>{movieDetails.overview}</p>
                 </div>
                 <div className="tracking-wider text-center py-[0.6rem]">
-                <span className="text-center flex">
+                  <span className="text-center flex">
                     <b className="flex gap-3">
                       Release Date:
                       <p className="font-semibold">
@@ -149,7 +147,9 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
                       IMDB
                     </p>
                     <p>&#9733;</p>
-                    <p className="text-sm text-yellow-300">{movieDetails.vote_average}/10</p>
+                    <p className="text-sm text-yellow-300">
+                      {movieDetails.vote_average}/10
+                    </p>
                   </span>
                   <span className="flex  gap-2 tracking-wider align-middle text-center items-center">
                     <b>Budget: </b>
@@ -189,14 +189,15 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
           </div>
 
           <div className="w-[100%] max-w-[90rem] m-auto h-[100%] pt-[4rem]">
-            <RecommendationSection movieId={movieDetails.id} CardMovieClick={handleCardMovie}></RecommendationSection>
+            <RecommendationSection
+              movieId={movieDetails.id}
+              CardMovieClick={handleCardMovie}
+            ></RecommendationSection>
           </div>
-
-          
         </div>
       )}
       <div className="pt-[2rem]">
-      <FooterComponent></FooterComponent>
+        <FooterComponent></FooterComponent>
       </div>
     </div>
   );

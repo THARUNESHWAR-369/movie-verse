@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import config from "../../../config/config";
 
 export const NowPlayingCard = ({ CardMovieClick }) => {
   const [NowPlayingMovieData, setNowPlayingMovieData] = useState(null);
@@ -9,11 +10,11 @@ export const NowPlayingCard = ({ CardMovieClick }) => {
     const fetchNowPlayingMovieData = async () => {
       try {
         const response = await fetch(
-          process.env.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
+          config.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
         );
         const jsonData = await response.json();
-       // console.log("setNowPlayingMovieData: ", jsonData["results"]);
-  
+        // console.log("setNowPlayingMovieData: ", jsonData["results"]);
+
         setNowPlayingMovieData(jsonData["results"]);
       } catch (error) {
         //console.log("error fetching data: ", error);
@@ -21,8 +22,6 @@ export const NowPlayingCard = ({ CardMovieClick }) => {
     };
     fetchNowPlayingMovieData();
   }, []);
-
-
 
   const handleLeftArrowClick = () => {
     if (leftArrowRef.current) {

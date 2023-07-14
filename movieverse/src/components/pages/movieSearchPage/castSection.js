@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from "react";
+import config from "../../../config/config";
 
 export const CastSection = ({ movieId }) => {
   const [castDetails, setCastDetails] = useState(null);
@@ -10,7 +11,7 @@ export const CastSection = ({ movieId }) => {
     const fetchCastDetails = async () => {
       try {
         const response = await fetch(
-          process.env.REACT_APP_API_SERVICE_GET_CAST_DETAILS_URL,
+          config.REACT_APP_API_SERVICE_GET_CAST_DETAILS_URL,
           {
             method: "POST",
             headers: {

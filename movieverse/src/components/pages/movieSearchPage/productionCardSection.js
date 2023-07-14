@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
+import config from "../../../config/config";
 
 export const ProductionSection = ({ movieId }) => {
   const [productionDetails, setProductionDetails] = useState(null);
@@ -10,7 +11,7 @@ export const ProductionSection = ({ movieId }) => {
     const fetchProductionCompanyDetails = async () => {
       try {
         const response = await fetch(
-          process.env.REACT_APP_API_SERVICE_GET_PRODUCTION_DETAILS_URL,
+          config.REACT_APP_API_SERVICE_GET_PRODUCTION_DETAILS_URL,
           {
             method: "POST",
             headers: {
@@ -21,9 +22,7 @@ export const ProductionSection = ({ movieId }) => {
         );
         if (response.ok) {
           const productionDetailsJson = await response.json();
-  
-          // Handle the movie reviews data
-          //console.log(productionDetailsJson);
+
           setProductionDetails(
             productionDetailsJson["results"]["production_companies"]
           );
@@ -37,8 +36,6 @@ export const ProductionSection = ({ movieId }) => {
     };
     fetchProductionCompanyDetails();
   }, []);
-
-  
 
   return (
     <div className="flex flex-col gap-3">
@@ -56,14 +53,11 @@ export const ProductionSection = ({ movieId }) => {
                 </li>
               ))}
           </ul>
-
         </div>
       </div>
       <div className="tracking-wider">
         <h3 className="text-4xl font-bold ">Production Country</h3>
         <div className="content">
-       
-
           <ul className="flex flex-row gap-2 pt-2 flex-wrap">
             {productionCountryDetails &&
               productionCountryDetails.map((productionCountryDetail, index) => (
