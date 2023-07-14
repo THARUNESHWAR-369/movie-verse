@@ -15,7 +15,6 @@ export const HomePageContent = ({
   if (!appBg) {
     return null; // Return null or show a loading state if appBg is null
   }
-
   const { original_title, overview, vote_average } = appBg;
 
   const handleTitleCardMovie = (movie) => {
