@@ -65,7 +65,7 @@ def get_now_playing_movies_list():
     Returns:
         dict: A dictionary containing the status and results of the request.
     """
-    __nowPlayingMovies = movie_home_model.get_movie_list(type_='now_playing_movie', sort_by_vote='release_date')
+    __nowPlayingMovies = movie_home_model.get_movie_list(type_='now_playing_movie', sort_by_vote='vote_average')
    # print(__nowPlayingMovies)
     return __nowPlayingMovies
 
