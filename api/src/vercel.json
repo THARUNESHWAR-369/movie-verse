@@ -1,14 +1,14 @@
 {
     "builds": [
         {
-            "src": "./runner.py",
+            "src": "src/runner.py",
             "use": "@vercel/python"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/"
+            "dest": "src"
         }
     ]
 }
