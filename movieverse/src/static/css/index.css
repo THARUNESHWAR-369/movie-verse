@@ -141,11 +141,16 @@ a.myAppName {
   background: -webkit-linear-gradient(to right, #ed213a, #93291e);
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #ed213a, #93291e);
-  width: 5rem;
   padding: 0.4rem;
-  border-radius: 0.5rem;
   font-size: larger;
   cursor: pointer;
+  border-radius: 50%;
+    width: 2.03em;
+    height: 2.03em;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 #review-p-start {

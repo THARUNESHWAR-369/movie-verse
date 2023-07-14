@@ -80,12 +80,7 @@ export const MovieReviewSection = ({ movieId }) => {
                       </a>
                     </span>
                     <span className="w-[35px] h-[35px] absolute rounded-full left-0 top-0">
-                      {movieReviewCards.sentiment === 0 && (
-                        <img src={angry} alt={movieReviewCards.name}></img>
-                      )}
-                      {movieReviewCards.sentiment === 1 && (
-                        <img src={happy} alt={movieReviewCards.name}></img>
-                      )}
+                    <img src={movieReviewCards.sentiment === 0 ? angry : happy} alt={movieReviewCards.name} />
                     </span>
                   </div>
                   <div className="border-b-2 border-white border-opacity-25 p-[0.3em]">

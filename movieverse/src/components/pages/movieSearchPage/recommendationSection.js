@@ -59,7 +59,7 @@ export const RecommendationSection = ({ movieId, CardMovieClick }) => {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold">Recommended Movies</h1>
+      <h1 className="text-4xl font-bold">Movies you may like</h1>
       {recommendationDetails && recommendationDetails.length === 0 && (
         <div className="flex justify-center">
           <p className="text-red-500 font-semibold tracking-wider">

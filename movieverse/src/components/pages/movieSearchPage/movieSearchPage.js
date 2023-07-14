@@ -32,7 +32,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
         if (response.ok) {
           const movieDetails = await response.json();
 
-          // console.log(movieDetails['results'][0]);
+          console.log(movieDetails['results'][0]);
 
           const backdropPath = movieDetails["results"][0]["backdrop_path"];
           const posterPath = movieDetails["results"][0]["poster_path"];
@@ -134,7 +134,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
                     </b>
                   </span>
 
-                  <span className="text-center flex">
+                  <span className="text-center flex py-[0.1em]">
                     <b className="flex gap-3">
                       Original language:
                       <p className="font-semibold text-blue-500">
@@ -142,7 +142,7 @@ export const MovieSearchPage = ({ onMoviePoster, movie_name, cardMovie }) => {
                       </p>
                     </b>
                   </span>
-                  <span className="flex font-extrabold pt-[0.8rem] pb-[0.5rem] text-center align-middle items-center gap-1">
+                  <span className="flex font-extrabold pt-[0.6rem] pb-[0.5rem] text-center align-middle items-center gap-1">
                     <p className="bg-yellow-300 text-black p-[0.1rem] pl-2 pr-2 rounded-sm font-bold">
                       IMDB
                     </p>

@@ -28,7 +28,7 @@ export const HomePage = () => {
       await fetchBgMovieGenre(jsonData["results"][0]["genre_ids"]);
       setAppBg(jsonData["results"][0]);
       setLoading(false);
-      //console.log(jsonData["results"][0]);
+      console.log(jsonData["results"][0]);
     } catch (error) {
       setLoadingText("Error on connecting to server...");
       //console.log("error fetching data: ", error);
@@ -49,7 +49,7 @@ export const HomePage = () => {
     );
     if (response.ok) {
       const genreBg = await response.json();
-      console.log(genreBg);
+      //console.log(genreBg);
       setAppBgMovieGenre(genreBg);
     }
   };
