@@ -40,7 +40,7 @@ export const HomePage = () => {
 
   const fetchBgMovieGenre = async (genre_id) => {
     const response = await fetch(
-      process.env.REACT_APP_API_SERVICE_GET_MOVIE_GENRE_URL,
+      config.REACT_APP_API_SERVICE_GET_MOVIE_GENRE_URL,
       {
         method: "POST",
         headers: {
