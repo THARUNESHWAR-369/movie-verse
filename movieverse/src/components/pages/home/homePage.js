@@ -61,13 +61,10 @@ export const HomePage = () => {
   };
 
   const handleMovieSelection = (movie) => {
-    //console.log(movie);
     setSelectedSearchMovieName(movie);
-    //console.log(selectedSearchMovieName);
   };
 
   const handleMovieBg = (moviePoster) => {
-   // console.log(moviePoster);
     setBgImg(moviePoster);
   };
 
