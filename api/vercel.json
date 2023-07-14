@@ -1,15 +1,5 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "./src/runner.py",
-        "use": "@vercel/python"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/src/(.*)",
-        "dest": "/src"
-      }
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/src/runner" }
     ]
   }
