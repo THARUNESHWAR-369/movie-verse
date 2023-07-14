@@ -27,7 +27,6 @@ jobs:
           echo "REACT_APP_API_SERVICE_GET_PRODUCTION_DETAILS_URL=${{ secrets.REACT_APP_API_SERVICE_GET_PRODUCTION_DETAILS_URL }}" >> $GITHUB_ENV
           echo "REACT_APP_API_SERVICE_GET_RECOMMENDATION_DETAILS_URL=${{ secrets.REACT_APP_API_SERVICE_GET_RECOMMENDATION_DETAILS_URL }}" >> $GITHUB_ENV
 
-
       - name: Build
         run: cd movieverse && npm run build
 
