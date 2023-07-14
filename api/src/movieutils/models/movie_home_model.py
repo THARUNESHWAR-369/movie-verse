@@ -114,7 +114,7 @@ class MovieHomeModel:
                 
             
             data['results'] = sorted(data['results'], key=lambda x : x[sort_by_vote], reverse=True)
-            #print(data)
+            print(data)
             return data
                     
         return {"status" : False}

@@ -15,7 +15,7 @@ export const HomePageContent = ({
   if (!appBg) {
     return null; // Return null or show a loading state if appBg is null
   }
-  const { original_title, overview, vote_average } = appBg;
+  const { title, overview, vote_average } = appBg;
 
   const handleTitleCardMovie = (movie) => {
     titleCardMovie(movie);
@@ -29,7 +29,7 @@ export const HomePageContent = ({
     <>
       <div className="title-card-reviews flex justify-between">
         <TitleCard
-          movieTitle={original_title}
+          movieTitle={title}
           movieOverview={overview}
           movieRating={vote_average}
           movieGenres={appBgMovieGenre}

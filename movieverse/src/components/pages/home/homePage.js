@@ -19,16 +19,19 @@ export const HomePage = () => {
     try {
       setLoadingText("Connecting to Server...");
       const response = await fetch(
-        config.REACT_APP_API_SERVICE_GET_POPULAR_MOVIE_URL
+        config.REACT_APP_API_SERVICE_GET_NOW_PLAYING_MOVIE_URL
       );
       setLoadingText("Initializing...");
       const jsonData = await response.json();
+      const sortedResults = jsonData.results.sort((a, b) => b.vote_average - a.vote_average);
+
       console.log(jsonData);
+      console.log("sortedResults: ",sortedResults)
       setLoadingText("Fetching...");
       await fetchBgMovieGenre(jsonData["results"][0]["genre_ids"]);
       setAppBg(jsonData["results"][0]);
       setLoading(false);
-      console.log(jsonData["results"][0]);
+      //console.log(jsonData["results"][0]);
     } catch (error) {
       setLoadingText("Error on connecting to server...");
       //console.log("error fetching data: ", error);
