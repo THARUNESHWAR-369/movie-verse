@@ -12,5 +12,6 @@ const config = {
     REACT_APP_API_SERVICE_GET_RECOMMENDATION_DETAILS_URL: process.env.REACT_APP_API_SERVICE_GET_RECOMMENDATION_DETAILS_URL,
   };
   
+  
   export default config;
   
