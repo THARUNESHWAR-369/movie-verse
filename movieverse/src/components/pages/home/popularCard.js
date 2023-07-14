@@ -17,7 +17,7 @@ export const PopularCard = ({ CardMovieClick }) => {
         const jsonData = await response.json();
         // console.log("setPopularMovieData: ", jsonData);
 
-        setPopularMovieData(jsonData["results"].slice(2));
+        setPopularMovieData(jsonData["results"]);
         setLoading(false);
       } catch (error) {
         //console.log("error fetching data: ", error);
