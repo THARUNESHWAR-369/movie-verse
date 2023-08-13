@@ -105,35 +105,35 @@ function CastCarousel({ title, pn }) {
         </div>
         <div className="w-full mt-2">
           <div
-            className={`movie-cards ${pn} flex gap-2 flex-nowrap justify-start snap-mandatory snap-x scroll-smooth h-[260px] overflow-auto relative whitespace-nowrap scrollbar-hide`}
+            className={`movie-cards ${pn} flex gap-2 flex-nowrap justify-start snap-mandatory snap-x scroll-smooth h-[293px] overflow-auto relative scrollbar-hide`}
           >
             {dummyMovieCarouselData.map((data, index) => (
               <div
                 key={index}
                 id="movie-card"
-                className="movie-card rounded-md w-[165px] min-w-[165px] overflow-hidden transition-all snap-start scroll-ml-6 cursor-pointer"
+                className="movie-card shadow-lg rounded-md w-[190px] min-w-[190px] overflow-hidden transition-all snap-start scroll-ml-6 cursor-pointer"
               >
                 <div className="w-full h-full relative">
-                  <div className="rounded-full shadow-xl w-[5rem] h-[5rem] absolute z-10 left-[25%] overflow-hidden">
+                  <div className="rounded-lg shadow-xl w-[5rem] h-[5rem] absolute z-10 left-[25%] overflow-hidden">
                     <Image
-                      className="rounded-full bg-orange-500"
+                      className="rounded-lg bg-orange-500"
                       alt={data.movieName}
                       src={data.posterUrl}
                       width={100}
                       height={100}
                     />
                   </div>
-                  <div className=" w-full h-full relative top-10 rounded-md bg-gradient-to-b from-[#ed213a] to-[#93291e]">
+                  <div className=" w-full h-full relative top-8 rounded-md bg-gradient-to-b from-[#ed213a] to-[#93291e]">
                     <div className="w-full h-full absolute top-[20%] p-2 text-sm flex gap-3 flex-col">
                       <span className="bg-black/50 gap-1 p-1 rounded-md text-center w-full flex-wrap line-clamp-3 flex flex-col">
                         <b>Name </b>
-                        <p className="font-extralight text-ellipsis line-clamp-1 w-full text-xs">
+                        <p className="font-extralight text-ellipsis line-clamp-2 w-full text-xs">
                           MyName MyName MyName
                         </p>
                       </span>
                       <span className="bg-black/50 gap-1 overflow-auto p-1 rounded-md text-center w-full flex-wrap line-clamp-3 flex flex-col">
                         <b>Charcater Name </b>
-                        <p className="font-extralight text-ellipsis line-clamp-1 w-full text-xs">
+                        <p className="font-extralight text-ellipsis line-clamp-2 w-full text-xs">
                           MyName MyName MyName
                         </p>
                       </span>

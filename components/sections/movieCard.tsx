@@ -34,7 +34,7 @@ function MovieCard() {
               <div className="py-2 w-full items-center flex justify-center">
                 <GenreComponent />
               </div>
-              <div className="flex gap-2 flex-col">
+              <div className="flex gap-2 flex-col relative">
                 <h5 className="flex  gap-2 tracking-wider">
                   <b className="font-bolder">Release Date: </b>{" "}
                   <p>2023-07-28</p>
@@ -56,6 +56,15 @@ function MovieCard() {
                 <h5 className="flex  gap-2 tracking-wider">
                   <b className="font-bolder">Runtime: </b> <p>2h 58min</p>
                 </h5>
+                <div className="movie-card-options absolute top-0 left-[20rem]">
+                  <div className="movie-card-options-container w-full h-full">
+                    <div className="bg-gradient-to-b flex items-center justify-center rounded-full from-[#ed213a] to-[#93291e] w-[3rem] h-[3rem]">
+                      <span className="material-icons-outlined text-[35px] cursor-pointer fill-white items-center hover:text-white/70">
+                        play_circle
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

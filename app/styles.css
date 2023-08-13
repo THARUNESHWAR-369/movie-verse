@@ -100,4 +100,21 @@
   .nav-container input {
     width: 100%;
   }
+  .movie-screen-title-card {
+    margin-top: 3rem;
+  }
+}
+
+@media only screen and (max-width:450px) {
+  .movie-card-options {
+    position: initial;
+  }
+
+  .movie-card-options-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
 }

@@ -5,3 +5,4 @@ interface MovieCarouselData {
   imdbRating: string;
   posterUrl: string;
 }
+

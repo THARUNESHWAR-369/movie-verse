@@ -5,4 +5,3 @@ interface ReviewData {
   url: string;
   name: string;
 }
-
